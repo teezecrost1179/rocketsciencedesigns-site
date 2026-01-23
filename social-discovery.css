@@ -313,6 +313,24 @@ h1 {
   font-weight: 700;
 }
 
+.summary-platforms {
+  border-radius: 20px;
+  padding: 1.5rem;
+  background: #f2f8fb;
+  border: 1px solid rgba(18, 140, 181, 0.2);
+}
+
+.summary-platforms h3 {
+  margin: 0 0 0.75rem;
+  font-family: "Manrope", "Montserrat", "Helvetica Neue", sans-serif;
+  font-weight: 700;
+}
+
+.summary-platforms-copy {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
 .summary-outline-list {
   margin: 0;
   padding-left: 1.2rem;

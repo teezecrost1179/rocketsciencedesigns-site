@@ -6,7 +6,7 @@
  */
 
 export const SOCIAL_DISCOVERY_FORM = {
-  version: "1.0.0",
+  version: "1.1.0",
   storageKey: "social_discovery_answers_v1",
 
   questions: [
@@ -22,31 +22,54 @@ export const SOCIAL_DISCOVERY_FORM = {
           id: "direct_buyers",
           label: "People who buy a product or service from us directly",
           meaning:
-            "Your social media should prioritize reach, familiarity, and repetition. We should focus on platforms and content styles that help new people quickly understand what you offer and feel comfortable with your brand before making a decision.",
-          tags: ["audience:b2c", "goal:reach", "goal:familiarity", "cta:low_friction"],
+            "We will prioritize repeatable, easy-to-understand content over one-off or experimental posts, ensuring new audiences can quickly understand what you offer and feel comfortable engaging before making a decision.",
+          tags: [
+            "audience:b2c",
+            "priority:reach",
+            "priority:familiarity",
+            "content:repeatable",
+            "platform:discovery"
+          ]
         },
         {
           id: "ongoing_1to1",
           label: "People who work with us one-on-one or on an ongoing basis",
           meaning:
-            "Your social media needs to build trust, clarity, and confidence in you specifically. Content should reduce uncertainty and help people feel like they already understand how it would be to work with you.",
-          tags: ["audience:service", "goal:trust", "goal:clarity", "cta:conversation"],
+            "We will focus on trust-building content that explains how you think, work, and make decisions, reducing uncertainty and pre-selling the relationship before someone reaches out.",
+          tags: [
+            "audience:service",
+            "priority:trust",
+            "content:perspective",
+            "content:process",
+            "platform:conversation"
+          ]
         },
         {
           id: "b2b_orgs",
           label: "Other businesses or organizations",
           meaning:
-            "Your audience makes decisions carefully and values credibility and professionalism. Social media should reinforce legitimacy and expertise rather than entertainment or trends.",
-          tags: ["audience:b2b", "goal:credibility", "tone:professional", "content:proof"],
+            "We will emphasize credibility, clarity, and proof over trends or entertainment, ensuring your social presence supports careful, professional decision-making.",
+          tags: [
+            "audience:b2b",
+            "priority:credibility",
+            "content:proof",
+            "tone:professional",
+            "platform:professional"
+          ]
         },
         {
           id: "local_regional",
           label: "A local or regional audience",
           meaning:
-            "Familiarity matters more than scale. Social media should help you become recognizable and trusted within a specific community, not just broadly visible.",
-          tags: ["audience:local", "goal:familiarity", "platform:local_friendly", "cta:local"],
-        },
-      ],
+            "We will prioritize familiarity and local recognition over scale, using consistent visual and contextual cues that make your brand recognizable within a specific community.",
+          tags: [
+            "audience:local",
+            "priority:familiarity",
+            "content:community",
+            "platform:local"
+          ]
+        }
+      ]
     },
 
     {
@@ -62,41 +85,69 @@ export const SOCIAL_DISCOVERY_FORM = {
           id: "trust_credibility",
           label: "Trust and credibility",
           meaning:
-            "Content must consistently signal competence, reliability, and professionalism.",
-          tags: ["driver:trust", "content:authority", "tone:confident"],
+            "We will avoid overly casual or trend-driven content and instead lead with clear, polished messaging that consistently reinforces professionalism and competence.",
+          tags: [
+            "driver:trust",
+            "tone:professional",
+            "content:authority"
+          ]
         },
         {
           id: "proof_experience",
           label: "Proof of results or experience",
-          meaning: "People want reassurance that you've done this successfully before.",
-          tags: ["driver:proof", "content:testimonials", "content:examples"],
+          meaning:
+            "We will make proof-based content a recurring pillar, regularly showing examples, outcomes, testimonials, and experience signals rather than treating them as occasional posts.",
+          tags: [
+            "driver:proof",
+            "content:testimonials",
+            "content:examples"
+          ]
         },
         {
           id: "education_clarity",
           label: "Clear explanations or education",
-          meaning: "Your audience feels more confident when things are clearly explained.",
-          tags: ["driver:education", "content:how_it_works", "content:process"],
+          meaning:
+            "We will consistently create educational content that explains how things work and answers common questions, so people feel informed before engaging.",
+          tags: [
+            "driver:education",
+            "content:how_it_works",
+            "content:process"
+          ]
         },
         {
           id: "relatable_connection",
           label: "Personal connection or relatability",
-          meaning: "People are choosing you, not just the offer.",
-          tags: ["driver:connection", "tone:human", "content:storytelling"],
+          meaning:
+            "We will intentionally include perspective and human content so people can understand who you are, how you think, and what it feels like to work with you.",
+          tags: [
+            "driver:connection",
+            "tone:human",
+            "content:storytelling"
+          ]
         },
         {
           id: "convenience_ease",
           label: "Convenience or ease",
-          meaning: "Reducing friction is a key driver in decisions.",
-          tags: ["driver:convenience", "cta:clear_next_step", "content:friction_reduction"],
+          meaning:
+            "We will prioritize clarity and simplicity in both content and calls to action, removing friction wherever possible.",
+          tags: [
+            "driver:convenience",
+            "content:clarity",
+            "cta:low_friction"
+          ]
         },
         {
           id: "price_value",
           label: "Price or value",
           meaning:
-            "People are weighing cost carefully and need to understand what makes you worth it.",
-          tags: ["driver:value", "content:differentiation", "content:value_framing"],
-        },
-      ],
+            "We will consistently frame your offering around outcomes and differentiation, reinforcing why the value justifies the cost.",
+          tags: [
+            "driver:value",
+            "content:value_framing",
+            "content:differentiation"
+          ]
+        }
+      ]
     },
 
     {
@@ -110,45 +161,69 @@ export const SOCIAL_DISCOVERY_FORM = {
           id: "referrals",
           label: "Referrals or word of mouth",
           meaning:
-            "Social media's role is primarily validation, not discovery. People check you out after hearing about you elsewhere.",
-          tags: ["funnel:validation", "content:credibility", "goal:trust"],
+            "We will treat social media as a validation layer, ensuring your presence reinforces trust and credibility when people look you up after hearing about you elsewhere.",
+          tags: [
+            "funnel:validation",
+            "priority:trust",
+            "platform:credibility"
+          ]
         },
         {
           id: "repeat_relationships",
           label: "Repeat customers or existing relationships",
           meaning:
-            "Social media supports retention and long-term trust rather than constant acquisition.",
-          tags: ["funnel:retention", "goal:trust", "content:community"],
+            "We will focus on consistency and long-term brand reinforcement rather than constant acquisition.",
+          tags: [
+            "funnel:retention",
+            "priority:consistency",
+            "platform:community"
+          ]
         },
         {
           id: "search_website",
           label: "Online search or website",
           meaning:
-            "Social media should support credibility once people find you through other channels.",
-          tags: ["funnel:assist", "goal:credibility", "content:reinforcement"],
+            "We will align social content closely with your website messaging to reinforce credibility once people find you through search.",
+          tags: [
+            "funnel:assist",
+            "priority:credibility",
+            "platform:professional"
+          ]
         },
         {
           id: "social_already",
           label: "Social media",
           meaning:
-            "Social already plays an active role and can be optimized for stronger outcomes.",
-          tags: ["funnel:acquisition", "goal:optimize", "content:double_down"],
+            "We will optimize existing platforms and content before expanding into new ones, tightening messaging and calls to action.",
+          tags: [
+            "funnel:acquisition",
+            "priority:optimization",
+            "platform:active"
+          ]
         },
         {
           id: "outreach_networking",
           label: "Outreach or networking",
           meaning:
-            "Social media should help warm people up before conversations happen.",
-          tags: ["funnel:warm_up", "goal:authority", "tone:professional"],
+            "We will use social media to pre-sell trust and authority before conversations happen.",
+          tags: [
+            "funnel:warmup",
+            "priority:authority",
+            "platform:professional"
+          ]
         },
         {
           id: "inconsistent",
           label: "Not consistently yet",
           meaning:
-            "Social media may help establish visibility and momentum where there isn't a strong acquisition channel yet.",
-          tags: ["funnel:foundation", "goal:awareness", "goal:consistency"],
-        },
-      ],
+            "We will focus first on building a clear, credible baseline presence before attempting aggressive growth or experimentation.",
+          tags: [
+            "funnel:foundation",
+            "priority:awareness",
+            "platform:discovery"
+          ]
+        }
+      ]
     },
 
     {
@@ -163,24 +238,31 @@ export const SOCIAL_DISCOVERY_FORM = {
           id: "personality_low",
           label: "Not important",
           meaning:
-            "A more informational, straightforward approach will feel most appropriate.",
-          tags: ["tone:straightforward", "content:informational"],
+            "We will keep content primarily informational and professional, avoiding personal storytelling unless it directly supports clarity or trust.",
+          tags: [
+            "tone:reserved"
+          ]
         },
         {
           id: "personality_mid",
           label: "Somewhat important",
           meaning:
-            "A balance of professionalism and human tone will work best.",
-          tags: ["tone:balanced", "content:mixed"],
+            "We will balance professional authority with selective human moments to keep the brand approachable without oversharing.",
+          tags: [
+            "tone:balanced"
+          ]
         },
         {
           id: "personality_high",
           label: "Very important",
           meaning:
-            "Personality and storytelling should be intentionally built into the strategy.",
-          tags: ["tone:human", "content:storytelling", "goal:connection"],
-        },
-      ],
+            "We will intentionally plan storytelling and human content as a core part of the strategy rather than treating it as filler.",
+          tags: [
+            "tone:human",
+            "content:storytelling"
+          ]
+        }
+      ]
     },
 
     {
@@ -195,38 +277,53 @@ export const SOCIAL_DISCOVERY_FORM = {
           id: "cta_dms",
           label: "Direct messages or conversations",
           meaning:
-            "Social media should encourage dialogue and low-pressure outreach.",
-          tags: ["cta:dms", "funnel:conversation", "content:prompt_response"],
+            "We will design content that explicitly invites conversation and makes outreach feel low-pressure and natural.",
+          tags: [
+            "cta:conversation",
+            "platform:conversation"
+          ]
         },
         {
           id: "cta_email",
           label: "Email",
           meaning:
-            "Social should support longer-term nurturing and list-building.",
-          tags: ["cta:email", "funnel:nurture", "content:lead_magnet"],
+            "We will use social content to support longer-term nurturing rather than expecting immediate conversion.",
+          tags: [
+            "cta:nurture",
+            "platform:trust"
+          ]
         },
         {
           id: "cta_calls",
           label: "Phone or video calls",
           meaning:
-            "Social should pre-qualify leads and build trust before live conversations.",
-          tags: ["cta:calls", "funnel:prequalify", "content:trust_building"],
+            "We will use content to answer common questions and objections so calls start warmer and more informed.",
+          tags: [
+            "cta:high_intent",
+            "platform:professional"
+          ]
         },
         {
           id: "cta_booking",
           label: "Website forms or bookings",
           meaning:
-            "Clear CTAs and conversion-focused content are important.",
-          tags: ["cta:booking", "funnel:conversion", "content:clear_steps"],
+            "We will prioritize clarity, structure, and conversion-focused messaging.",
+          tags: [
+            "cta:conversion",
+            "platform:credibility"
+          ]
         },
         {
           id: "cta_in_person",
           label: "In-person interactions",
           meaning:
-            "Social reinforces awareness and trust ahead of offline engagement.",
-          tags: ["cta:offline", "funnel:assist", "content:community"],
-        },
-      ],
+            "We will treat social as a reinforcement tool that builds familiarity and trust ahead of offline engagement.",
+          tags: [
+            "cta:offline",
+            "platform:local"
+          ]
+        }
+      ]
     },
 
     {
@@ -240,38 +337,54 @@ export const SOCIAL_DISCOVERY_FORM = {
         {
           id: "success_recognition",
           label: "More people recognize my brand",
-          meaning: "Awareness and reach are key success metrics.",
-          tags: ["kpi:awareness", "goal:reach"],
+          meaning:
+            "We will prioritize reach, repetition, and recognizability over niche experimentation.",
+          tags: [
+            "kpi:awareness",
+            "platform:discovery"
+          ]
         },
         {
           id: "success_quality_inquiries",
           label: "I'm getting better quality inquiries",
           meaning:
-            "Filtering and pre-educating your audience is a priority.",
-          tags: ["kpi:lead_quality", "goal:filtering", "content:education"],
+            "We will intentionally clarify fit and expectations, even if that slightly narrows the audience.",
+          tags: [
+            "kpi:lead_quality",
+            "platform:trust"
+          ]
         },
         {
           id: "success_trust_faster",
           label: "People trust me faster",
           meaning:
-            "Consistency and clarity are critical success drivers.",
-          tags: ["kpi:trust", "goal:clarity", "goal:consistency"],
+            "We will double down on clarity, proof, and consistency to shorten the trust curve.",
+          tags: [
+            "kpi:trust",
+            "platform:credibility"
+          ]
         },
         {
           id: "success_sales_easier",
           label: "Sales conversations are easier",
           meaning:
-            "Social should reduce friction before direct selling begins.",
-          tags: ["kpi:sales_friction", "goal:pre_sell", "content:objection_handling"],
+            "We will pre-educate and pre-qualify through content so conversations start further along.",
+          tags: [
+            "kpi:sales_efficiency",
+            "platform:professional"
+          ]
         },
         {
           id: "success_consistency",
           label: "I feel more consistent and confident online",
           meaning:
-            "A sustainable system matters as much as external results.",
-          tags: ["kpi:sustainability", "goal:systems", "goal:consistency"],
-        },
-      ],
+            "We will prioritize sustainable systems and a defined content structure over volume.",
+          tags: [
+            "kpi:sustainability",
+            "platform:stable"
+          ]
+        }
+      ]
     },
 
     {
@@ -285,26 +398,63 @@ export const SOCIAL_DISCOVERY_FORM = {
           id: "cadence_low",
           label: "1-2 times per week",
           meaning:
-            "The strategy should be focused, minimal, and high-impact.",
-          tags: ["cadence:low", "plan:lean", "format:batch"],
+            "We will focus on fewer, higher-impact posts with clear purpose rather than frequent updates.",
+          tags: [
+            "cadence:low"
+          ]
         },
         {
           id: "cadence_mid",
           label: "3-4 times per week",
           meaning:
-            "A balanced strategy with variety and testing is realistic.",
-          tags: ["cadence:mid", "plan:balanced", "format:variety"],
+            "We will rotate a defined set of content types and review performance regularly.",
+          tags: [
+            "cadence:balanced"
+          ]
         },
         {
           id: "cadence_high",
           label: "5+ times per week",
           meaning:
-            "Higher-volume content and experimentation are feasible if structured well.",
-          tags: ["cadence:high", "plan:high_output", "format:experiment"],
-        },
-      ],
-    },
+            "We will support higher output with structured formats and ongoing optimization.",
+          tags: [
+            "cadence:high"
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+export const PLATFORM_TRAIT_MAP = {
+  instagram: [
+    "platform:visual",
+    "platform:conversation",
+    "platform:local",
+    "platform:discovery",
+    "platform:community"
   ],
+
+  linkedin: [
+    "platform:professional",
+    "platform:credibility",
+    "platform:conversation"
+  ],
+
+  tiktok: [
+    "platform:discovery"
+  ],
+
+  youtube: [
+    "platform:education",
+    "platform:authority",
+    "platform:trust"
+  ],
+
+  facebook: [
+    "platform:local",
+    "platform:community"
+  ]
 };
 
 /**
@@ -536,6 +686,19 @@ function renderSummary() {
 
   outline.append(outlineTitle, outlineList);
 
+  const platform = buildPlatformRecommendation(results.allTags);
+  const platformBlock = document.createElement("div");
+  platformBlock.className = "summary-platforms";
+
+  const platformTitle = document.createElement("h3");
+  platformTitle.textContent = "Platform Recommendations";
+
+  const platformCopy = document.createElement("p");
+  platformCopy.className = "summary-platforms-copy";
+  platformCopy.textContent = platform.sentence;
+
+  platformBlock.append(platformTitle, platformCopy);
+
   const nav = document.createElement("div");
   nav.className = "question-nav";
 
@@ -557,7 +720,7 @@ function renderSummary() {
 
   nav.append(backBtn, resetBtn);
 
-  summary.append(title, list, outline, nav);
+  summary.append(title, list, outline, platformBlock, nav);
   app.appendChild(summary);
 }
 
@@ -565,12 +728,15 @@ function normalizeSelection(value, type) {
   if (type === "multi") {
     return Array.isArray(value) ? value : value ? [value] : [];
   }
+  if (Array.isArray(value)) {
+    return value.length ? [value[0]] : [];
+  }
   return value ? [value] : [];
 }
 
 function toggleSelection({ current, optionId, type, maxSelect = 1 }) {
   if (type === "single") {
-    return [optionId];
+    return optionId;
   }
 
   if (current.includes(optionId)) {
@@ -584,6 +750,85 @@ function toggleSelection({ current, optionId, type, maxSelect = 1 }) {
   return [...current, optionId];
 }
 
+function buildPlatformRecommendation(tags) {
+  const scores = scorePlatforms(tags);
+  const ranked = Object.entries(scores)
+    .sort((a, b) => b[1] - a[1])
+    .filter((entry) => entry[1] > 0);
+
+  const topPlatforms = ranked.slice(0, 2).map(([name]) => titleCasePlatform(name));
+  const topTraits = topTagTraits(tags).slice(0, 2);
+
+  if (!topPlatforms.length) {
+    return {
+      sentence:
+        "Your responses don't indicate specific platform traits yet, so we can prioritize the channels you already use most."
+    };
+  }
+
+  if (!topTraits.length) {
+    return {
+      sentence: `Your responses align best with ${formatList(topPlatforms)}.`
+    };
+  }
+
+  return {
+    sentence: `Your responses favor platforms that support ${formatList(topTraits)}, which aligns best with ${formatList(
+      topPlatforms
+    )}.`
+  };
+}
+
+function scorePlatforms(tags) {
+  const scores = {};
+  const tagSet = new Set(tags || []);
+
+  Object.keys(PLATFORM_TRAIT_MAP).forEach((platform) => {
+    scores[platform] = PLATFORM_TRAIT_MAP[platform].filter((tag) => tagSet.has(tag)).length;
+  });
+
+  return scores;
+}
+
+function topTagTraits(tags) {
+  const traitCounts = {};
+  const traitSet = new Set(
+    Object.values(PLATFORM_TRAIT_MAP).flat()
+  );
+
+  (tags || []).forEach((tag) => {
+    if (!traitSet.has(tag)) {
+      return;
+    }
+    traitCounts[tag] = (traitCounts[tag] || 0) + 1;
+  });
+
+  return Object.entries(traitCounts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([tag]) => tag.replace("platform:", "").replace(/_/g, " "));
+}
+
+function titleCasePlatform(platform) {
+  if (!platform) {
+    return "";
+  }
+  return platform.charAt(0).toUpperCase() + platform.slice(1);
+}
+
+function formatList(items) {
+  if (!items.length) {
+    return "";
+  }
+  if (items.length === 1) {
+    return items[0];
+  }
+  if (items.length === 2) {
+    return `${items[0]} and ${items[1]}`;
+  }
+  return `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
+}
+
 render();
+
 
 
