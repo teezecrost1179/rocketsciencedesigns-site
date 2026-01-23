@@ -445,6 +445,10 @@ export const PLATFORM_TRAIT_MAP = {
     "platform:discovery"
   ],
 
+  youtube_shorts: [
+    "platform:discovery"
+  ],
+
   youtube: [
     "platform:education",
     "platform:authority",
