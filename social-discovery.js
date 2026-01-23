@@ -714,6 +714,7 @@ function renderSummary() {
   resetBtn.textContent = "Start Over";
   resetBtn.addEventListener("click", () => {
     state.answers = {};
+    state.required = {};
     saveAnswers();
     setIndex(0);
   });
