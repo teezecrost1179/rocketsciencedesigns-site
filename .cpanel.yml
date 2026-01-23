@@ -1,0 +1,5 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home2/parenity/rocketsciencedesigns.com/
+    - /bin/cp -R * $DEPLOYPATH
+    - /bin/rm -rf $DEPLOYPATH/.git
