@@ -1,0 +1,19 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.*
+
+# Node/build artifacts (if you use them)
+node_modules/
+dist/
+build/
+.cache/
+
+# Large media (if you have any)
+*.mp4
+*.webm
+/videos/
+/assets/videos/
