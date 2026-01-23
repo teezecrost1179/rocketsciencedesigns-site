@@ -17,3 +17,5 @@ build/
 *.webm
 /videos/
 /assets/videos/
+
+rocket-agent/

@@ -1,0 +1,335 @@
+:root {
+  --ink: #0f172a;
+  --ink-soft: #1f2937;
+  --accent: #ff6b3d;
+  --accent-deep: #c2410c;
+  --mist: #f8f4ef;
+  --glass: rgba(255, 255, 255, 0.78);
+  --shadow: 0 28px 60px rgba(15, 23, 42, 0.15);
+  --max-width: 1040px;
+  --pad-x: clamp(1.25rem, 2.5vw, 3rem);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Kameron", serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(255, 246, 226, 0.85), transparent 45%),
+    radial-gradient(circle at 15% 55%, rgba(255, 223, 202, 0.65), transparent 50%),
+    linear-gradient(140deg, #fffaf3 0%, #f8f4ef 55%, #fff 100%);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.site-header {
+  padding: 1.75rem var(--pad-x) 1rem;
+}
+
+.logo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.site-logo {
+  width: clamp(160px, 22vw, 240px);
+  height: auto;
+  filter: drop-shadow(0 16px 20px rgba(15, 23, 42, 0.12));
+}
+
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem var(--pad-x) 4rem;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.intro {
+  background: var(--glass);
+  border-radius: 28px;
+  padding: clamp(1.75rem, 3vw, 3rem);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.eyebrow {
+  font-family: "Manrope", "Montserrat", "Helvetica Neue", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-deep);
+  margin: 0 0 0.75rem;
+}
+
+h1 {
+  font-family: "Manrope", "Montserrat", "Helvetica Neue", sans-serif;
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin: 0 0 1rem;
+  color: var(--ink);
+}
+
+.lead {
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  line-height: 1.65;
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.questionnaire {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.question-card {
+  border-radius: 24px;
+  background: #ffffff;
+  padding: clamp(1.5rem, 2.5vw, 2.5rem);
+  box-shadow: 0 24px 40px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.05);
+}
+
+.question-title {
+  font-family: "Manrope", "Montserrat", "Helvetica Neue", sans-serif;
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.question-copy {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.site-footer {
+  padding: 2rem var(--pad-x) 3rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    padding-top: 1.5rem;
+  }
+
+  .intro {
+    border-radius: 22px;
+  }
+}
+.question-header {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.question-step {
+  font-family: "Manrope", "Montserrat", "Helvetica Neue", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--accent-deep);
+}
+
+.question-instructions {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--ink-soft);
+}
+
+.question-required {
+  margin: 0 0 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent-deep);
+}
+
+.question-options {
+  display: grid;
+  gap: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+.option-btn {
+  text-align: left;
+  padding: 1rem 1.2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: #fff;
+  font-family: "Kameron", serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.option-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(15, 23, 42, 0.12);
+}
+
+.option-btn.is-active {
+  border-color: var(--accent);
+  box-shadow: 0 16px 26px rgba(255, 107, 61, 0.2);
+}
+
+.question-nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  border: none;
+  font-family: "Manrope", "Montserrat", "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px rgba(255, 107, 61, 0.3);
+}
+
+.nav-btn:disabled,
+.nav-btn.is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.nav-btn.ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid rgba(15, 23, 42, 0.2);
+}
+
+.question-progress {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.progress-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(15, 23, 42, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-deep));
+  border-radius: 999px;
+}
+
+.progress-text {
+  margin: 0;
+  font-family: "Manrope", "Montserrat", "Helvetica Neue", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.summary {
+  display: grid;
+  gap: 2rem;
+}
+
+.summary-title {
+  font-family: "Manrope", "Montserrat", "Helvetica Neue", sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 800;
+  margin: 0;
+}
+
+.summary-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.summary-item {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 20px;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.summary-item h3 {
+  margin: 0 0 0.5rem;
+  font-family: "Manrope", "Montserrat", "Helvetica Neue", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.summary-response {
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+}
+
+.summary-meaning {
+  margin: 0.35rem 0 0;
+  color: var(--ink-soft);
+}
+
+.summary-outline {
+  border-radius: 20px;
+  padding: 1.5rem;
+  background: #fff5ed;
+  border: 1px solid rgba(255, 107, 61, 0.25);
+}
+
+.summary-outline h3 {
+  margin: 0 0 0.75rem;
+  font-family: "Manrope", "Montserrat", "Helvetica Neue", sans-serif;
+  font-weight: 700;
+}
+
+.summary-outline-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.summary-outline-list li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .question-nav {
+    flex-direction: column;
+  }
+
+  .question-progress {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
