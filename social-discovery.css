@@ -1,8 +1,8 @@
 :root {
   --ink: #0f172a;
   --ink-soft: #1f2937;
-  --accent: #ff6b3d;
-  --accent-deep: #c2410c;
+  --accent: #128cb5;
+  --accent-deep: #d91818;
   --mist: #f8f4ef;
   --glass: rgba(255, 255, 255, 0.78);
   --shadow: 0 28px 60px rgba(15, 23, 42, 0.15);
@@ -187,7 +187,7 @@ h1 {
 
 .option-btn.is-active {
   border-color: var(--accent);
-  box-shadow: 0 16px 26px rgba(255, 107, 61, 0.2);
+  box-shadow: 0 16px 26px rgba(18, 140, 181, 0.2);
 }
 
 .question-nav {
@@ -211,7 +211,7 @@ h1 {
 
 .nav-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 16px 30px rgba(255, 107, 61, 0.3);
+  box-shadow: 0 16px 30px rgba(18, 140, 181, 0.3);
 }
 
 .nav-btn:disabled,
@@ -303,8 +303,8 @@ h1 {
 .summary-outline {
   border-radius: 20px;
   padding: 1.5rem;
-  background: #fff5ed;
-  border: 1px solid rgba(255, 107, 61, 0.25);
+  background: #fdf1f1;
+  border: 1px solid rgba(217, 24, 24, 0.22);
 }
 
 .summary-outline h3 {

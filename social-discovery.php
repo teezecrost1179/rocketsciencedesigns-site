@@ -1,4 +1,4 @@
-<!doctype html>
+ï»¿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -14,14 +14,14 @@
   <body>
     <header class="site-header">
       <div class="logo-wrap">
-        <img src="assets/rocket-logo-26.jpg" alt="Rocket Science Designs" class="site-logo" />
+        <img src="assets/rocket-logo-26.png" alt="Rocket Science Designs" class="site-logo" />
       </div>
     </header>
 
     <main class="page">
       <section class="intro">
         <p class="eyebrow">Social Strategy Discovery</p>
-        <h1>Let’s map the social presence you actually want.</h1>
+        <h1>Let's map the social presence you actually want.</h1>
         <p class="lead">
           This short questionnaire helps us understand your goals, audience, and content ambitions. It takes
           about five minutes and stays on a single page for a smooth experience.
@@ -37,7 +37,9 @@
     </main>
 
     <footer class="site-footer">
-      <p>© 2026 Rocket Science Designs. All rights reserved.</p>
+      <p>&copy; 2026 Rocket Science Designs. All rights reserved.</p>
     </footer>
   </body>
 </html>
+
+

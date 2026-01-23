@@ -1,5 +1,5 @@
 ﻿/**
- * Social Strategy Discovery — Form + Results Config (single source of truth)
+ * Social Strategy Discovery -- Form + Results Config (single source of truth)
  * - Render questions/options from this config
  * - Store only selected option IDs in localStorage
  * - Build results by looking up option.meaning (and optional tags)
@@ -68,7 +68,7 @@ export const SOCIAL_DISCOVERY_FORM = {
         {
           id: "proof_experience",
           label: "Proof of results or experience",
-          meaning: "People want reassurance that you’ve done this successfully before.",
+          meaning: "People want reassurance that you've done this successfully before.",
           tags: ["driver:proof", "content:testimonials", "content:examples"],
         },
         {
@@ -110,7 +110,7 @@ export const SOCIAL_DISCOVERY_FORM = {
           id: "referrals",
           label: "Referrals or word of mouth",
           meaning:
-            "Social media’s role is primarily validation, not discovery. People check you out after hearing about you elsewhere.",
+            "Social media's role is primarily validation, not discovery. People check you out after hearing about you elsewhere.",
           tags: ["funnel:validation", "content:credibility", "goal:trust"],
         },
         {
@@ -145,7 +145,7 @@ export const SOCIAL_DISCOVERY_FORM = {
           id: "inconsistent",
           label: "Not consistently yet",
           meaning:
-            "Social media may help establish visibility and momentum where there isn’t a strong acquisition channel yet.",
+            "Social media may help establish visibility and momentum where there isn't a strong acquisition channel yet.",
           tags: ["funnel:foundation", "goal:awareness", "goal:consistency"],
         },
       ],
@@ -155,7 +155,7 @@ export const SOCIAL_DISCOVERY_FORM = {
       id: "q4",
       step: 4,
       title:
-        "How important is emotional connection or personality in your brand’s online presence?",
+        "How important is emotional connection or personality in your brand's online presence?",
       instructions: "Select one",
       type: "single",
       options: [
@@ -232,7 +232,7 @@ export const SOCIAL_DISCOVERY_FORM = {
     {
       id: "q6",
       step: 6,
-      title: "What would make you say “this is working” six months from now?",
+      title: "What would make you say \"this is working\" six months from now?",
       instructions: "Select up to 2",
       type: "multi",
       maxSelect: 2,
@@ -245,7 +245,7 @@ export const SOCIAL_DISCOVERY_FORM = {
         },
         {
           id: "success_quality_inquiries",
-          label: "I’m getting better quality inquiries",
+          label: "I'm getting better quality inquiries",
           meaning:
             "Filtering and pre-educating your audience is a priority.",
           tags: ["kpi:lead_quality", "goal:filtering", "content:education"],
@@ -283,14 +283,14 @@ export const SOCIAL_DISCOVERY_FORM = {
       options: [
         {
           id: "cadence_low",
-          label: "1–2 times per week",
+          label: "1-2 times per week",
           meaning:
             "The strategy should be focused, minimal, and high-impact.",
           tags: ["cadence:low", "plan:lean", "format:batch"],
         },
         {
           id: "cadence_mid",
-          label: "3–4 times per week",
+          label: "3-4 times per week",
           meaning:
             "A balanced strategy with variety and testing is realistic.",
           tags: ["cadence:mid", "plan:balanced", "format:variety"],
@@ -585,4 +585,5 @@ function toggleSelection({ current, optionId, type, maxSelect = 1 }) {
 }
 
 render();
+
 
