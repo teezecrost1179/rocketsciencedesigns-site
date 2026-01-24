@@ -6,7 +6,7 @@
  */
 
 export const SOCIAL_DISCOVERY_FORM = {
-  version: "1.1.0",
+  version: "1.2.0",
   storageKey: "social_discovery_answers_v1",
 
   questions: [
@@ -29,7 +29,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "priority:familiarity",
             "content:repeatable",
             "platform:discovery"
-          ]
+          ],
+          category: "where_we_show_up"
         },
         {
           id: "ongoing_1to1",
@@ -42,7 +43,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "content:perspective",
             "content:process",
             "platform:conversation"
-          ]
+          ],
+          category: "what_we_focus_on"
         },
         {
           id: "b2b_orgs",
@@ -55,7 +57,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "content:proof",
             "tone:professional",
             "platform:professional"
-          ]
+          ],
+          category: "how_this_should_feel"
         },
         {
           id: "local_regional",
@@ -67,7 +70,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "priority:familiarity",
             "content:community",
             "platform:local"
-          ]
+          ],
+          category: "where_we_show_up"
         }
       ]
     },
@@ -90,7 +94,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "driver:trust",
             "tone:professional",
             "content:authority"
-          ]
+          ],
+          category: "how_this_should_feel"
         },
         {
           id: "proof_experience",
@@ -101,7 +106,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "driver:proof",
             "content:testimonials",
             "content:examples"
-          ]
+          ],
+          category: "what_we_focus_on"
         },
         {
           id: "education_clarity",
@@ -112,7 +118,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "driver:education",
             "content:how_it_works",
             "content:process"
-          ]
+          ],
+          category: "what_we_focus_on"
         },
         {
           id: "relatable_connection",
@@ -123,7 +130,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "driver:connection",
             "tone:human",
             "content:storytelling"
-          ]
+          ],
+          category: "how_this_should_feel"
         },
         {
           id: "convenience_ease",
@@ -134,7 +142,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "driver:convenience",
             "content:clarity",
             "cta:low_friction"
-          ]
+          ],
+          category: "what_social_is_meant_to_do"
         },
         {
           id: "price_value",
@@ -145,7 +154,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "driver:value",
             "content:value_framing",
             "content:differentiation"
-          ]
+          ],
+          category: "what_we_focus_on"
         }
       ]
     },
@@ -166,7 +176,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "funnel:validation",
             "priority:trust",
             "platform:credibility"
-          ]
+          ],
+          category: "what_social_is_meant_to_do"
         },
         {
           id: "repeat_relationships",
@@ -177,7 +188,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "funnel:retention",
             "priority:consistency",
             "platform:community"
-          ]
+          ],
+          category: "what_social_is_meant_to_do"
         },
         {
           id: "search_website",
@@ -188,7 +200,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "funnel:assist",
             "priority:credibility",
             "platform:professional"
-          ]
+          ],
+          category: "where_we_show_up"
         },
         {
           id: "social_already",
@@ -199,7 +212,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "funnel:acquisition",
             "priority:optimization",
             "platform:active"
-          ]
+          ],
+          category: "where_we_show_up"
         },
         {
           id: "outreach_networking",
@@ -210,7 +224,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "funnel:warmup",
             "priority:authority",
             "platform:professional"
-          ]
+          ],
+          category: "how_this_should_feel"
         },
         {
           id: "inconsistent",
@@ -221,7 +236,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "funnel:foundation",
             "priority:awareness",
             "platform:discovery"
-          ]
+          ],
+          category: "where_we_show_up"
         }
       ]
     },
@@ -241,7 +257,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "We will keep content primarily informational and professional, avoiding personal storytelling unless it directly supports clarity or trust.",
           tags: [
             "tone:reserved"
-          ]
+          ],
+          category: "how_this_should_feel"
         },
         {
           id: "personality_mid",
@@ -250,7 +267,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "We will balance professional authority with selective human moments to keep the brand approachable without oversharing.",
           tags: [
             "tone:balanced"
-          ]
+          ],
+          category: "how_this_should_feel"
         },
         {
           id: "personality_high",
@@ -260,7 +278,8 @@ export const SOCIAL_DISCOVERY_FORM = {
           tags: [
             "tone:human",
             "content:storytelling"
-          ]
+          ],
+          category: "how_this_should_feel"
         }
       ]
     },
@@ -281,7 +300,8 @@ export const SOCIAL_DISCOVERY_FORM = {
           tags: [
             "cta:conversation",
             "platform:conversation"
-          ]
+          ],
+          category: "what_social_is_meant_to_do"
         },
         {
           id: "cta_email",
@@ -291,7 +311,8 @@ export const SOCIAL_DISCOVERY_FORM = {
           tags: [
             "cta:nurture",
             "platform:trust"
-          ]
+          ],
+          category: "what_social_is_meant_to_do"
         },
         {
           id: "cta_calls",
@@ -301,7 +322,8 @@ export const SOCIAL_DISCOVERY_FORM = {
           tags: [
             "cta:high_intent",
             "platform:professional"
-          ]
+          ],
+          category: "what_social_is_meant_to_do"
         },
         {
           id: "cta_booking",
@@ -311,7 +333,8 @@ export const SOCIAL_DISCOVERY_FORM = {
           tags: [
             "cta:conversion",
             "platform:credibility"
-          ]
+          ],
+          category: "what_social_is_meant_to_do"
         },
         {
           id: "cta_in_person",
@@ -321,7 +344,8 @@ export const SOCIAL_DISCOVERY_FORM = {
           tags: [
             "cta:offline",
             "platform:local"
-          ]
+          ],
+          category: "what_social_is_meant_to_do"
         }
       ]
     },
@@ -342,7 +366,8 @@ export const SOCIAL_DISCOVERY_FORM = {
           tags: [
             "kpi:awareness",
             "platform:discovery"
-          ]
+          ],
+          category: "where_we_show_up"
         },
         {
           id: "success_quality_inquiries",
@@ -352,7 +377,8 @@ export const SOCIAL_DISCOVERY_FORM = {
           tags: [
             "kpi:lead_quality",
             "platform:trust"
-          ]
+          ],
+          category: "what_social_is_meant_to_do"
         },
         {
           id: "success_trust_faster",
@@ -362,7 +388,8 @@ export const SOCIAL_DISCOVERY_FORM = {
           tags: [
             "kpi:trust",
             "platform:credibility"
-          ]
+          ],
+          category: "how_this_should_feel"
         },
         {
           id: "success_sales_easier",
@@ -372,7 +399,8 @@ export const SOCIAL_DISCOVERY_FORM = {
           tags: [
             "kpi:sales_efficiency",
             "platform:professional"
-          ]
+          ],
+          category: "what_social_is_meant_to_do"
         },
         {
           id: "success_consistency",
@@ -382,7 +410,8 @@ export const SOCIAL_DISCOVERY_FORM = {
           tags: [
             "kpi:sustainability",
             "platform:stable"
-          ]
+          ],
+          category: "what_social_is_meant_to_do"
         }
       ]
     },
@@ -401,7 +430,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "We will focus on fewer, higher-impact posts with clear purpose rather than frequent updates.",
           tags: [
             "cadence:low"
-          ]
+          ],
+          category: "what_social_is_meant_to_do"
         },
         {
           id: "cadence_mid",
@@ -410,7 +440,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "We will rotate a defined set of content types and review performance regularly.",
           tags: [
             "cadence:balanced"
-          ]
+          ],
+          category: "what_social_is_meant_to_do"
         },
         {
           id: "cadence_high",
@@ -419,7 +450,8 @@ export const SOCIAL_DISCOVERY_FORM = {
             "We will support higher output with structured formats and ongoing optimization.",
           tags: [
             "cadence:high"
-          ]
+          ],
+          category: "what_social_is_meant_to_do"
         }
       ]
     }
@@ -500,6 +532,11 @@ export function buildResults(answers, form = SOCIAL_DISCOVERY_FORM) {
       selectedOptionIds: selectedIds,
       selectedLabels: selected.map((o) => o.label),
       meanings: selected.map((o) => o.meaning),
+      selectedOptions: selected.map((o) => ({
+        label: o.label,
+        meaning: o.meaning,
+        category: o.category,
+      })),
       tags: selected.flatMap((o) => o.tags || []),
     };
   });
@@ -642,32 +679,107 @@ function renderSummary() {
   title.className = "summary-title";
   title.textContent = "Your Social Strategy Snapshot";
 
-  const list = document.createElement("div");
-  list.className = "summary-list";
+  const categoryMeta = [
+    {
+      id: "where_we_show_up",
+      title: "Where we show up",
+      description: "Platforms, reach, discovery vs validation",
+    },
+    {
+      id: "what_we_focus_on",
+      title: "What we focus on",
+      description: "Content pillars, themes, proof, education",
+    },
+    {
+      id: "how_this_should_feel",
+      title: "How this should feel",
+      description: "Tone, trust, positioning, personality",
+    },
+    {
+      id: "what_social_is_meant_to_do",
+      title: "What social is meant to do",
+      description: "Conversion path, role in funnel, cadence, success definition",
+    },
+  ];
+
+  const categoryBuckets = categoryMeta.reduce((acc, category) => {
+    acc[category.id] = [];
+    return acc;
+  }, {});
 
   results.sections.forEach((section) => {
-    const item = document.createElement("div");
-    item.className = "summary-item";
+    section.selectedOptions.forEach((option) => {
+      if (option.category && categoryBuckets[option.category]) {
+        categoryBuckets[option.category].push(option.meaning);
+      }
+    });
+  });
 
-    const question = document.createElement("h3");
-    question.textContent = section.questionTitle;
+  const categories = document.createElement("div");
+  categories.className = "summary-categories";
+
+  categoryMeta.forEach((category) => {
+    const block = document.createElement("div");
+    block.className = "summary-category";
+
+    const heading = document.createElement("h3");
+    heading.textContent = category.title;
+
+    const description = document.createElement("p");
+    description.className = "summary-category-desc";
+    description.textContent = category.description;
+
+    const list = document.createElement("ul");
+    list.className = "summary-category-list";
+
+    const meanings = categoryBuckets[category.id] || [];
+    if (!meanings.length) {
+      const li = document.createElement("li");
+      li.textContent = "No responses selected.";
+      list.appendChild(li);
+    } else {
+      meanings.forEach((meaning) => {
+        const li = document.createElement("li");
+        li.textContent = meaning;
+        list.appendChild(li);
+      });
+    }
+
+    block.append(heading, description, list);
+    categories.appendChild(block);
+  });
+
+  const detailHeading = document.createElement("h3");
+  detailHeading.className = "summary-detail-title";
+  detailHeading.textContent = "What your answers told us";
+
+  const detailList = document.createElement("div");
+  detailList.className = "summary-detail-list";
+
+  results.sections.forEach((section) => {
+    const item = document.createElement("details");
+    item.className = "summary-accordion-item";
+    item.open = false;
+
+    const summaryRow = document.createElement("summary");
+    summaryRow.textContent = section.questionTitle;
 
     const response = document.createElement("p");
     response.className = "summary-response";
     response.textContent = section.selectedLabels.length
-      ? section.selectedLabels.join(", ")
-      : "No response selected.";
+      ? `You said: ${section.selectedLabels.join(", ")}`
+      : "You said: No response selected.";
 
-    item.append(question, response);
+    item.append(summaryRow, response);
 
     section.meanings.forEach((meaning) => {
       const meaningEl = document.createElement("p");
       meaningEl.className = "summary-meaning";
-      meaningEl.textContent = meaning;
+      meaningEl.textContent = `This tells us: ${meaning}`;
       item.appendChild(meaningEl);
     });
 
-    list.appendChild(item);
+    detailList.appendChild(item);
   });
 
   const outline = document.createElement("div");
@@ -725,7 +837,15 @@ function renderSummary() {
 
   nav.append(backBtn, resetBtn);
 
-  summary.append(title, list, outline, platformBlock, nav);
+  summary.append(
+    title,
+    categories,
+    detailHeading,
+    detailList,
+    outline,
+    platformBlock,
+    nav
+  );
   app.appendChild(summary);
 }
 
@@ -834,6 +954,7 @@ function formatList(items) {
 }
 
 render();
+
 
 
 

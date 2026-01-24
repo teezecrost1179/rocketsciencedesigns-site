@@ -271,25 +271,6 @@ h1 {
   margin: 0;
 }
 
-.summary-list {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.summary-item {
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 20px;
-  padding: 1.25rem 1.5rem;
-  background: rgba(255, 255, 255, 0.92);
-}
-
-.summary-item h3 {
-  margin: 0 0 0.5rem;
-  font-family: "Manrope", "Montserrat", "Helvetica Neue", sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
 .summary-response {
   margin: 0 0 0.5rem;
   font-weight: 700;
@@ -298,6 +279,82 @@ h1 {
 .summary-meaning {
   margin: 0.35rem 0 0;
   color: var(--ink-soft);
+}
+
+.summary-categories {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.summary-category {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 20px;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.summary-category h3 {
+  margin: 0 0 0.35rem;
+  font-family: "Manrope", "Montserrat", "Helvetica Neue", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.summary-category-desc {
+  margin: 0 0 0.75rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.summary-category-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.summary-category-list li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.summary-detail-title {
+  margin: 0;
+  font-family: "Manrope", "Montserrat", "Helvetica Neue", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.summary-detail-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.summary-accordion-item {
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  padding: 1rem 1.25rem;
+  background: #fff;
+}
+
+.summary-accordion-item summary {
+  cursor: pointer;
+  font-family: "Manrope", "Montserrat", "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  list-style: none;
+}
+
+.summary-accordion-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.summary-accordion-item summary::after {
+  content: "+";
+  float: right;
+  font-weight: 700;
+  color: var(--accent-deep);
+}
+
+.summary-accordion-item[open] summary::after {
+  content: "–";
 }
 
 .summary-outline {
