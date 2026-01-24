@@ -19,3 +19,6 @@ build/
 /assets/videos/
 
 rocket-agent/
+
+# Postmark config
+social-discovery-send-config.php

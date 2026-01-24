@@ -548,6 +548,8 @@ export function buildResults(answers, form = SOCIAL_DISCOVERY_FORM) {
 const APP_ID = "social-discovery-app";
 const STORAGE_KEY = SOCIAL_DISCOVERY_FORM.storageKey;
 const TOTAL_STEPS = SOCIAL_DISCOVERY_FORM.questions.length;
+const MIN_ELAPSED_MS = 8000;
+const STARTED_AT = Date.now();
 
 const app = document.getElementById(APP_ID);
 if (!app) {
@@ -558,6 +560,8 @@ const state = {
   index: 0,
   answers: loadAnswers(),
   required: {},
+  lastSentKey: null,
+  lastSentSuccess: false,
 };
 
 function loadAnswers() {
@@ -688,9 +692,13 @@ function renderSummary() {
 
   const platformCopy = document.createElement("p");
   platformCopy.className = "summary-platforms-copy";
-  platformCopy.innerHTML = platform.sentence;
+  platformCopy.innerHTML = platform.sentenceHtml;
 
   platformBlock.append(platformTitle, platformCopy);
+
+  const sendStatus = document.createElement("p");
+  sendStatus.className = "summary-send-status";
+  sendStatus.setAttribute("aria-live", "polite");
 
   const categoryMeta = [
     {
@@ -817,15 +825,26 @@ function renderSummary() {
 
   nav.append(backBtn, resetBtn);
 
+  const honeypot = document.createElement("input");
+  honeypot.type = "text";
+  honeypot.name = "company";
+  honeypot.className = "honeypot-field";
+  honeypot.autocomplete = "off";
+  honeypot.tabIndex = -1;
+  honeypot.setAttribute("aria-hidden", "true");
+
   summary.append(
     title,
     platformBlock,
+    sendStatus,
     categories,
     detailHeading,
     detailList,
+    honeypot,
     nav
   );
   app.appendChild(summary);
+  sendResults({ results, honeypotValue: honeypot.value, statusEl: sendStatus });
 }
 
 function normalizeSelection(value, type) {
@@ -865,21 +884,27 @@ function buildPlatformRecommendation(tags) {
 
   if (!topPlatforms.length) {
     return {
-      sentence:
-        "Your responses don't indicate specific platform traits yet, so we can prioritize the channels you already use most."
+      sentenceHtml:
+        "Your responses don't indicate specific platform traits yet, so we can prioritize the channels you already use most.",
+      sentenceText:
+        "Your responses don't indicate specific platform traits yet, so we can prioritize the channels you already use most.",
     };
   }
 
   if (!topTraits.length) {
     return {
-      sentence: `Your responses align best with ${formatPlatformList(topPlatforms)}.`
+      sentenceHtml: `Your responses align best with ${formatPlatformList(topPlatforms)}.`,
+      sentenceText: `Your responses align best with ${formatList(topPlatforms)}.`
     };
   }
 
   return {
-    sentence: `Your responses favor platforms that support ${formatList(topTraits)}, which aligns best with ${formatPlatformList(
-      topPlatforms
-    )}.`
+    sentenceHtml: `Your responses favor platforms that support ${formatList(
+      topTraits
+    )}, which aligns best with ${formatPlatformList(topPlatforms)}.`,
+    sentenceText: `Your responses favor platforms that support ${formatList(
+      topTraits
+    )}, which aligns best with ${formatList(topPlatforms)}.`
   };
 }
 
@@ -935,6 +960,51 @@ function formatList(items) {
 function formatPlatformList(items) {
   const bolded = items.map((item) => `<strong>${item}</strong>`);
   return formatList(bolded);
+}
+
+function sendResults({ results, honeypotValue, statusEl }) {
+  const payloadKey = JSON.stringify(state.answers);
+  if (state.lastSentKey === payloadKey) {
+    if (state.lastSentSuccess && statusEl) {
+      statusEl.textContent =
+        "Your social planning assessment has been sent to Rocket Science Designs.";
+    }
+    return;
+  }
+  state.lastSentKey = payloadKey;
+  state.lastSentSuccess = false;
+
+  const platform = buildPlatformRecommendation(results.allTags);
+  const payload = {
+    startedAt: STARTED_AT,
+    minElapsedMs: MIN_ELAPSED_MS,
+    honeypot: honeypotValue || "",
+    version: SOCIAL_DISCOVERY_FORM.version,
+    answers: state.answers,
+    results,
+    platformSentence: platform.sentenceText,
+  };
+
+  fetch("social-discovery-send.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Send failed with status ${response.status}`);
+      }
+      state.lastSentSuccess = true;
+      if (statusEl) {
+        statusEl.textContent =
+          "Your social planning assessment has been sent to Rocket Science Designs.";
+      }
+    })
+    .catch((error) => {
+      console.warn("Social discovery send failed:", error);
+    });
 }
 
 render();

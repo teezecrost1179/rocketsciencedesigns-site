@@ -375,6 +375,22 @@ h1 {
   color: var(--ink-soft);
 }
 
+.summary-send-status {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.honeypot-field {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
 @media (max-width: 720px) {
   .question-nav {
     flex-direction: column;
