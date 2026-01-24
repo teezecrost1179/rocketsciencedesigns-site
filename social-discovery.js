@@ -1074,7 +1074,7 @@ function isValidEmail(value) {
   if (!trimmed) {
     return false;
   }
-  return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(trimmed);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
 }
 
 render();
