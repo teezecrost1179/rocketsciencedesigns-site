@@ -679,6 +679,19 @@ function renderSummary() {
   title.className = "summary-title";
   title.textContent = "Your Social Strategy Snapshot";
 
+  const platform = buildPlatformRecommendation(results.allTags);
+  const platformBlock = document.createElement("div");
+  platformBlock.className = "summary-platforms";
+
+  const platformTitle = document.createElement("h3");
+  platformTitle.textContent = "Platform Recommendations";
+
+  const platformCopy = document.createElement("p");
+  platformCopy.className = "summary-platforms-copy";
+  platformCopy.innerHTML = platform.sentence;
+
+  platformBlock.append(platformTitle, platformCopy);
+
   const categoryMeta = [
     {
       id: "where_we_show_up",
@@ -782,39 +795,6 @@ function renderSummary() {
     detailList.appendChild(item);
   });
 
-  const outline = document.createElement("div");
-  outline.className = "summary-outline";
-
-  const outlineTitle = document.createElement("h3");
-  outlineTitle.textContent = "Strategy Outline";
-
-  const outlineList = document.createElement("ul");
-  outlineList.className = "summary-outline-list";
-  const uniqueMeanings = Array.from(
-    new Set(results.sections.flatMap((section) => section.meanings))
-  );
-
-  uniqueMeanings.forEach((meaning) => {
-    const li = document.createElement("li");
-    li.textContent = meaning;
-    outlineList.appendChild(li);
-  });
-
-  outline.append(outlineTitle, outlineList);
-
-  const platform = buildPlatformRecommendation(results.allTags);
-  const platformBlock = document.createElement("div");
-  platformBlock.className = "summary-platforms";
-
-  const platformTitle = document.createElement("h3");
-  platformTitle.textContent = "Platform Recommendations";
-
-  const platformCopy = document.createElement("p");
-  platformCopy.className = "summary-platforms-copy";
-  platformCopy.textContent = platform.sentence;
-
-  platformBlock.append(platformTitle, platformCopy);
-
   const nav = document.createElement("div");
   nav.className = "question-nav";
 
@@ -839,11 +819,10 @@ function renderSummary() {
 
   summary.append(
     title,
+    platformBlock,
     categories,
     detailHeading,
     detailList,
-    outline,
-    platformBlock,
     nav
   );
   app.appendChild(summary);
@@ -893,12 +872,12 @@ function buildPlatformRecommendation(tags) {
 
   if (!topTraits.length) {
     return {
-      sentence: `Your responses align best with ${formatList(topPlatforms)}.`
+      sentence: `Your responses align best with ${formatPlatformList(topPlatforms)}.`
     };
   }
 
   return {
-    sentence: `Your responses favor platforms that support ${formatList(topTraits)}, which aligns best with ${formatList(
+    sentence: `Your responses favor platforms that support ${formatList(topTraits)}, which aligns best with ${formatPlatformList(
       topPlatforms
     )}.`
   };
@@ -951,6 +930,11 @@ function formatList(items) {
     return `${items[0]} and ${items[1]}`;
   }
   return `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
+}
+
+function formatPlatformList(items) {
+  const bolded = items.map((item) => `<strong>${item}</strong>`);
+  return formatList(bolded);
 }
 
 render();
