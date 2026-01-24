@@ -38,11 +38,72 @@ unset($payload["honeypot"]);
 $payload["receivedAt"] = gmdate("c");
 
 $subject = "Social Discovery Results";
-$textBody = "Social Discovery Results\n\n" . json_encode($payload, JSON_PRETTY_PRINT);
+$platformSentence = trim((string)($data["platformSentence"] ?? ""));
+$userEmailRaw = trim((string)($data["userEmail"] ?? ""));
+$userEmail = filter_var($userEmailRaw, FILTER_VALIDATE_EMAIL) ? $userEmailRaw : "";
+$sections = $data["results"]["sections"] ?? [];
+
+$categoryMeta = [
+  "where_we_show_up" => "Where we show up (platforms, reach, discovery vs validation)",
+  "what_we_focus_on" => "What we focus on (content pillars, themes, proof, education)",
+  "how_this_should_feel" => "How this should feel (tone, trust, positioning, personality)",
+  "what_social_is_meant_to_do" => "What social is meant to do (conversion path, role in funnel, cadence, success definition)",
+];
+
+$categoryBuckets = array_fill_keys(array_keys($categoryMeta), []);
+foreach ($sections as $section) {
+  $selectedOptions = $section["selectedOptions"] ?? [];
+  foreach ($selectedOptions as $option) {
+    $category = $option["category"] ?? "";
+    $meaning = $option["meaning"] ?? "";
+    if ($category && isset($categoryBuckets[$category]) && $meaning !== "") {
+      $categoryBuckets[$category][] = $meaning;
+    }
+  }
+}
+
+$lines = [];
+$lines[] = "Social Discovery Results";
+$lines[] = "";
+if ($platformSentence !== "") {
+  $lines[] = "Platform Recommendations";
+  $lines[] = $platformSentence;
+  $lines[] = "";
+}
+
+$lines[] = "Categorized Meanings";
+foreach ($categoryMeta as $key => $label) {
+  $lines[] = "";
+  $lines[] = $label;
+  $meanings = $categoryBuckets[$key] ?? [];
+  if (!$meanings) {
+    $lines[] = "- No responses selected.";
+  } else {
+    foreach ($meanings as $meaning) {
+      $lines[] = "- " . $meaning;
+    }
+  }
+}
+
+$lines[] = "";
+$lines[] = "Raw Results (JSON)";
+$lines[] = json_encode($payload, JSON_PRETTY_PRINT);
+$textBody = implode("\n", $lines);
+
+$toList = [];
+$primaryTo = $config["to_email"] ?? "";
+if ($primaryTo !== "") {
+  $toList[] = $primaryTo;
+}
+if ($userEmail !== "") {
+  $toList[] = $userEmail;
+}
+$toList = array_values(array_unique($toList));
+$toField = implode(", ", $toList);
 
 $postmarkPayload = [
   "From" => $config["from_email"] ?? "",
-  "To" => $config["to_email"] ?? "",
+  "To" => $toField,
   "Subject" => $subject,
   "TextBody" => $textBody,
 ];

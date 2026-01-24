@@ -683,6 +683,32 @@ function renderSummary() {
   title.className = "summary-title";
   title.textContent = "Your Social Strategy Snapshot";
 
+  const sendIntro = document.createElement("div");
+  sendIntro.className = "summary-send-intro";
+
+  const sendIntroText = document.createElement("p");
+  sendIntroText.textContent =
+    "If you provide your email address, we'll send these results to you and Rocket Science Designs for review.";
+
+  const sendForm = document.createElement("div");
+  sendForm.className = "summary-send-form";
+
+  const emailInput = document.createElement("input");
+  emailInput.type = "email";
+  emailInput.name = "userEmail";
+  emailInput.placeholder = "you@example.com";
+  emailInput.className = "summary-email-input";
+  emailInput.autocomplete = "email";
+  emailInput.required = true;
+
+  const sendButton = document.createElement("button");
+  sendButton.type = "button";
+  sendButton.className = "nav-btn";
+  sendButton.textContent = "Send It";
+
+  sendForm.append(emailInput, sendButton);
+  sendIntro.append(sendIntroText, sendForm);
+
   const platform = buildPlatformRecommendation(results.allTags);
   const platformBlock = document.createElement("div");
   platformBlock.className = "summary-platforms";
@@ -699,6 +725,7 @@ function renderSummary() {
   const sendStatus = document.createElement("p");
   sendStatus.className = "summary-send-status";
   sendStatus.setAttribute("aria-live", "polite");
+  sendIntro.appendChild(sendStatus);
 
   const categoryMeta = [
     {
@@ -833,10 +860,36 @@ function renderSummary() {
   honeypot.tabIndex = -1;
   honeypot.setAttribute("aria-hidden", "true");
 
+  function updateSendButtonState() {
+    sendButton.disabled = !isValidEmail(emailInput.value);
+  }
+
+  emailInput.addEventListener("input", updateSendButtonState);
+  updateSendButtonState();
+
+  sendButton.addEventListener("click", () => {
+    if (!isValidEmail(emailInput.value)) {
+      sendStatus.textContent = "Please enter a valid email address.";
+      return;
+    }
+    sendButton.disabled = true;
+    sendStatus.textContent = "Sending...";
+    sendResults({
+      results,
+      honeypotValue: honeypot.value,
+      statusEl: sendStatus,
+      userEmail: emailInput.value.trim(),
+      onDone: () => {
+        sendButton.disabled = false;
+        updateSendButtonState();
+      },
+    });
+  });
+
   summary.append(
     title,
+    sendIntro,
     platformBlock,
-    sendStatus,
     categories,
     detailHeading,
     detailList,
@@ -844,7 +897,6 @@ function renderSummary() {
     nav
   );
   app.appendChild(summary);
-  sendResults({ results, honeypotValue: honeypot.value, statusEl: sendStatus });
 }
 
 function normalizeSelection(value, type) {
@@ -962,12 +1014,12 @@ function formatPlatformList(items) {
   return formatList(bolded);
 }
 
-function sendResults({ results, honeypotValue, statusEl }) {
-  const payloadKey = JSON.stringify(state.answers);
+function sendResults({ results, honeypotValue, statusEl, userEmail, onDone }) {
+  const payloadKey = JSON.stringify({ answers: state.answers, userEmail });
   if (state.lastSentKey === payloadKey) {
     if (state.lastSentSuccess && statusEl) {
       statusEl.textContent =
-        "Your social planning assessment has been sent to Rocket Science Designs.";
+        "Your social planning assessment has been sent to you and Rocket Science Designs.";
     }
     return;
   }
@@ -983,6 +1035,7 @@ function sendResults({ results, honeypotValue, statusEl }) {
     answers: state.answers,
     results,
     platformSentence: platform.sentenceText,
+    userEmail: userEmail || "",
   };
 
   fetch("social-discovery-send.php", {
@@ -999,12 +1052,29 @@ function sendResults({ results, honeypotValue, statusEl }) {
       state.lastSentSuccess = true;
       if (statusEl) {
         statusEl.textContent =
-          "Your social planning assessment has been sent to Rocket Science Designs.";
+          "Your social planning assessment has been sent to you and Rocket Science Designs.";
       }
     })
     .catch((error) => {
       console.warn("Social discovery send failed:", error);
+      if (statusEl) {
+        statusEl.textContent =
+          "We couldn't send the email right now. Please try again.";
+      }
+    })
+    .finally(() => {
+      if (onDone) {
+        onDone();
+      }
     });
+}
+
+function isValidEmail(value) {
+  const trimmed = (value || "").trim();
+  if (!trimmed) {
+    return false;
+  }
+  return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(trimmed);
 }
 
 render();
