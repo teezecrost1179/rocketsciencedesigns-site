@@ -5,6 +5,7 @@
  * - Build results by looking up option.meaning (and optional tags)
  */
 
+// Questionnaire config: questions, options, meanings, tags, and categories.
 export const SOCIAL_DISCOVERY_FORM = {
   version: "1.2.0",
   storageKey: "social_discovery_answers_v1",
@@ -458,6 +459,7 @@ export const SOCIAL_DISCOVERY_FORM = {
   ]
 };
 
+// Platform -> tags used to score best-fit social channels.
 export const PLATFORM_TRAIT_MAP = {
   instagram: [
     "platform:visual",
@@ -497,6 +499,7 @@ export const PLATFORM_TRAIT_MAP = {
  * Helper: build a lookup map for meanings/tags by questionId/optionId.
  * Useful for fast result rendering.
  */
+// Build a question/option lookup table for fast access in rendering.
 export function buildLookup(form = SOCIAL_DISCOVERY_FORM) {
   const byQuestion = {};
   for (const q of form.questions) {
@@ -516,6 +519,7 @@ export function buildLookup(form = SOCIAL_DISCOVERY_FORM) {
  * answers example:
  * { q1: ["b2b_orgs","local_regional"], q3: "referrals", q4: "personality_mid", ... }
  */
+// Convert stored answers into labels, meanings, categories, and tags.
 export function buildResults(answers, form = SOCIAL_DISCOVERY_FORM) {
   const lookup = buildLookup(form);
 
@@ -545,17 +549,24 @@ export function buildResults(answers, form = SOCIAL_DISCOVERY_FORM) {
   return { sections, allTags };
 }
 
+// DOM mount point id for the questionnaire app.
 const APP_ID = "social-discovery-app";
+// localStorage key for persisted answers.
 const STORAGE_KEY = SOCIAL_DISCOVERY_FORM.storageKey;
+// Total number of questions for progress and pagination.
 const TOTAL_STEPS = SOCIAL_DISCOVERY_FORM.questions.length;
+// Minimum time before sending results (anti-bot).
 const MIN_ELAPSED_MS = 8000;
+// Timestamp when the session started (anti-bot).
 const STARTED_AT = Date.now();
 
+// Root element where the questionnaire UI is rendered.
 const app = document.getElementById(APP_ID);
 if (!app) {
   throw new Error("Social Discovery app container not found.");
 }
 
+// UI state: current step, answers, and send status.
 const state = {
   index: 0,
   answers: loadAnswers(),
@@ -564,6 +575,7 @@ const state = {
   lastSentSuccess: false,
 };
 
+// Load saved answers from localStorage.
 function loadAnswers() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -573,16 +585,19 @@ function loadAnswers() {
   }
 }
 
+// Persist answers to localStorage.
 function saveAnswers() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state.answers));
 }
 
+// Move to a new step, clamped to valid range.
 function setIndex(nextIndex) {
   const maxIndex = TOTAL_STEPS;
   state.index = Math.min(Math.max(nextIndex, 0), maxIndex);
   render();
 }
 
+// Render the current step or the summary view.
 function render() {
   app.innerHTML = "";
 
@@ -593,10 +608,12 @@ function render() {
   }
 }
 
+// Render a single question step with options and navigation.
 function renderQuestion(question) {
   const lookup = buildLookup();
   const selected = normalizeSelection(state.answers[question.id], question.type);
 
+  // Step header: question number, title, and instructions.
   const header = document.createElement("div");
   header.className = "question-header";
   header.innerHTML = `
@@ -605,6 +622,7 @@ function renderQuestion(question) {
     <p class="question-instructions">${question.instructions}</p>
   `;
 
+  // Options list: each choice toggles selection state.
   const optionsWrap = document.createElement("div");
   optionsWrap.className = "question-options";
 
@@ -629,11 +647,13 @@ function renderQuestion(question) {
     optionsWrap.appendChild(button);
   });
 
+  // Inline validation hint shown after clicking Next with no selection.
   const requiredNote = document.createElement("p");
   requiredNote.className = "question-required";
   requiredNote.textContent = "Please select at least one option to continue.";
   requiredNote.hidden = selected.length > 0 || !state.required[question.id];
 
+  // Navigation controls (Back / Next).
   const nav = document.createElement("div");
   nav.className = "question-nav";
 
@@ -662,6 +682,7 @@ function renderQuestion(question) {
 
   nav.append(backBtn, nextBtn);
 
+  // Progress indicator based on the question step.
   const progress = document.createElement("div");
   progress.className = "question-progress";
   progress.innerHTML = `
@@ -674,6 +695,7 @@ function renderQuestion(question) {
   app.append(header, optionsWrap, requiredNote, nav, progress);
 }
 
+// Render the results summary with categories and send controls.
 function renderSummary() {
   const results = buildResults(state.answers);
   const summary = document.createElement("div");
@@ -683,16 +705,20 @@ function renderSummary() {
   title.className = "summary-title";
   title.textContent = "Your Social Strategy Snapshot";
 
+  // Email send instructions and form wrapper.
   const sendIntro = document.createElement("div");
   sendIntro.className = "summary-send-intro";
 
+  // Intro copy explaining the email send.
   const sendIntroText = document.createElement("p");
   sendIntroText.textContent =
     "If you provide your email address, we'll send these results to you and Rocket Science Designs for review.";
 
+  // Layout container for email input + send button.
   const sendForm = document.createElement("div");
   sendForm.className = "summary-send-form";
 
+  // Email input for user to receive results.
   const emailInput = document.createElement("input");
   emailInput.type = "email";
   emailInput.name = "userEmail";
@@ -701,6 +727,7 @@ function renderSummary() {
   emailInput.autocomplete = "email";
   emailInput.required = true;
 
+  // Manual send trigger button.
   const sendButton = document.createElement("button");
   sendButton.type = "button";
   sendButton.className = "nav-btn";
@@ -709,7 +736,9 @@ function renderSummary() {
   sendForm.append(emailInput, sendButton);
   sendIntro.append(sendIntroText, sendForm);
 
+  // Platform recommendation sentence derived from platform tags.
   const platform = buildPlatformRecommendation(results.allTags);
+  // UI block for platform recommendations.
   const platformBlock = document.createElement("div");
   platformBlock.className = "summary-platforms";
 
@@ -722,11 +751,13 @@ function renderSummary() {
 
   platformBlock.append(platformTitle, platformCopy);
 
+  // Live status text for send success/failure.
   const sendStatus = document.createElement("p");
   sendStatus.className = "summary-send-status";
   sendStatus.setAttribute("aria-live", "polite");
   sendIntro.appendChild(sendStatus);
 
+  // Category labels and descriptions for grouped meanings.
   const categoryMeta = [
     {
       id: "where_we_show_up",
@@ -750,6 +781,7 @@ function renderSummary() {
     },
   ];
 
+  // Bucket meanings by category key.
   const categoryBuckets = categoryMeta.reduce((acc, category) => {
     acc[category.id] = [];
     return acc;
@@ -763,6 +795,7 @@ function renderSummary() {
     });
   });
 
+  // Wrapper for category summary blocks.
   const categories = document.createElement("div");
   categories.className = "summary-categories";
 
@@ -797,10 +830,12 @@ function renderSummary() {
     categories.appendChild(block);
   });
 
+  // Heading for per-question accordion details.
   const detailHeading = document.createElement("h3");
   detailHeading.className = "summary-detail-title";
   detailHeading.textContent = "What your answers told us";
 
+  // Accordion list showing "You said" and "This tells us".
   const detailList = document.createElement("div");
   detailList.className = "summary-detail-list";
 
@@ -830,6 +865,7 @@ function renderSummary() {
     detailList.appendChild(item);
   });
 
+  // Navigation buttons at the end of summary.
   const nav = document.createElement("div");
   nav.className = "question-nav";
 
@@ -852,6 +888,7 @@ function renderSummary() {
 
   nav.append(backBtn, resetBtn);
 
+  // Hidden honeypot field to catch simple bots.
   const honeypot = document.createElement("input");
   honeypot.type = "text";
   honeypot.name = "company";
@@ -860,6 +897,7 @@ function renderSummary() {
   honeypot.tabIndex = -1;
   honeypot.setAttribute("aria-hidden", "true");
 
+  // Enable/disable send button based on email validity.
   function updateSendButtonState() {
     sendButton.disabled = !isValidEmail(emailInput.value);
   }
@@ -899,6 +937,7 @@ function renderSummary() {
   app.appendChild(summary);
 }
 
+// Normalize stored answer into array form for UI selection.
 function normalizeSelection(value, type) {
   if (type === "multi") {
     return Array.isArray(value) ? value : value ? [value] : [];
@@ -909,6 +948,7 @@ function normalizeSelection(value, type) {
   return value ? [value] : [];
 }
 
+// Apply selection rules for single/multi choice questions.
 function toggleSelection({ current, optionId, type, maxSelect = 1 }) {
   if (type === "single") {
     return optionId;
@@ -925,6 +965,7 @@ function toggleSelection({ current, optionId, type, maxSelect = 1 }) {
   return [...current, optionId];
 }
 
+// Build a platform recommendation sentence from selected tags.
 function buildPlatformRecommendation(tags) {
   const scores = scorePlatforms(tags);
   const ranked = Object.entries(scores)
@@ -960,6 +1001,7 @@ function buildPlatformRecommendation(tags) {
   };
 }
 
+// Count tag matches per platform.
 function scorePlatforms(tags) {
   const scores = {};
   const tagSet = new Set(tags || []);
@@ -971,6 +1013,7 @@ function scorePlatforms(tags) {
   return scores;
 }
 
+// Extract top platform-related traits from tags.
 function topTagTraits(tags) {
   const traitCounts = {};
   const traitSet = new Set(
@@ -989,6 +1032,7 @@ function topTagTraits(tags) {
     .map(([tag]) => tag.replace("platform:", "").replace(/_/g, " "));
 }
 
+// Format platform id into a display label.
 function titleCasePlatform(platform) {
   if (!platform) {
     return "";
@@ -996,6 +1040,7 @@ function titleCasePlatform(platform) {
   return platform.charAt(0).toUpperCase() + platform.slice(1);
 }
 
+// Format a list into a readable sentence fragment.
 function formatList(items) {
   if (!items.length) {
     return "";
@@ -1009,11 +1054,13 @@ function formatList(items) {
   return `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
 }
 
+// Format platform names with bold emphasis.
 function formatPlatformList(items) {
   const bolded = items.map((item) => `<strong>${item}</strong>`);
   return formatList(bolded);
 }
 
+// Post results to the server and update status text.
 function sendResults({ results, honeypotValue, statusEl, userEmail, onDone }) {
   const payloadKey = JSON.stringify({ answers: state.answers, userEmail });
   if (state.lastSentKey === payloadKey) {
@@ -1069,6 +1116,7 @@ function sendResults({ results, honeypotValue, statusEl, userEmail, onDone }) {
     });
 }
 
+// Simple email format check for client-side validation.
 function isValidEmail(value) {
   const trimmed = (value || "").trim();
   if (!trimmed) {
