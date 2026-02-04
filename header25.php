@@ -143,9 +143,9 @@
         }
 
         .brand img {
-            height: 66px;
+            height: 56px;
             width: auto;
-            margin: 8px 0px 12px 0px;
+            margin: 4px 0;
         }
 
         .brand span {
@@ -864,7 +864,6 @@
             <div class="header-bar">
                 <a href="/" class="brand">
                     <img src="assets/rocket-logo-26.png" alt="Rocket Science Designs logo">
-                    <span>Rocket Science</span>
                 </a>
 
                 <!-- Desktop / mobile nav -->
