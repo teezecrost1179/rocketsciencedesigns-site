@@ -115,7 +115,9 @@
         .header-overlay {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at top, rgba(31, 27, 53, 0.1), rgba(5, 4, 12, 0.9));
+            background:
+                linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 50%),
+                radial-gradient(circle at top, rgba(31, 27, 53, 0.1), rgba(5, 4, 12, 0.9));
             z-index: 1;
         }
 
@@ -141,7 +143,6 @@
             font-size: 18px; /* increased by 1px */
             color: var(--text-light);
             position: relative;
-            z-index: 2;
         }
 
         .brand img {
@@ -150,17 +151,6 @@
             margin: 3px 0 9px 0;
         }
 
-        .logo-underlay {
-            position: absolute;
-            left: 0;
-            top: 50%;
-            height: 76px;
-            width: 100%;
-            transform: translateY(-50%);
-            background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 50%);
-            z-index: 1;
-            pointer-events: none;
-        }
 
         .brand span {
             white-space: nowrap;
@@ -876,7 +866,6 @@
             <div class="header-overlay"></div>
 
             <div class="header-bar">
-                <span class="logo-underlay" aria-hidden="true"></span>
                 <a href="/" class="brand">
                     <img src="assets/rocket-logo-26.png" alt="Rocket Science Designs logo">
                 </a>
