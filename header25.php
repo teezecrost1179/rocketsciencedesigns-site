@@ -140,12 +140,23 @@
             text-transform: uppercase;
             font-size: 18px; /* increased by 1px */
             color: var(--text-light);
+            position: relative;
         }
 
         .brand img {
             height: 56px;
             width: auto;
-            margin: 4px 0;
+            margin: 3px 0 9px 0;
+        }
+
+        .logo-overlay {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 50%);
+            pointer-events: none;
         }
 
         .brand span {
@@ -864,6 +875,7 @@
             <div class="header-bar">
                 <a href="/" class="brand">
                     <img src="assets/rocket-logo-26.png" alt="Rocket Science Designs logo">
+                    <span class="logo-overlay" aria-hidden="true"></span>
                 </a>
 
                 <!-- Desktop / mobile nav -->
