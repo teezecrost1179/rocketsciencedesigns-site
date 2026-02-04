@@ -116,7 +116,7 @@
             position: absolute;
             inset: 0;
             background:
-                linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0, rgba(255, 255, 255, 0.95) 170px, rgba(255, 255, 255, 0) 50%),
+                linear-gradient(90deg, rgba(255, 255, 255, 1) 0, rgba(255, 255, 255, 0.95) 170px, rgba(255, 255, 255, 0) 50%),
                 radial-gradient(circle at top, rgba(31, 27, 53, 0.1), rgba(5, 4, 12, 0.9));
             z-index: 1;
         }
