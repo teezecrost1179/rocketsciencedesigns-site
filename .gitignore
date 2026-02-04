@@ -17,6 +17,8 @@ build/
 *.webm
 /videos/
 /assets/videos/
+/portfolio stuff/
+/portfolio prep/
 
 rocket-agent/
 
