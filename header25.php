@@ -118,9 +118,8 @@
             background:
                 linear-gradient(90deg,
                     rgba(255, 255, 255, 1) 0%,
-                    rgba(255, 255, 255, 1) 10%,
-                    rgba(255, 255, 255, 0.95) 25%,
-                    rgba(255, 255, 255, 0) 50%),
+                    rgba(255, 255, 255, 0.9) 20%,
+                    rgba(255, 255, 255, 0) 40%),
                 linear-gradient(270deg,
                     rgba(0, 0, 0, 1) 0%,
                     rgba(0, 0, 0, 0) 25%);
@@ -669,6 +668,20 @@
 
             .brand span {
                 font-size: 16px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header-overlay {
+                background:
+                    linear-gradient(90deg,
+                        rgba(255, 255, 255, 1) 0%,
+                        rgba(255, 255, 255, 0.9) 40%,
+                        rgba(255, 255, 255, 0.6) 60%,
+                        rgba(255, 255, 255, 0) 75%),
+                    linear-gradient(270deg,
+                        rgba(0, 0, 0, 1) 0%,
+                        rgba(0, 0, 0, 0) 25%);
             }
         }
 
