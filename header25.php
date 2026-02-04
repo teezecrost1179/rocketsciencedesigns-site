@@ -17,16 +17,16 @@
     <meta property="og:title" content="Rocket Science Designs | Web Design & Digital Creative in Winnipeg">
     <meta property="og:description" content="Freelance web design and digital creative studio helping brands look sharp, load fast, and sell more online.">
     <meta property="og:url" content="https://rocketsciencedesigns.com/">
-    <meta property="og:image" content="https://rocketsciencedesigns.com/rocket-science-designs-brandmark-300-rev1.png">
+    <meta property="og:image" content="https://rocketsciencedesigns.com/assets/rocket-logo-26.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Rocket Science Designs | Web Design & Digital Creative in Winnipeg">
     <meta name="twitter:description" content="Websites, branding, Shopify, email, and content creation for teams that need a flexible digital generalist.">
-    <meta name="twitter:image" content="https://rocketsciencedesigns.com/rocket-science-designs-brandmark-300-rev1.png">
+    <meta name="twitter:image" content="https://rocketsciencedesigns.com/assets/rocket-logo-26.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/rocket-science-designs-brandmark-300-rev1.png">
+    <link rel="icon" type="image/png" href="/assets/rocket-logo-26.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -837,7 +837,7 @@
       "@type": "ProfessionalService",
       "name": "Rocket Science Designs",
       "url": "https://rocketsciencedesigns.com/",
-      "image": "https://rocketsciencedesigns.com/rocket-science-designs-brandmark-300-rev1.png",
+      "image": "https://rocketsciencedesigns.com/assets/rocket-logo-26.png",
       "description": "Web design, branding, Shopify development, email marketing, photography, and video production for small businesses and growing brands.",
       "address": {
         "@type": "PostalAddress",
@@ -863,7 +863,7 @@
 
             <div class="header-bar">
                 <a href="/" class="brand">
-                    <img src="rocket-science-designs-brandmark-300-rev1.png" alt="Rocket Science Designs logo">
+                    <img src="assets/rocket-logo-26.png" alt="Rocket Science Designs logo">
                     <span>Rocket Science</span>
                 </a>
 
