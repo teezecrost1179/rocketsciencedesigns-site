@@ -867,7 +867,7 @@
 
             <div class="header-bar">
                 <a href="/" class="brand">
-                    <img src="/logo-white-bg.png" alt="Rocket Science Designs logo">
+                    <img src="/assets/logo-white-bg.png" alt="Rocket Science Designs logo">
                 </a>
 
                 <!-- Desktop / mobile nav -->
