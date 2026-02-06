@@ -321,7 +321,7 @@ $linkPrefix = $isHome ? '' : 'index.php';
 
   <header>
     <div class="nav-logo">
-      <a href="/"><img src="https://rocketsciencedesigns.com/rocket-science-logo.png" alt="Rocket Science Designs Logo" /></a>
+      <a href="/"><img src="/logo-white-bg.png" alt="Rocket Science Designs Logo" /></a>
     </div>
     <nav>
         <ul>

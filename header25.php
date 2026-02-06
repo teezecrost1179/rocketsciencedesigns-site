@@ -115,12 +115,7 @@
         .header-overlay {
             position: absolute;
             inset: 0;
-            background:
-                linear-gradient(90deg,
-                    rgba(255, 255, 255, 1) 0%,
-                    rgba(255, 255, 255, 0.9) 20%,
-                    rgba(255, 255, 255, 0) 40%),
-                linear-gradient(270deg,
+            background: linear-gradient(270deg,
                     rgba(0, 0, 0, 1) 0%,
                     rgba(0, 0, 0, 0) 25%);
             z-index: 1;
@@ -672,20 +667,6 @@
         }
 
         @media (max-width: 640px) {
-            .header-overlay {
-                background:
-                    linear-gradient(90deg,
-                        rgba(255, 255, 255, 1) 0%,
-                        rgba(255, 255, 255, 0.9) 40%,
-                        rgba(255, 255, 255, 0.6) 60%,
-                        rgba(255, 255, 255, 0) 75%),
-                    linear-gradient(270deg,
-                        rgba(0, 0, 0, 1) 0%,
-                        rgba(0, 0, 0, 0) 25%);
-            }
-        }
-
-        @media (max-width: 640px) {
             .max-width {
                 padding-inline: 16px;
             }
@@ -886,7 +867,7 @@
 
             <div class="header-bar">
                 <a href="/" class="brand">
-                    <img src="assets/rocket-logo-26.png" alt="Rocket Science Designs logo">
+                    <img src="/logo-white-bg.png" alt="Rocket Science Designs logo">
                 </a>
 
                 <!-- Desktop / mobile nav -->
