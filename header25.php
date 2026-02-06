@@ -148,7 +148,7 @@
         .brand img {
             height: 56px;
             width: auto;
-            margin: 3px 0 9px 0;
+            margin: 9px 0 9px 0;
         }
 
 
