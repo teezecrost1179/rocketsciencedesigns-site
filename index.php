@@ -3,19 +3,24 @@
 <main>
     <!-- ABOUT -->
     <section id="about" class="section">
-        <div class="max-width">
-            <div class="section-header">
-                <div class="section-kicker">ABOUT ROCKET SCIENCE DESIGNS</div>
-                <h1 class="section-title">
-                    Web, brand &amp; digital creative for teams that need one person who can do (almost) everything.
-                </h1>
+        <div class="max-width about-layout">
+            <div class="about-copy">
+                <div class="section-header">
+                    <div class="section-kicker">ABOUT ROCKET SCIENCE DESIGNS</div>
+                    <h1 class="section-title">
+                        Branding, design, development and automation for teams that need one person who can do (almost) everything.
+                    </h1>
+                </div>
+                <p>
+                    I&rsquo;m Rob Bond, a Winnipeg-based designer/developer working at the intersection of branding, web, marketing,
+                    and automation. I help small businesses and solo founders ship the useful stuff&mdash;logos, websites, Shopify
+                    tweaks, API integrations, AI-assisted systems, photography, email, and video&mdash;without the agency overhead,
+                    and without handing you something you can&rsquo;t actually maintain.
+                </p>
             </div>
-            <p>
-                I’m Rob Bond, a Winnipeg-based designer/developer who lives in the overlap between branding, web, and day-to-day
-                marketing. I help small businesses and solo founders get the useful stuff out the door—logos, websites,
-                Shopify tweaks, photography, email, and video—without the agency overhead, and without handing you
-                something you can’t actually maintain.
-            </p>
+            <div class="about-media">
+                <img src="assets/main-site-imagery.jpg" alt="Rocket Science Designs work examples">
+            </div>
         </div>
     </section>
 
@@ -136,7 +141,24 @@
         </div>
     </section>
 
+    <!-- PRICING -->
+    <section id="pricing" class="section">
+        <div class="max-width">
+            <div class="section-header">
+                <div class="section-kicker">PRICING</div>
+                <h2 class="section-title">Flexible pricing that fits the work&mdash;not the other way around.</h2>
+            </div>
+            <p>
+                Some work is best handled as a defined project. Some calls for ongoing support. Sometimes you just need
+                a few focused hours. I offer project pricing, retainers, or hourly billing depending on the task&mdash;so
+                you&rsquo;re not locked into a structure that doesn&rsquo;t fit. Clear expectations, transparent pricing, and no
+                agency gymnastics.
+            </p>
+        </div>
+    </section>
+
     <?php include 'rocket-contact-form.php'; ?>
 </main>
 
 <?php include 'footer.php'; ?>
+

@@ -484,6 +484,34 @@
             color: var(--text-muted);
         }
 
+        /* ABOUT split layout on home */
+        #about .about-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 32px;
+            align-items: stretch;
+        }
+
+        #about .about-copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #about .about-copy p {
+            max-width: 100%;
+        }
+
+        #about .about-media {
+            min-height: 420px;
+        }
+
+        #about .about-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         /* SERVICES GRID + CARDS */
 
         .services-grid {
@@ -554,6 +582,24 @@
                 align-items: center;
                 padding-block: 8px;
                 flex-wrap: wrap;           /* 👈 this allows rows */
+            }
+
+            #about .about-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            #about .about-media {
+                order: -1;
+                min-height: 0;
+                display: flex;
+                justify-content: center;
+            }
+
+            #about .about-media img {
+                width: 85vw;
+                max-width: 85vw;
+                height: auto;
             }
 
             .nav-toggle {
