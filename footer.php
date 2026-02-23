@@ -138,6 +138,12 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <script src="submit contact form.js"></script>
+<script
+  src="https://widget.rocketreception.ca/widget.js"
+  data-api-base="https://rocketagent.onrender.com"
+  data-subscriber="rocketsciencedesigns"
+  data-auto="true"
+></script>
 
 
 </body>
