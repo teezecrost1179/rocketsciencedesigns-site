@@ -1,7 +1,7 @@
 <?php
 $pageTitle = "My Work | Rocket Science Designs - Winnipeg Web and Digital Creative";
 $pageDescription = "Selected work and case studies from Rocket Science Designs – web design, Shopify builds, email marketing, photography, video, and more, based in Winnipeg, Manitoba.";
-include 'header25.php';
+include 'header.php';
 
 $portfolioItems = [
   ['slug'=>'portfolio-photo-jarice','title'=>'Jar with Ice Photo','category'=>'Photography and Photo Enhancement','thumbnail'=>'portfolio/portfolio-photo-jarice-thumb.jpg','video'=>'','image'=>'portfolio/portfolio-photo-jarice.jpg','description'=>'Styled shot emphasizing refreshment.'],
@@ -302,5 +302,5 @@ $portfolioItems = [
   </script>
 </section>
 
-<?php include 'footer25.php'; ?>
+<?php include 'footer.php'; ?>
 

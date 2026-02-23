@@ -1,4 +1,4 @@
-<?php include 'header25.php'; ?> 
+<?php include 'header.php'; ?> 
 <main>
 
     <!-- SHOPIFY SITES & MODS -->
@@ -83,4 +83,4 @@
     <?php include 'rocket-contact-form.php'; ?>
 
 </main>
-<?php include 'footer25.php'; ?>
+<?php include 'footer.php'; ?>

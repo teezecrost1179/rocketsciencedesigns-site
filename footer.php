@@ -1,91 +1,144 @@
-<?php
-$currentPage = basename($_SERVER['PHP_SELF']);
-$isHome = $currentPage === 'index.php';
-$linkPrefix = $isHome ? '' : 'index.php';
-?>
-<footer style="background:#eee; text-align:center; padding:1.5rem;">
-  <nav style="margin-bottom: 1rem;">
-    <div class="footer-links">
-      <a href="<?= $linkPrefix ?>#services">Services</a>
-      <a href="portfolio.php">Portfolio</a>
-      <a href="<?= $linkPrefix ?>#about">About</a>
-      <a href="<?= $linkPrefix ?>#contact">Contact</a>
-      <a href="<?= $linkPrefix ?>#contact" class="cta-button">Start a Project</a>
-    </div>
-  </nav>
-  <p style="font-size: 0.9rem;">&copy; 2025 Rocket Science Designs — Serving Winnipeg businesses with freelance digital services built for today.</p>
+    <footer class="site-footer">
+        <div class="max-width footer-inner">
+            <div class="footer-small">
+                © <?php echo date('Y'); ?> Rocket Science Designs. All rights reserved.
+            </div>
 
-  <style>
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
+            <!-- Footer nav: same options as original footer, minus Start a Project -->
+            <div class="footer-nav">
+                <a href="/#about">About</a>
+                <a href="/web-design-faq-winnipeg">FAQ</a>
+                <a href="/#services">Services</a>
+                <a href="/my-work-winnipeg">Portfolio</a>
+                <a href="/#start-project">Start a Project</a>
+            </div>
+        </div>
+    </footer>
 
-    .footer-links a {
-      color: #333;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 600px) {
-      footer {
-        padding: 2rem 1rem;
-      }
-
-      .footer-links {
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-
-      .footer-links a {
-        font-size: 1rem;
-      }
-    }
-  </style>
-</footer>
-
+</div>
 
 <script>
-  const menuButton = document.getElementById('mobile-menu-button');
-  const menuOverlay = document.getElementById('mobile-menu-overlay');
+document.addEventListener('DOMContentLoaded', function () {
+    document.documentElement.classList.add('has-js');
 
-  menuButton.addEventListener('click', () => {
-    const isOpen = menuOverlay.style.display === 'block';
-    menuOverlay.style.display = isOpen ? 'none' : 'block';
-    document.body.classList.toggle('menu-open', !isOpen);
-  });
+    const navToggle = document.querySelector('.nav-toggle');
+    const mainNav   = document.querySelector('.main-nav');
+    const header    = document.querySelector('.site-header');
 
-  menuOverlay.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      menuOverlay.style.display = 'none';
-      document.body.classList.remove('menu-open');
+    if (!navToggle || !mainNav || !header) return;
+
+    const mobileQuery = window.matchMedia('(max-width: 900px)');
+
+    // Main mobile nav toggle (hamburger)
+    navToggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = mainNav.classList.toggle('is-open');
+        navToggle.classList.toggle('is-open', isOpen);
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+        if (!isOpen) {
+            closeAllSubmenus();
+        }
     });
-  });
 
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      const form = e.target;
-      const formData = new FormData(form);
-      const responseEl = document.getElementById('form-response');
-      try {
-        const res = await fetch('/submit.php', {
-          method: 'POST',
-          body: formData,
+    const items = Array.from(mainNav.querySelectorAll('.nav-item.has-menu'));
+
+    function closeAllSubmenus(except) {
+        items.forEach(function (item) {
+            if (item === except) return;
+            item.classList.remove('open');
+            const btn = item.querySelector('.submenu-toggle');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
         });
-        const text = await res.text();
-        responseEl.innerText = text;
-        form.reset();
-      } catch (err) {
-        responseEl.innerText = 'Sorry, something went wrong. Please email me directly.';
-      }
+    }
+
+    function toggleSubmenu(item, button, evt) {
+        // Only treat as expandable on mobile widths
+        if (!mobileQuery.matches) return;
+
+        if (evt) {
+            evt.preventDefault();
+            evt.stopPropagation();
+        }
+
+        const isOpen = item.classList.toggle('open');
+        if (button) {
+            button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        }
+
+        if (isOpen) {
+            closeAllSubmenus(item);
+        }
+    }
+
+    // Submenu toggles (arrow + label on mobile)
+    items.forEach(function (item) {
+        const btn  = item.querySelector('.submenu-toggle');
+        const link = item.querySelector('.nav-link');
+        const headerRow = item.querySelector('.nav-item-header');
+
+        // Click on arrow
+        if (btn) {
+            btn.addEventListener('click', function (e) {
+                toggleSubmenu(item, btn, e);
+            });
+        }
+
+        // Click on the text link should open submenu on mobile instead of navigating
+        if (link) {
+            link.addEventListener('click', function (e) {
+                toggleSubmenu(item, btn, e);
+            });
+        }
+
+        // (Optional) click anywhere in the row (padding area)
+        if (headerRow) {
+            headerRow.addEventListener('click', function (e) {
+                // Avoid double-handling if the click was already on the button
+                if (e.target.closest('.submenu-toggle')) return;
+                if (e.target.closest('.nav-link')) return; // handled above
+                toggleSubmenu(item, btn, e);
+            });
+        }
     });
-  }
+
+    // When switching between mobile/desktop, close any open submenus
+    if (mobileQuery.addEventListener) {
+        mobileQuery.addEventListener('change', function () {
+            closeAllSubmenus();
+        });
+    } else if (mobileQuery.addListener) {
+        // older browsers
+        mobileQuery.addListener(function () {
+            closeAllSubmenus();
+        });
+    }
+
+    // Close whole nav when any link inside it is clicked (normal behavior)
+    mainNav.addEventListener('click', function (e) {
+        if (e.target.closest('a')) {
+            mainNav.classList.remove('is-open');
+            navToggle.classList.remove('is-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+            closeAllSubmenus();
+        }
+    });
+
+    // Close nav when clicking outside of the header
+    document.addEventListener('click', function (e) {
+        if (!mainNav.classList.contains('is-open')) return;
+        if (!header.contains(e.target)) {
+            mainNav.classList.remove('is-open');
+            navToggle.classList.remove('is-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+            closeAllSubmenus();
+        }
+    });
+});
 </script>
+
+<script src="submit contact form.js"></script>
+
+
 </body>
 </html>

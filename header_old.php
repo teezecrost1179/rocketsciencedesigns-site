@@ -1,0 +1,335 @@
+<?php
+$currentPage = basename($_SERVER['PHP_SELF']);
+$isHome = $currentPage === 'index.php';
+$linkPrefix = $isHome ? '' : 'index.php';
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><?= $pageTitle ?? 'Rocket Science Designs | Winnipeg Freelance Web Design, Shopify, Email & AI Services' ?></title>
+  <meta name="description" content="<?= $pageDescription ?? 'Rocket Science Designs is a Winnipeg-based freelance service offering web development, ecommerce setup, email marketing, digital advertising, and automation for small businesses and entrepreneurs.' ?>" />
+  <meta property="og:title" content="Rocket Science Designs | Winnipeg Web & Digital Services" />
+  <meta property="og:description" content="Winnipeg-based freelance dev, design, automation, and marketing for small businesses and entrepreneurs." />
+  <meta property="og:image" content="https://rocketsciencedesigns.com/rocket-science-logo.png" />
+  <meta property="og:url" content="https://rocketsciencedesigns.com" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://rocketsciencedesigns.com/" />
+  <link rel="icon" href="https://rocketsciencedesigns.com/favicon.jpg" type="image/jpeg" />
+  <style>
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --main-bg: #ffffff;
+      --text-color: #222;
+      --accent-color: #cc0000;
+      --link-color: #005577;
+      --header-bg: transparent;
+      --header-text: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--text-color);
+      background: var(--main-bg);
+      line-height: 1.6;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--header-bg);
+      color: var(--header-text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      z-index: 2;
+      flex-wrap: wrap;
+      z-index: 999;
+    }
+
+    .nav-logo img {
+        height: 50px;
+        margin-top: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 2rem;
+      margin: 0;
+      padding-top: 1rem;
+    }
+
+    nav a {
+      color: var(--header-text);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .cta-button {
+      background: var(--accent-color);
+      color: white;
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .video-hero {
+    position: relative;
+    padding: 8rem 1rem;
+    background-color: #122a32;
+    overflow: hidden;
+    }
+
+    .video-hero video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+    }
+
+    .video-hero .content {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      text-align: center;
+      padding-top: 10vh;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    }
+
+    .content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .content p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 4rem 2rem;
+      background: #f9f9f9;
+    }
+
+    .section h2{ 
+      margin-bottom:.85em;
+    }
+
+    #about {
+      background-color: black;
+      background-image: url('digital-blk-bg.png');
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    .section h3 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    footer {
+      background: #eee;
+      text-align: center;
+      padding: 1.5rem 0;
+      font-size: 0.9rem;
+    }
+    footer nav a {
+        color:black;
+    }
+
+    form input,
+    form textarea {
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    form button {
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--accent-color);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #mobile-menu-button {
+      display: none;
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      z-index: 3;
+      border-radius: 4px;
+      z-index: 1001;
+    }
+
+    #mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #000;
+      color: #fff;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      padding-top: 4rem;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    #mobile-menu-overlay ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #mobile-menu-overlay li {
+      margin: 2rem 0;
+    }
+
+    #mobile-menu-overlay a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      header nav {
+        display: none;
+        }
+
+      #mobile-menu-button {
+        display: block;
+      }
+
+      .nav-logo {
+        text-align: center;
+        width: 100%;
+      }
+
+      .nav-logo img {
+            width: 75%;
+            height: auto;
+            margin: 32px auto 0;
+            display: block;
+     }
+
+      .video-hero .content h1 {
+        font-size: 2rem;
+      }
+
+      .video-hero .content p {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .video-hero .content h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Rocket Science Designs",
+  "url": "https://rocketsciencedesigns.com",
+  "logo": "https://rocketsciencedesigns.com/rocket-science-logo.png",
+  "email": "hello@rocketsciencedesigns.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Westwood",
+    "addressLocality": "Winnipeg",
+    "addressRegion": "MB",
+    "postalCode": "R3K 0L1",
+    "addressCountry": "CA"
+  },
+  "description": "Winnipeg-based freelance web designer offering Shopify development, email marketing, AI workflow automation, and digital strategy for small businesses and entrepreneurs."
+}
+</script>
+
+</head>
+<body>
+
+  <div id="mobile-menu-overlay">
+    <ul>
+        <li><a href="<?= $linkPrefix ?>#services">Services</a></li>
+        <li><a href="<?= $linkPrefix ?>#about">About</a></li>
+        <li><a href="<?= $linkPrefix ?>#contact">Contact</a></li>
+        <li><a href="portfolio.php">Portfolio</a></li>
+        <li><a href="<?= $linkPrefix ?>#contact" class="cta-button">Start a Project</a></li>
+    </ul>
+  </div>
+  <button id="mobile-menu-button">Menu</button>
+
+  <header>
+    <div class="nav-logo">
+      <a href="/"><img src="/logo-white-bg.png" alt="Rocket Science Designs Logo" /></a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="<?= $linkPrefix ?>#services">Services</a></li>
+            <li><a href="<?= $linkPrefix ?>#about">About</a></li>
+            <li><a href="<?= $linkPrefix ?>#contact">Contact</a></li>
+            <li><a href="portfolio.php">Portfolio</a></li>
+            <li><a href="<?= $linkPrefix ?>#contact" class="cta-button">Start a Project</a></li>
+        </ul>
+    </nav>
+  </header>
