@@ -92,11 +92,11 @@
         .header-inner {
             position: relative;
             /* let dropdowns extend beyond the bottom of the header */
-            overflow-x: hidden;   /* keep the background/video from leaking sideways */
-            overflow-y: visible;
+            overflow: visible;
             min-height: var(--nav-height);
             padding-top:0px; 
             padding-bottom:0px;
+            z-index: 2;
         }
 
         .header-video {
@@ -105,9 +105,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             z-index: 0;
             pointer-events: none;
         }
@@ -858,13 +855,13 @@
 
     <!-- Sticky header: logo + nav + hamburger -->
     <header id="top" class="site-header">
-        <div class="max-width header-inner">
-            <video class="header-video" autoplay muted loop playsinline>
-                <source src="https://rocketsciencedesigns.com/video%20pixel%20loop.mp4" type="video/mp4">
-                Your browser does not support HTML5 video.
-            </video>
-            <div class="header-overlay"></div>
+        <video class="header-video" autoplay muted loop playsinline>
+            <source src="https://rocketsciencedesigns.com/video%20pixel%20loop.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        <div class="header-overlay"></div>
 
+        <div class="max-width header-inner">
             <div class="header-bar">
                 <a href="/" class="brand">
                     <img src="/assets/logo-white-bg.png" alt="Rocket Science Designs logo">
