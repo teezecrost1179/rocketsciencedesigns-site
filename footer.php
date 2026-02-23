@@ -4,13 +4,13 @@
                 © <?php echo date('Y'); ?> Rocket Science Designs. All rights reserved.
             </div>
 
-            <!-- Footer nav: same options as original footer, minus Start a Project -->
+            <!-- Footer nav: mirror top-level header nav -->
             <div class="footer-nav">
                 <a href="/#about">About</a>
-                <a href="/web-design-faq-winnipeg">FAQ</a>
                 <a href="/#services">Services</a>
-                <a href="/my-work-winnipeg">Portfolio</a>
-                <a href="/#start-project">Start a Project</a>
+                <a href="https://rocketreception.ca" target="_blank" rel="noopener noreferrer">Rocket Reception</a>
+                <a href="/my-work-winnipeg">Work</a>
+                <a href="/#start-project">Contact</a>
             </div>
         </div>
     </footer>

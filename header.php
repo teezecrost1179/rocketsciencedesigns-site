@@ -947,6 +947,13 @@
                             </ul>
                         </li>
 
+                        <!-- ROCKET RECEPTION (external) -->
+                        <li class="nav-item">
+                            <div class="nav-item-header">
+                                <a href="https://rocketreception.ca" class="nav-link" target="_blank" rel="noopener noreferrer">Rocket Reception</a>
+                            </div>
+                        </li>
+
                         <!-- WORK (no submenu) -->
                         <li class="nav-item">
                             <div class="nav-item-header">
