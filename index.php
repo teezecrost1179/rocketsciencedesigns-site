@@ -63,6 +63,21 @@
                     </a>
                 </article>
 
+                <!-- AI Automation & API Integrations -->
+                <article class="service-card">
+                    <h3 class="service-title">AI Automation &amp; API Integrations</h3>
+                    <p>
+                        From connecting platforms to building lightweight AI-assisted workflows, I help businesses
+                        reduce manual work and move faster. Whether it&rsquo;s integrating third-party APIs, automating
+                        repetitive tasks, or creating smarter internal systems, I focus on practical solutions that save
+                        time without adding complexity.
+                    </p>
+                    <a href="/ai-automation-api-integrations-winnipeg" class="service-link">
+                        Explore AI Automation &amp; API Development
+                        <span class="service-arrow">&rarr;</span>
+                    </a>
+                </article>
+
                 <!-- Shopify Sites & Mods -->
                 <article class="service-card">
                     <h3 class="service-title">Shopify Sites &amp; Mods</h3>
