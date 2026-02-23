@@ -145,7 +145,7 @@
         .brand img {
             height: 56px;
             width: auto;
-            margin: 9px 0 9px 0;
+            margin: 12px 0 12px 0;
         }
 
 
@@ -159,7 +159,7 @@
             display: flex;
             align-items: stretch;
             font-family: "Manrope", system-ui, sans-serif;
-            font-size: 16px;
+            font-size: 17px;
             text-transform: none;
         }
 
@@ -170,6 +170,8 @@
             padding: 0 18px;
             text-decoration: none;
             color: var(--text-light);
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
             white-space: nowrap;
             transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
         }
@@ -178,6 +180,7 @@
         .nav-link:focus-visible {
             background: #ffffff;
             color: var(--accent);
+            text-shadow: none;
             transform: translateY(-1px);
             outline: none;
         }
