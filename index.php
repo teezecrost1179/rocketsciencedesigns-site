@@ -178,7 +178,7 @@
                 <h2 class="section-title call-us-title">
                     CALL US: <span class="call-us-number"><a href="tel:2048082733">204-808-2733</a></span>
                 </h2>
-                <p class="rr-call-label">Or have Jenna call you:</p>
+                <p class="rr-call-label">Or have Jenny call you:</p>
                 <form class="rr-form" id="rr-callme-form" action="javascript:void(0)" novalidate data-transfer-preselect="beauty">
                     <input type="tel" name="phone" placeholder="Your phone number" aria-label="Your phone number" />
                     <button class="btn btn-primary" type="submit">Call Me</button>

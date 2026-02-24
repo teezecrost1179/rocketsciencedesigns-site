@@ -594,6 +594,12 @@
             color: var(--text-muted);
         }
 
+        #contact .rr-form .btn-primary:hover,
+        #contact .rr-form .btn-primary:focus-visible {
+            background: #b31212;
+            border-color: #b31212;
+        }
+
         /* FOOTER – styles; markup in footer.php */
 
         .site-footer {
