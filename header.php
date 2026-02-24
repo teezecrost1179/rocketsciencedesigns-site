@@ -36,7 +36,7 @@
     <style>
         :root {
             --bg-header: #08060f;
-            --accent: #d91717;
+            --accent: #d91818;
             --text-light: #ffffff;      /* for header */
             --text-body: #111111;       /* main/body text */
             --text-muted: #666666;      /* secondary text on white */
@@ -538,6 +538,62 @@
             color: var(--text-muted);
         }
 
+        /* VOICE CALL SECTION */
+        #contact .voice-call-wrap {
+            text-align: center;
+        }
+
+        #contact .call-us-title {
+            margin-bottom: 8px;
+        }
+
+        #contact .call-us-number,
+        #contact .call-us-number a {
+            color: var(--accent);
+        }
+
+        #contact .rr-call-label {
+            margin: 0 0 14px;
+            color: var(--text-muted);
+        }
+
+        #contact .rr-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        #contact .rr-form input[type="tel"] {
+            min-width: 260px;
+            max-width: 420px;
+            width: 100%;
+            font-family: "Kameron", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 19px;
+            line-height: 1.4;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            background: #fafafa;
+            color: var(--text-body);
+            outline: none;
+        }
+
+        #contact .rr-form input[type="tel"]:focus {
+            background: #ffffff;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 1px rgba(217, 24, 24, 0.12);
+        }
+
+        #contact .rr-form-status {
+            display: block;
+            width: 100%;
+            min-height: 1.2em;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
         /* FOOTER – styles; markup in footer.php */
 
         .site-footer {
@@ -600,6 +656,15 @@
                 width: 85vw;
                 max-width: 85vw;
                 height: auto;
+            }
+
+            #contact .rr-form {
+                flex-direction: column;
+            }
+
+            #contact .rr-form input[type="tel"] {
+                min-width: 0;
+                width: min(85vw, 480px);
             }
 
             .nav-toggle {
@@ -964,7 +1029,7 @@
                         <!-- CONTACT (no submenu, keep edge class) -->
                         <li class="nav-item nav-item--edge">
                             <div class="nav-item-header">
-                                <a href="/#start-project" class="nav-link">Contact</a>
+                                <a href="/#contact" class="nav-link">Contact</a>
                             </div>
                         </li>
                     </ul>

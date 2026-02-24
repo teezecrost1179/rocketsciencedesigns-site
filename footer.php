@@ -10,7 +10,7 @@
                 <a href="/#services">Services</a>
                 <a href="https://rocketreception.ca" target="_blank" rel="noopener noreferrer">Rocket Reception</a>
                 <a href="/my-work-winnipeg">Work</a>
-                <a href="/#start-project">Contact</a>
+                <a href="/#contact">Contact</a>
             </div>
         </div>
     </footer>
@@ -138,6 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <script src="submit contact form.js"></script>
+<script src="rocket-reception-callme.js"></script>
 <script
   src="https://widget.rocketreception.ca/widget.js"
   data-api-base="https://rocketagent.onrender.com"

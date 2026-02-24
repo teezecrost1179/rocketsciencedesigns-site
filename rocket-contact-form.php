@@ -1,9 +1,9 @@
-<!-- Start a Project -->
+<!-- Get in Touch -->
     <section id="start-project" class="section">
         <div class="max-width">
             <div class="section-header">
-                <div class="section-kicker">Start a Project</div>
-                <h2 class="section-title">Tell me what you’re working on.</h2>
+                <div class="section-kicker">Get in Touch</div>
+                <h2 class="section-title">What can we build together?</h2>
             </div>
             <p>
                 Drop a short brief here — what you’re building, rough timeline, and whether you need strategy, design,
