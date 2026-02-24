@@ -540,7 +540,7 @@
 
         /* VOICE CALL SECTION */
         #contact .voice-call-wrap {
-            text-align: center;
+            text-align: left;
         }
 
         #contact .call-us-title {
@@ -559,7 +559,7 @@
 
         #contact .rr-form {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
