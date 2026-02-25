@@ -184,6 +184,11 @@
                     <button class="btn btn-primary" type="submit">Call Me</button>
                     <span class="rr-form-status" aria-live="polite"></span>
                 </form>
+                <p class="rr-powered-by">
+                    Virtual Receptionist services powered by
+                    <a href="http://rocketreception.ca/" target="_blank" rel="noopener noreferrer">Rocket Reception</a>
+                    &mdash; built in Manitoba.
+                </p>
             </div>
         </div>
     </section>

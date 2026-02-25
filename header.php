@@ -594,6 +594,12 @@
             color: var(--text-muted);
         }
 
+        #contact .rr-powered-by {
+            margin-top: 12px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
         #contact .rr-form .btn-primary:hover,
         #contact .rr-form .btn-primary:focus-visible {
             background: #b31212;
