@@ -3,6 +3,8 @@ if (($_SERVER['REMOTE_ADDR'] ?? '') !== '24.78.157.169') {
     http_response_code(403);
     exit('Forbidden');
 }
+$config = require __DIR__ . '/../bulk-send-config.php';
+$defaultFromName = htmlspecialchars($config['from_name'] ?? '', ENT_QUOTES, 'UTF-8');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -244,6 +246,11 @@ if (($_SERVER['REMOTE_ADDR'] ?? '') !== '24.78.157.169') {
     <h1>Bulk Email Sender</h1>
 
     <div class="field">
+      <label for="from-name">Sender Name <span style="color:#555;font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+      <input type="text" id="from-name" value="<?= $defaultFromName ?>" placeholder="Leave blank to send without a display name">
+    </div>
+
+    <div class="field">
       <label for="subject">Subject Line</label>
       <input type="text" id="subject" placeholder="Enter email subject…">
     </div>
@@ -310,6 +317,7 @@ if (($_SERVER['REMOTE_ADDR'] ?? '') !== '24.78.157.169') {
     const resultEl  = document.getElementById('result');
 
     submitBtn.addEventListener('click', function () {
+      const fromName = document.getElementById('from-name').value.trim();
       const subject = document.getElementById('subject').value.trim();
       const rawRecipients = document.getElementById('recipients').value;
       const html = quill.root.innerHTML;
@@ -328,7 +336,7 @@ if (($_SERVER['REMOTE_ADDR'] ?? '') !== '24.78.157.169') {
       document.getElementById('modal-email-list').textContent = emails.join('\n');
       overlay.classList.add('active');
 
-      window._pendingSend = { subject, html, emails };
+      window._pendingSend = { fromName, subject, html, emails };
     });
 
     cancelBtn.addEventListener('click', () => overlay.classList.remove('active'));

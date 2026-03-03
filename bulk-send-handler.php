@@ -22,9 +22,10 @@ if (!is_array($data)) {
     exit;
 }
 
-$subject = trim((string)($data['subject'] ?? ''));
-$html    = (string)($data['html'] ?? '');
-$emails  = $data['emails'] ?? [];
+$fromName = trim((string)($data['fromName'] ?? ''));
+$subject  = trim((string)($data['subject'] ?? ''));
+$html     = (string)($data['html'] ?? '');
+$emails   = $data['emails'] ?? [];
 
 if ($subject === '' || $html === '' || !is_array($emails) || empty($emails)) {
     http_response_code(400);
@@ -55,6 +56,10 @@ if (count($validEmails) > 50) {
 $token   = $config['postmark_token'] ?? '';
 $from    = $config['from_email'] ?? '';
 $confirm = $config['confirm_email'] ?? $from;
+
+// Use payload fromName, fall back to config default, fall back to bare address
+$resolvedName = $fromName !== '' ? $fromName : ($config['from_name'] ?? '');
+$fromFormatted = $resolvedName !== '' ? "\"{$resolvedName}\" <{$from}>" : $from;
 
 if ($token === '' || $from === '') {
     http_response_code(500);
@@ -88,10 +93,10 @@ $errors = [];
 
 foreach ($validEmails as $email) {
     $result = postmark_send($token, [
-        'From'    => $from,
-        'ReplyTo' => $from,
-        'To'      => $email,
-        'Subject' => $subject,
+        'From'     => $fromFormatted,
+        'ReplyTo'  => $fromFormatted,
+        'To'       => $email,
+        'Subject'  => $subject,
         'HtmlBody' => $html,
         'TextBody' => $textBody,
     ]);
