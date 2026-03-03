@@ -1,6 +1,6 @@
 <?php
 
-$configPath = __DIR__ . "/social-discovery-send-config.php";
+$configPath = __DIR__ . "/../social-discovery-send-config.php";
 if (!file_exists($configPath)) {
   http_response_code(500);
   echo "Missing config.";

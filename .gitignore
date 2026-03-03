@@ -25,3 +25,4 @@ rocket-agent/
 
 # Postmark config
 social-discovery-send-config.php
+bulk-send-config.php
