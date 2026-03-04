@@ -4,7 +4,7 @@ if (($_SERVER['REMOTE_ADDR'] ?? '') !== '24.78.157.169') {
     exit('Forbidden');
 }
 $config = require __DIR__ . '/../bulk-send-config.php';
-$defaultFromName = htmlspecialchars($config['from_name'] ?? '', ENT_QUOTES, 'UTF-8');
+$fromAddresses = $config['from_addresses'] ?? [];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,6 +53,7 @@ $defaultFromName = htmlspecialchars($config['from_name'] ?? '', ENT_QUOTES, 'UTF
     }
 
     input[type="text"],
+    select,
     textarea {
       width: 100%;
       background: #242424;
@@ -246,8 +247,17 @@ $defaultFromName = htmlspecialchars($config['from_name'] ?? '', ENT_QUOTES, 'UTF
     <h1>Bulk Email Sender</h1>
 
     <div class="field">
+      <label for="from-email">From Address</label>
+      <select id="from-email">
+        <?php foreach ($fromAddresses as $addr): ?>
+          <option value="<?= htmlspecialchars($addr, ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars($addr, ENT_QUOTES, 'UTF-8') ?></option>
+        <?php endforeach; ?>
+      </select>
+    </div>
+
+    <div class="field">
       <label for="from-name">Sender Name <span style="color:#555;font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
-      <input type="text" id="from-name" value="<?= $defaultFromName ?>" placeholder="Leave blank to send without a display name">
+      <input type="text" id="from-name" value="" placeholder="Leave blank to send without a display name">
     </div>
 
     <div class="field">
@@ -317,6 +327,7 @@ $defaultFromName = htmlspecialchars($config['from_name'] ?? '', ENT_QUOTES, 'UTF
     const resultEl  = document.getElementById('result');
 
     submitBtn.addEventListener('click', function () {
+      const fromEmail = document.getElementById('from-email').value;
       const fromName = document.getElementById('from-name').value.trim();
       const subject = document.getElementById('subject').value.trim();
       const rawRecipients = document.getElementById('recipients').value;
@@ -336,7 +347,7 @@ $defaultFromName = htmlspecialchars($config['from_name'] ?? '', ENT_QUOTES, 'UTF
       document.getElementById('modal-email-list').textContent = emails.join('\n');
       overlay.classList.add('active');
 
-      window._pendingSend = { fromName, subject, html, emails };
+      window._pendingSend = { fromEmail, fromName, subject, html, emails };
     });
 
     cancelBtn.addEventListener('click', () => overlay.classList.remove('active'));

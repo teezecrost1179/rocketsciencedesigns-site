@@ -22,18 +22,27 @@ if (!is_array($data)) {
     exit;
 }
 
-$fromName = trim((string)($data['fromName'] ?? ''));
-$subject  = trim((string)($data['subject'] ?? ''));
-$html     = (string)($data['html'] ?? '');
-$emails   = $data['emails'] ?? [];
+$fromEmail = trim((string)($data['fromEmail'] ?? ''));
+$fromName  = trim((string)($data['fromName'] ?? ''));
+$subject   = trim((string)($data['subject'] ?? ''));
+$html      = (string)($data['html'] ?? '');
+$emails    = $data['emails'] ?? [];
 
-if ($subject === '' || $html === '' || !is_array($emails) || empty($emails)) {
+if ($fromEmail === '' || $subject === '' || $html === '' || !is_array($emails) || empty($emails)) {
     http_response_code(400);
     echo json_encode(['error' => 'Missing required fields.']);
     exit;
 }
 
-// Re-validate and deduplicate server-side
+// Validate fromEmail against server-side whitelist
+$allowedFromAddresses = $config['from_addresses'] ?? [];
+if (!in_array($fromEmail, $allowedFromAddresses, true)) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Invalid from address.']);
+    exit;
+}
+
+// Re-validate and deduplicate recipients server-side
 $validEmails = array_values(array_unique(
     array_filter(
         array_map('trim', $emails),
@@ -54,20 +63,16 @@ if (count($validEmails) > 50) {
 }
 
 $token   = $config['postmark_token'] ?? '';
-$from    = $config['from_email'] ?? '';
-$confirm = $config['confirm_email'] ?? $from;
+$confirm = $config['confirm_email'] ?? $fromEmail;
 
-// Use payload fromName, fall back to config default, fall back to bare address
-$resolvedName = $fromName !== '' ? $fromName : ($config['from_name'] ?? '');
-$fromFormatted = $resolvedName !== '' ? "\"{$resolvedName}\" <{$from}>" : $from;
-
-if ($token === '' || $from === '') {
+if ($token === '') {
     http_response_code(500);
     echo json_encode(['error' => 'Missing Postmark configuration.']);
     exit;
 }
 
-$textBody = trim(strip_tags(html_entity_decode($html)));
+$fromFormatted = $fromName !== '' ? "\"{$fromName}\" <{$fromEmail}>" : $fromEmail;
+$textBody      = trim(strip_tags(html_entity_decode($html)));
 
 function postmark_send(string $token, array $payload): array
 {
@@ -110,9 +115,10 @@ foreach ($validEmails as $email) {
     }
 }
 
-// Confirmation email to support@rocketreception.ca
+// Confirmation email
 $recipientList = implode("\n", $validEmails);
 $confirmHtml   =
+    '<p><strong>Sent from:</strong> ' . htmlspecialchars($fromFormatted, ENT_QUOTES, 'UTF-8') . '</p>' .
     '<p><strong>The following message was sent to:</strong></p>' .
     '<ul>' . implode('', array_map(fn($e) => "<li>{$e}</li>", $validEmails)) . '</ul>' .
     '<hr style="margin:20px 0; border:none; border-top:1px solid #ddd">' .
@@ -120,11 +126,12 @@ $confirmHtml   =
     '<br>' . $html;
 
 $confirmText =
+    "Sent from: {$fromFormatted}\n\n" .
     "The following message was sent to:\n{$recipientList}\n\n" .
     "Subject: {$subject}\n\n{$textBody}";
 
 postmark_send($token, [
-    'From'     => $from,
+    'From'     => $fromEmail,
     'To'       => $confirm,
     'Subject'  => "Bulk Send Confirmation: {$subject}",
     'HtmlBody' => $confirmHtml,
