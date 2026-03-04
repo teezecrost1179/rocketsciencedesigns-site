@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 0);
+
 if (($_SERVER['REMOTE_ADDR'] ?? '') !== '24.78.157.169') {
     http_response_code(403);
     exit;
@@ -14,7 +16,15 @@ if (!file_exists($configPath)) {
 }
 $config = require $configPath;
 
-$raw  = file_get_contents('php://input');
+$raw = file_get_contents('php://input');
+
+// If post_max_size was exceeded, PHP empties php://input silently
+if ($raw === '' && (int)($_SERVER['CONTENT_LENGTH'] ?? 0) > 0) {
+    http_response_code(413);
+    echo json_encode(['error' => 'Payload too large — reduce attachment file size or check server post_max_size.']);
+    exit;
+}
+
 $data = json_decode($raw, true);
 if (!is_array($data)) {
     http_response_code(400);
@@ -47,7 +57,7 @@ if (!in_array($fromEmail, $allowedFromAddresses, true)) {
 $validEmails = array_values(array_unique(
     array_filter(
         array_map('trim', $emails),
-        fn($e) => (bool) filter_var($e, FILTER_VALIDATE_EMAIL)
+        function($e) { return (bool) filter_var($e, FILTER_VALIDATE_EMAIL); }
     )
 ));
 
@@ -141,7 +151,7 @@ foreach ($validEmails as $email) {
 
 // Confirmation email
 $recipientList   = implode("\n", $validEmails);
-$attachmentNames = array_map(fn($a) => $a['Name'], $validAttachments);
+$attachmentNames = array_map(function($a) { return $a['Name']; }, $validAttachments);
 $attachmentLine  = !empty($attachmentNames)
     ? '<p><strong>Attachments:</strong> ' . htmlspecialchars(implode(', ', $attachmentNames), ENT_QUOTES, 'UTF-8') . '</p>'
     : '';
@@ -152,7 +162,7 @@ $attachmentText  = !empty($attachmentNames)
 $confirmHtml =
     '<p><strong>Sent from:</strong> ' . htmlspecialchars($fromFormatted, ENT_QUOTES, 'UTF-8') . '</p>' .
     '<p><strong>The following message was sent to:</strong></p>' .
-    '<ul>' . implode('', array_map(fn($e) => "<li>{$e}</li>", $validEmails)) . '</ul>' .
+    '<ul>' . implode('', array_map(function($e) { return "<li>{$e}</li>"; }, $validEmails)) . '</ul>' .
     $attachmentLine .
     '<hr style="margin:20px 0; border:none; border-top:1px solid #ddd">' .
     '<p><strong>Subject:</strong> ' . htmlspecialchars($subject, ENT_QUOTES, 'UTF-8') . '</p>' .
