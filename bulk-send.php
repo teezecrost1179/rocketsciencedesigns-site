@@ -240,6 +240,62 @@ $fromAddresses = $config['from_addresses'] ?? [];
       margin-top: 8px;
       padding-left: 20px;
     }
+
+    /* Attachments */
+    .file-btn {
+      display: inline-block;
+      padding: 10px 18px;
+      background: #242424;
+      border: 1px dashed #444;
+      border-radius: 6px;
+      color: #888;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .file-btn:hover { border-color: #666; color: #ccc; }
+
+    #attachments { display: none; }
+
+    .attachment-list {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .attachment-chip {
+      background: #2a2a2a;
+      border: 1px solid #3a3a3a;
+      border-radius: 4px;
+      padding: 5px 10px;
+      font-size: 0.8rem;
+      color: #ccc;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .attachment-chip .remove {
+      background: none;
+      border: none;
+      color: #555;
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+      padding: 0;
+      font-family: inherit;
+    }
+
+    .attachment-chip .remove:hover { color: #cc7878; }
+
+    #modal-attachments {
+      color: #777;
+      font-size: 0.82rem;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
@@ -276,6 +332,14 @@ $fromAddresses = $config['from_addresses'] ?? [];
       <div id="editor"></div>
     </div>
 
+    <div class="field">
+      <label>Attachments <span style="color:#555;font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+      <label class="file-btn" for="attachments">+ Add files</label>
+      <input type="file" id="attachments" multiple>
+      <div class="attachment-list" id="attachment-list"></div>
+      <p class="hint">Max 10 MB per file. Attached to every email sent.</p>
+    </div>
+
     <button class="btn btn-primary" id="submit-btn">Review &amp; Send</button>
 
     <div id="result"></div>
@@ -287,6 +351,7 @@ $fromAddresses = $config['from_addresses'] ?? [];
       <h2>Confirm Send</h2>
       <p class="modal-desc" id="modal-desc"></p>
       <div class="email-preview" id="modal-email-list"></div>
+      <p id="modal-attachments"></p>
       <div class="modal-actions">
         <button class="btn btn-primary" id="confirm-btn">Yes, Send</button>
         <button class="btn btn-ghost" id="cancel-btn">Cancel</button>
@@ -320,34 +385,97 @@ $fromAddresses = $config['from_addresses'] ?? [];
         .filter(e => { if (seen.has(e)) return false; seen.add(e); return true; });
     }
 
-    const overlay   = document.getElementById('modal-overlay');
-    const submitBtn = document.getElementById('submit-btn');
+    // --- Attachment management ---
+    let _attachmentFiles = [];
+
+    function renderAttachmentList() {
+      const list = document.getElementById('attachment-list');
+      list.innerHTML = '';
+      _attachmentFiles.forEach((file, i) => {
+        const chip = document.createElement('div');
+        chip.className = 'attachment-chip';
+        chip.innerHTML =
+          `<span>${file.name} <span style="color:#555">(${(file.size / 1024).toFixed(0)} KB)</span></span>` +
+          `<button class="remove" type="button" data-index="${i}" title="Remove">&times;</button>`;
+        list.appendChild(chip);
+      });
+    }
+
+    document.getElementById('attachments').addEventListener('change', function () {
+      Array.from(this.files).forEach(f => {
+        if (!_attachmentFiles.find(x => x.name === f.name && x.size === f.size)) {
+          _attachmentFiles.push(f);
+        }
+      });
+      this.value = ''; // reset so same file can be re-added after removal
+      renderAttachmentList();
+    });
+
+    document.getElementById('attachment-list').addEventListener('click', function (e) {
+      const btn = e.target.closest('.remove');
+      if (!btn) return;
+      _attachmentFiles.splice(parseInt(btn.dataset.index, 10), 1);
+      renderAttachmentList();
+    });
+
+    function readFileAsBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload  = () => resolve({
+          name:        file.name,
+          content:     reader.result.split(',')[1], // strip data:...;base64, prefix
+          contentType: file.type || 'application/octet-stream',
+        });
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // --- Form ---
+    const overlay    = document.getElementById('modal-overlay');
+    const submitBtn  = document.getElementById('submit-btn');
     const confirmBtn = document.getElementById('confirm-btn');
-    const cancelBtn = document.getElementById('cancel-btn');
-    const resultEl  = document.getElementById('result');
+    const cancelBtn  = document.getElementById('cancel-btn');
+    const resultEl   = document.getElementById('result');
 
     submitBtn.addEventListener('click', function () {
       const fromEmail = document.getElementById('from-email').value;
-      const fromName = document.getElementById('from-name').value.trim();
-      const subject = document.getElementById('subject').value.trim();
+      const fromName  = document.getElementById('from-name').value.trim();
+      const subject   = document.getElementById('subject').value.trim();
       const rawRecipients = document.getElementById('recipients').value;
       const html = quill.root.innerHTML;
       const text = quill.getText().trim();
 
-      if (!subject)       { alert('Please enter a subject line.'); return; }
+      if (!subject)            { alert('Please enter a subject line.'); return; }
       if (!rawRecipients.trim()) { alert('Please enter at least one recipient.'); return; }
-      if (!text)          { alert('Please enter a message.'); return; }
+      if (!text)               { alert('Please enter a message.'); return; }
 
       const emails = parseEmails(rawRecipients);
       if (emails.length === 0) { alert('No valid email addresses found.'); return; }
       if (emails.length > 50)  { alert('Maximum 50 recipients allowed.'); return; }
 
-      document.getElementById('modal-desc').textContent =
-        `Send ${emails.length} individual email${emails.length !== 1 ? 's' : ''} to:`;
-      document.getElementById('modal-email-list').textContent = emails.join('\n');
-      overlay.classList.add('active');
+      const oversized = _attachmentFiles.filter(f => f.size > 10 * 1024 * 1024);
+      if (oversized.length > 0) {
+        alert('These files exceed the 10 MB limit:\n' + oversized.map(f => f.name).join('\n'));
+        return;
+      }
 
-      window._pendingSend = { fromEmail, fromName, subject, html, emails };
+      Promise.all(_attachmentFiles.map(readFileAsBase64)).then(attachments => {
+        document.getElementById('modal-desc').textContent =
+          `Send ${emails.length} individual email${emails.length !== 1 ? 's' : ''} to:`;
+        document.getElementById('modal-email-list').textContent = emails.join('\n');
+
+        const attNote = document.getElementById('modal-attachments');
+        if (attachments.length > 0) {
+          attNote.textContent =
+            `Attachments: ${attachments.map(a => a.name).join(', ')}`;
+        } else {
+          attNote.textContent = '';
+        }
+
+        overlay.classList.add('active');
+        window._pendingSend = { fromEmail, fromName, subject, html, emails, attachments };
+      });
     });
 
     cancelBtn.addEventListener('click', () => overlay.classList.remove('active'));
