@@ -14,8 +14,7 @@ register_shutdown_function(function () {
     }
 });
 
-$bypassUntil = strtotime('2026-03-07 00:00:00 UTC');
-if (time() >= $bypassUntil && ($_SERVER['REMOTE_ADDR'] ?? '') !== '24.78.157.169') {
+if (($_SERVER['REMOTE_ADDR'] ?? '') !== '24.78.157.169') {
     http_response_code(403);
     exit;
 }
@@ -188,12 +187,16 @@ $confirmText =
     $attachmentText .
     "Subject: {$subject}\n\n{$textBody}";
 
-postmark_send($token, [
+$confirmPayload = [
     'From'     => $fromEmail,
-    'To'       => $confirm,
+    'To'       => $fromEmail,
     'Subject'  => "Bulk Send Confirmation: {$subject}",
     'HtmlBody' => $confirmHtml,
     'TextBody' => $confirmText,
-]);
+];
+if (!empty($validAttachments)) {
+    $confirmPayload['Attachments'] = $validAttachments;
+}
+postmark_send($token, $confirmPayload);
 
 echo json_encode(['sent' => $sent, 'failed' => $failed, 'errors' => $errors]);
