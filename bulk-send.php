@@ -502,7 +502,16 @@ $fromAddresses = $config['from_addresses'] ?? [];
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
-        .then(r => r.json())
+        .then(r => {
+          if (r.status === 413) throw new Error('Attachment too large — the server rejected the request. Contact your host to increase the upload limit.');
+          const ct = r.headers.get('content-type') || '';
+          if (!ct.includes('application/json')) {
+            return r.text().then(function(t) {
+              throw new Error('Unexpected server response (HTTP ' + r.status + '). Check server error logs.');
+            });
+          }
+          return r.json();
+        })
         .then(res => {
           submitBtn.disabled = false;
           confirmBtn.disabled = false;

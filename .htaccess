@@ -5,6 +5,11 @@
 </IfModule>
 # php -- END cPanel-generated handler, do not edit
 
+# Allow larger POST bodies for the bulk email handler (attachments)
+<Files "bulk-send-handler.php">
+    LimitRequestBody 20971520
+</Files>
+
 RewriteEngine On
 RewriteBase /
 
