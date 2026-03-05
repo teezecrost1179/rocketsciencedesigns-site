@@ -1,5 +1,18 @@
 <?php
 ini_set('display_errors', 0);
+ob_start();
+
+register_shutdown_function(function () {
+    $error = error_get_last();
+    if ($error && in_array($error['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR], true)) {
+        ob_end_clean();
+        header('Content-Type: application/json');
+        http_response_code(500);
+        echo json_encode(['error' => 'PHP fatal: ' . $error['message'] . ' (line ' . $error['line'] . ')']);
+    } else {
+        ob_end_flush();
+    }
+});
 
 if (($_SERVER['REMOTE_ADDR'] ?? '') !== '24.78.157.169') {
     http_response_code(403);
