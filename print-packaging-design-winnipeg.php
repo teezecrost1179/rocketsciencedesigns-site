@@ -1,4 +1,7 @@
-<?php include 'header.php'; ?> 
+<?php
+$pageTitle = 'Print Design Winnipeg | Packaging | Rocket Science Designs';
+include 'header.php';
+?>
 <main>
 
     <!-- PRINT & PACKAGING LAYOUT -->

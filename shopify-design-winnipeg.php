@@ -1,4 +1,7 @@
-<?php include 'header.php'; ?> 
+<?php
+$pageTitle = 'Shopify Design Winnipeg | Ecommerce | Rocket Science Designs';
+include 'header.php';
+?>
 <main>
 
     <!-- SHOPIFY SITES & MODS -->

@@ -1,4 +1,7 @@
-<?php include 'header.php'; ?> 
+<?php
+$pageTitle = 'Email Marketing Winnipeg | Strategy | Rocket Science Designs';
+include 'header.php';
+?>
 <main>
 
     <!-- EMAIL MARKETING -->

@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /social-discovery
+Disallow: /social-discovery-send
+Disallow: /bulk-send
+Disallow: /bulk-send-handler
+Disallow: /submit
+Disallow: /rocket-contact-form
+Disallow: /testphpinfo
+Disallow: /testagent
+Disallow: /temp
+Disallow: /uploader
+Disallow: /portfolio
+
+Sitemap: https://rocketsciencedesigns.com/sitemap.xml

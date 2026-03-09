@@ -20,6 +20,11 @@
 
   <!-- Services (individual detail pages) -->
   <url>
+    <loc>https://rocketsciencedesigns.com/ai-automation-api-integrations-winnipeg</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://rocketsciencedesigns.com/logo-branding-design-winnipeg</loc>
     <priority>0.8</priority>
   </url>

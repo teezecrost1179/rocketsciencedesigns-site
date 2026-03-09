@@ -1,4 +1,7 @@
-<?php include 'header.php'; ?> 
+<?php
+$pageTitle = 'Product Photography | Photo Studio | Rocket Science Designs';
+include 'header.php';
+?>
 <main>
 
     <!-- PRODUCT PHOTOGRAPHY -->

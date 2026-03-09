@@ -1,4 +1,7 @@
-<?php include 'header.php'; ?>
+<?php
+$pageTitle = 'Logo Design Winnipeg | Branding | Rocket Science Designs';
+include 'header.php';
+?>
 <main>
 
     <!-- LOGOS & BRANDING -->

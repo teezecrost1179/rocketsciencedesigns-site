@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Rocket Science Designs | Web Design & Digital Creative in Winnipeg</title>
+    <title><?= htmlspecialchars($pageTitle ?? 'Rocket Science Designs | Web Design & Digital Creative in Winnipeg') ?></title>
 
     <!-- Basic SEO -->
     <meta name="description" content="Rocket Science Designs is a Winnipeg-based digital generalist studio offering web design, branding, Shopify builds, email marketing, photography, and video production for small businesses and growing brands.">

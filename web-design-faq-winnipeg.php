@@ -1,4 +1,7 @@
-<?php include 'header.php'; ?> 
+<?php
+$pageTitle = 'Web Design FAQ Winnipeg | Questions | Rocket Science Designs';
+include 'header.php';
+?>
 <main>
 
     <!-- WEBSITE DESIGN FAQ -->

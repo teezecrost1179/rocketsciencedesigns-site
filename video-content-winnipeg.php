@@ -1,4 +1,7 @@
-<?php include 'header.php'; ?> 
+<?php
+$pageTitle = 'Video Production Winnipeg | Content | Rocket Science Designs';
+include 'header.php';
+?>
 <main>
 
     <!-- VIDEO CONTENT -->

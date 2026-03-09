@@ -1,4 +1,7 @@
-<?php include 'header.php'; ?>
+<?php
+$pageTitle = 'AI Automation | API Integration | Rocket Science Designs';
+include 'header.php';
+?>
 
 <main>
     <section id="ai-automation-api-development" class="section">
