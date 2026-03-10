@@ -9,9 +9,8 @@ include 'header.php';
         <div class="max-width">
             <div class="section-header">
                 <div class="section-kicker">SHOPIFY SITES & MODS</div>
-                <h1 class="section-title">
-                    Shopify setups, fixes, tweaks and full builds—done cleanly and done right.
-                </h1>
+                <h1 class="section-title">Shopify Designer &amp; Developer in Winnipeg</h1>
+                <h2 class="section-tagline">Setups, fixes, and full builds &mdash; done cleanly and done right.</h2>
             </div>
 
             <p>

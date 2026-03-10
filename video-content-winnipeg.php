@@ -9,9 +9,8 @@ include 'header.php';
         <div class="max-width">
             <div class="section-header">
                 <div class="section-kicker">VIDEO CONTENT</div>
-                <h1 class="section-title">
-                    Clean, engaging video content—shot, edited and built for the platforms you actually use.
-                </h1>
+                <h1 class="section-title">Video Production in Winnipeg</h1>
+                <h2 class="section-tagline">Shot, edited, and sized for every platform you actually use.</h2>
             </div>
 
             <p>

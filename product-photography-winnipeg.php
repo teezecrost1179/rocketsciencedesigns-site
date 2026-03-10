@@ -9,9 +9,8 @@ include 'header.php';
         <div class="max-width">
             <div class="section-header">
                 <div class="section-kicker">PRODUCT PHOTOGRAPHY</div>
-                <h1 class="section-title">
-                    Clean, consistent product photography that makes your items look as good as they should.
-                </h1>
+                <h1 class="section-title">Product Photography in Winnipeg</h1>
+                <h2 class="section-tagline">Clean, consistent images built for Shopify, Amazon, and social.</h2>
             </div>
 
             <p>

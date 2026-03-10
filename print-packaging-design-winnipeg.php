@@ -9,9 +9,8 @@ include 'header.php';
         <div class="max-width">
             <div class="section-header">
                 <div class="section-kicker">PRINT & PACKAGING LAYOUT</div>
-                <h1 class="section-title">
-                    Thoughtful print and packaging that looks sharp—and prints correctly the first time.
-                </h1>
+                <h1 class="section-title">Print Design &amp; Packaging Layout &mdash; Winnipeg</h1>
+                <h2 class="section-tagline">Sharp, production-ready files that your printer will actually thank you for.</h2>
             </div>
 
             <p>

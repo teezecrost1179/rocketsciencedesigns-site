@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'AI Automation | API Integration | Rocket Science Designs';
+$pageTitle = 'AI Automation & API Integrations Winnipeg | Rocket Science Designs';
 include 'header.php';
 ?>
 
@@ -8,9 +8,8 @@ include 'header.php';
         <div class="max-width">
             <div class="section-header">
                 <div class="section-kicker">AI AUTOMATION &amp; API DEVELOPMENT</div>
-                <h1 class="section-title">
-                    Because your systems should work as hard as you do.
-                </h1>
+                <h1 class="section-title">AI Automation &amp; API Integrations &mdash; Winnipeg</h1>
+                <h2 class="section-tagline">Because your systems should work as hard as you do.</h2>
             </div>
 
             <p>

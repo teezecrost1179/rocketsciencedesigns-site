@@ -9,9 +9,8 @@ include 'header.php';
         <div class="max-width">
             <div class="section-header">
                 <div class="section-kicker">LOGOS & BRANDING</div>
-                <h1 class="section-title">
-                    Because your business deserves a visual identity that looks like you meant it.
-                </h1>
+                <h1 class="section-title">Logo Design &amp; Branding in Winnipeg</h1>
+                <h2 class="section-tagline">Because your business deserves an identity that looks like you meant it.</h2>
             </div>
 
             <p>

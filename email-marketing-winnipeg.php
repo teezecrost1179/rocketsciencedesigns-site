@@ -9,9 +9,8 @@ include 'header.php';
         <div class="max-width">
             <div class="section-header">
                 <div class="section-kicker">EMAIL MARKETING</div>
-                <h1 class="section-title">
-                    Smart, steady email marketing that feels human—and actually gets results.
-                </h1>
+                <h1 class="section-title">Email Marketing for Winnipeg &amp; Canadian Brands</h1>
+                <h2 class="section-tagline">Steady, human email that builds your list and earns repeat business.</h2>
             </div>
 
             <p>

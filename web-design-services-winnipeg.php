@@ -9,9 +9,8 @@ include 'header.php';
         <div class="max-width">
             <div class="section-header">
                 <div class="section-kicker">WEBSITE DESIGN</div>
-                <h1 class="section-title">
-                    Websites that don’t just look good—they work.
-                </h1>
+                <h1 class="section-title">Web Design &amp; Development in Winnipeg</h1>
+                <h2 class="section-tagline">Sites that load fast, read clearly, and earn trust.</h2>
             </div>
 
             <p>

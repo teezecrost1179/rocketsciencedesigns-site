@@ -88,7 +88,7 @@
                         storytelling, smooth checkout, and small changes that add up to more sales.
                     </p>
                     <a href="/shopify-design-winnipeg" class="service-link">
-                        Explore Shopify Sites, Sections, &amp; Modifactions 
+                        Explore Shopify Sites, Sections, &amp; Modifications
                         <span class="service-arrow">→</span>
                     </a>
                 </article>
