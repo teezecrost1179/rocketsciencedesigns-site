@@ -59,6 +59,25 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Articles -->
+  <url>
+    <loc>https://rocketsciencedesigns.com/articles/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://rocketsciencedesigns.com/articles/how-to-choose-a-web-designer-winnipeg</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://rocketsciencedesigns.com/articles/what-can-an-ai-receptionist-do-for-a-small-business</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- Supporting asset (resume PDF) -->
   <url>
     <loc>https://rocketsciencedesigns.com/resume-Robert%20Bond-winnipeg.pdf</loc>

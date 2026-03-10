@@ -6,8 +6,7 @@
                 <h2 class="section-title">What can we build together?</h2>
             </div>
             <p>
-                Drop a short brief here — what you’re building, rough timeline, and whether you need strategy, design,
-                build, or all of the above. From there, we can hop on a call and see if there’s a fit.
+                Drop a short brief here — I’m based in Winnipeg and work with businesses locally and across Canada.
             </p>
             <form id="contact-form">
                 <input type="text" name="name" placeholder="Your Name" required />

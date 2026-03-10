@@ -5,10 +5,10 @@
     <title><?= htmlspecialchars($pageTitle ?? 'Web Design, Shopify & Automation Winnipeg | Rocket Science Designs') ?></title>
 
     <!-- Basic SEO -->
-    <meta name="description" content="Rocket Science Designs is a Winnipeg-based digital generalist studio offering web design, branding, Shopify builds, email marketing, photography, and video production for small businesses and growing brands.">
+    <meta name="description" content="<?= htmlspecialchars($metaDescription ?? 'Rocket Science Designs is a Winnipeg-based digital generalist studio offering web design, branding, Shopify builds, email marketing, photography, and video production for small businesses and growing brands.') ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="index,follow">
-    <link rel="canonical" href="https://rocketsciencedesigns.com/">
+    <link rel="canonical" href="<?= htmlspecialchars($canonicalUrl ?? 'https://rocketsciencedesigns.com/') ?>">
 
     <meta name="keywords" content="web design Winnipeg, freelance web designer, Shopify developer, branding, email marketing, Rocket Science Designs">
 

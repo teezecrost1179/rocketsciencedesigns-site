@@ -10,6 +10,7 @@
                 <a href="/#services">Services</a>
                 <a href="https://rocketreception.ca" target="_blank" rel="noopener noreferrer">Rocket Reception</a>
                 <a href="/my-work-winnipeg">Work</a>
+                <a href="/articles/">Articles</a>
                 <a href="/#contact">Contact</a>
             </div>
         </div>

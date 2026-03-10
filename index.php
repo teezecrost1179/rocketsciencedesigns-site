@@ -29,7 +29,7 @@
         <div class="max-width">
             <div class="section-header">
                 <div class="section-kicker">SERVICES</div>
-                <h2 class="section-title">What I can help you ship.</h2>
+                <h2 class="section-title">From Winnipeg storefronts to national brands, here's what I build and ship.</h2>
             </div>
 
             <div class="services-grid">
