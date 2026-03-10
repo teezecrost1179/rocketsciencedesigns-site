@@ -82,7 +82,107 @@ include 'header.php';
         </div>
     </section>
 
+    <section id="faq" class="section">
+        <div class="max-width">
+            <div class="section-header">
+                <div class="section-kicker">FAQ</div>
+                <h2 class="section-title">Common Questions</h2>
+            </div>
+            <div class="faq-list">
+
+                <details class="faq-item">
+                    <summary class="faq-question">Should I hire a freelancer or an agency?</summary>
+                    <p class="faq-answer">For most small businesses, a freelancer with the right experience is the better fit &mdash; you get direct communication with the person actually doing the work, no account managers or hand-offs, and better value for the budget. The legitimate concern with freelancers is reliability. The honest answer to that is: check their track record, ask direct questions about process, and look for someone who&rsquo;s been doing this long enough that ghosting mid-project isn&rsquo;t in their interest. I&rsquo;ve been at this for 20+ years. Unfinished projects aren&rsquo;t part of my business model.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">How long does a website build take?</summary>
+                    <p class="faq-answer">A typical small business site runs 3&ndash;5 weeks from kickoff to launch-ready, assuming content and brand assets are ready to go. The most common cause of delays isn&rsquo;t the build &mdash; it&rsquo;s waiting on copy, photos, and feedback from the client&rsquo;s side. Coming prepared makes a real difference.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">What do you need from me to get started?</summary>
+                    <p class="faq-answer">At minimum: a clear idea of what the site needs to do, any existing brand assets (logo, colours, fonts), and the content or a plan for getting it. If you don&rsquo;t have copy or photography sorted, that&rsquo;s fine &mdash; I can help with both &mdash; but it&rsquo;s worth knowing upfront so we can scope it properly.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Will I be able to update the site myself after launch?</summary>
+                    <p class="faq-answer">Yes, with some limitations. I build in PHP, not WordPress, which means you won&rsquo;t have a drag-and-drop editor &mdash; but the tradeoff is a faster, cleaner site with no plugin maintenance. I document everything and build pages so routine content changes are straightforward. For anything structural, I&rsquo;m available for ongoing work.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Do you use templates or build custom?</summary>
+                    <p class="faq-answer">Custom. No theme soup, no page builders, no recycled layouts. Every site is hand-coded to fit the project. That&rsquo;s part of why they load fast and stay maintainable &mdash; there&rsquo;s no bloat underneath.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">What does a website cost?</summary>
+                    <p class="faq-answer">Scope varies too much for a single number to be useful, but a straightforward small business site typically falls in the $3,000&ndash;$6,000 range. More complex builds with ecommerce, custom functionality, or multiple content types run higher. I work on project pricing, so you&rsquo;ll always know the number before work starts.</p>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
     <?php include 'rocket-contact-form.php'; ?>
 
 </main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Should I hire a freelancer or an agency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For most small businesses, a freelancer with the right experience is the better fit — you get direct communication with the person actually doing the work, no account managers or hand-offs, and better value for the budget. The legitimate concern with freelancers is reliability. The honest answer to that is: check their track record, ask direct questions about process, and look for someone who's been doing this long enough that ghosting mid-project isn't in their interest. I've been at this for 20+ years. Unfinished projects aren't part of my business model."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a website build take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A typical small business site runs 3–5 weeks from kickoff to launch-ready, assuming content and brand assets are ready to go. The most common cause of delays isn't the build — it's waiting on copy, photos, and feedback from the client's side. Coming prepared makes a real difference."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do you need from me to get started?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At minimum: a clear idea of what the site needs to do, any existing brand assets (logo, colours, fonts), and the content or a plan for getting it. If you don't have copy or photography sorted, that's fine — I can help with both — but it's worth knowing upfront so we can scope it properly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will I be able to update the site myself after launch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, with some limitations. I build in PHP, not WordPress, which means you won't have a drag-and-drop editor — but the tradeoff is a faster, cleaner site with no plugin maintenance. I document everything and build pages so routine content changes are straightforward. For anything structural, I'm available for ongoing work."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you use templates or build custom?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Custom. No theme soup, no page builders, no recycled layouts. Every site is hand-coded to fit the project. That's part of why they load fast and stay maintainable — there's no bloat underneath."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a website cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Scope varies too much for a single number to be useful, but a straightforward small business site typically falls in the $3,000–$6,000 range. More complex builds with ecommerce, custom functionality, or multiple content types run higher. I work on project pricing, so you'll always know the number before work starts."
+      }
+    }
+  ]
+}
+</script>
+
 <?php include 'footer.php'; ?>

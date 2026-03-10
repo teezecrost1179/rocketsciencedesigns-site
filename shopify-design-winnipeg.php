@@ -83,7 +83,94 @@ include 'header.php';
         </div>
     </section>
 
+    <section id="faq" class="section">
+        <div class="max-width">
+            <div class="section-header">
+                <div class="section-kicker">FAQ</div>
+                <h2 class="section-title">Common Questions</h2>
+            </div>
+            <div class="faq-list">
+
+                <details class="faq-item">
+                    <summary class="faq-question">Do I need a custom theme or will a stock theme work?</summary>
+                    <p class="faq-answer">Most small businesses don&rsquo;t need a fully custom theme &mdash; and I&rsquo;ll tell you honestly if yours does. A well-configured premium theme with smart customization handles the vast majority of use cases cleanly. Where custom development adds real value is when your store has unique layout requirements, conversion-critical UX, or specific functionality that no app or theme can replicate. Starting with a solid theme and building from there is usually the smarter, faster, and more maintainable choice.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">How long does a full Shopify build take?</summary>
+                    <p class="faq-answer">A straightforward store with a defined product catalogue, clear branding, and timely feedback typically takes 2&ndash;4 weeks from kickoff to launch-ready. More complex builds with custom sections, app integrations, or large catalogues take longer. The biggest variable is usually how quickly decisions get made on your end &mdash; the build itself moves fast.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Will I be able to manage my store after you&rsquo;re done?</summary>
+                    <p class="faq-answer">That&rsquo;s the whole point. Every build includes a walkthrough of your admin and documentation for anything non-obvious. I build for Shopify&rsquo;s native editor wherever possible so you&rsquo;re not dependent on a developer for basic updates. You should be able to add products, update content, and make routine changes without calling anyone.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">What if something breaks after launch?</summary>
+                    <p class="faq-answer">Things occasionally do. I offer post-launch support and am available for fixes, tweaks, and ongoing work on a project or hourly basis. I&rsquo;m not an agency with a ticketing system &mdash; you reach me directly and we sort it out.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Can you fix just one thing, or do you only do full builds?</summary>
+                    <p class="faq-answer">Both. A significant portion of my Shopify work is small-but-important fixes &mdash; a layout issue, a Liquid edit, a section that isn&rsquo;t behaving, an app conflict. You don&rsquo;t need to commit to a full rebuild to get help with something specific.</p>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
     <?php include 'rocket-contact-form.php'; ?>
 
 </main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need a custom theme or will a stock theme work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most small businesses don't need a fully custom theme — and I'll tell you honestly if yours does. A well-configured premium theme with smart customization handles the vast majority of use cases cleanly. Where custom development adds real value is when your store has unique layout requirements, conversion-critical UX, or specific functionality that no app or theme can replicate. Starting with a solid theme and building from there is usually the smarter, faster, and more maintainable choice."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a full Shopify build take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A straightforward store with a defined product catalogue, clear branding, and timely feedback typically takes 2–4 weeks from kickoff to launch-ready. More complex builds with custom sections, app integrations, or large catalogues take longer. The biggest variable is usually how quickly decisions get made on your end — the build itself moves fast."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will I be able to manage my store after you're done?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That's the whole point. Every build includes a walkthrough of your admin and documentation for anything non-obvious. I build for Shopify's native editor wherever possible so you're not dependent on a developer for basic updates. You should be able to add products, update content, and make routine changes without calling anyone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if something breaks after launch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Things occasionally do. I offer post-launch support and am available for fixes, tweaks, and ongoing work on a project or hourly basis. I'm not an agency with a ticketing system — you reach me directly and we sort it out."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you fix just one thing, or do you only do full builds?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both. A significant portion of my Shopify work is small-but-important fixes — a layout issue, a Liquid edit, a section that isn't behaving, an app conflict. You don't need to commit to a full rebuild to get help with something specific."
+      }
+    }
+  ]
+}
+</script>
+
 <?php include 'footer.php'; ?>

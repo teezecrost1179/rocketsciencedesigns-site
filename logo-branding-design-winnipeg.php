@@ -97,7 +97,107 @@ include 'header.php';
         </div>
     </section>
 
+    <section id="faq" class="section">
+        <div class="max-width">
+            <div class="section-header">
+                <div class="section-kicker">FAQ</div>
+                <h2 class="section-title">Common Questions</h2>
+            </div>
+            <div class="faq-list">
+
+                <details class="faq-item">
+                    <summary class="faq-question">What&rsquo;s the difference between a logo and branding?</summary>
+                    <p class="faq-answer">A logo is one piece of a brand &mdash; the mark. Branding is everything around it: colour system, typography, tone of voice, how things look across your website, packaging, social, and anywhere else your business shows up. A strong logo without a system behind it tends to look inconsistent in practice. What I deliver includes both &mdash; the mark and the basic guidelines needed to use it correctly.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Can&rsquo;t I just use an AI logo maker or Canva?</summary>
+                    <p class="faq-answer">You can, and for some businesses at early stages it&rsquo;s a reasonable starting point. The tradeoff is that generated logos tend to look like generated logos &mdash; generic shapes, overused fonts, nothing that actually differentiates you. If you&rsquo;re at a stage where your brand is a real part of what you&rsquo;re selling, a custom identity built around your actual business will serve you better and longer.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">How much does a logo cost?</summary>
+                    <p class="faq-answer">For a small business, a custom logo with basic brand standards typically falls in the $500&ndash;$1,500 range depending on scope. What separates price points is mostly research, iteration, and what&rsquo;s delivered alongside the mark &mdash; a logo file alone versus a full set of files, colour codes, font specs, and usage guidelines are different things.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">How long does it take?</summary>
+                    <p class="faq-answer">A focused logo and identity project typically runs 2&ndash;3 weeks. The main variable is feedback turnaround on your end. Coming in with some reference points &mdash; brands you like the feel of, colours you&rsquo;re drawn to or want to avoid &mdash; speeds things up considerably.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">What files will I receive?</summary>
+                    <p class="faq-answer">Vector files (AI, EPS, SVG) that can scale to any size without quality loss, plus export-ready versions for web and print in the common formats you&rsquo;ll actually use. You&rsquo;ll own everything outright &mdash; no licensing complications or designer lock-in.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">When does a rebrand make sense?</summary>
+                    <p class="faq-answer">When your current brand no longer reflects what your business actually is, when you&rsquo;re moving upmarket and the existing identity is holding you back, or when inconsistency across applications has become a real problem. If you&rsquo;re just bored of it, that&rsquo;s usually not a good enough reason &mdash; rebrand fatigue is real and changes can confuse existing customers.</p>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
     <?php include 'rocket-contact-form.php'; ?>
 
 </main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What's the difference between a logo and branding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A logo is one piece of a brand — the mark. Branding is everything around it: colour system, typography, tone of voice, how things look across your website, packaging, social, and anywhere else your business shows up. A strong logo without a system behind it tends to look inconsistent in practice. What I deliver includes both — the mark and the basic guidelines needed to use it correctly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can't I just use an AI logo maker or Canva?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can, and for some businesses at early stages it's a reasonable starting point. The tradeoff is that generated logos tend to look like generated logos — generic shapes, overused fonts, nothing that actually differentiates you. If you're at a stage where your brand is a real part of what you're selling, a custom identity built around your actual business will serve you better and longer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a logo cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a small business, a custom logo with basic brand standards typically falls in the $500–$1,500 range depending on scope. What separates price points is mostly research, iteration, and what's delivered alongside the mark — a logo file alone versus a full set of files, colour codes, font specs, and usage guidelines are different things."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A focused logo and identity project typically runs 2–3 weeks. The main variable is feedback turnaround on your end. Coming in with some reference points — brands you like the feel of, colours you're drawn to or want to avoid — speeds things up considerably."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What files will I receive?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vector files (AI, EPS, SVG) that can scale to any size without quality loss, plus export-ready versions for web and print in the common formats you'll actually use. You'll own everything outright — no licensing complications or designer lock-in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When does a rebrand make sense?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When your current brand no longer reflects what your business actually is, when you're moving upmarket and the existing identity is holding you back, or when inconsistency across applications has become a real problem. If you're just bored of it, that's usually not a good enough reason — rebrand fatigue is real and changes can confuse existing customers."
+      }
+    }
+  ]
+}
+</script>
+
 <?php include 'footer.php'; ?>

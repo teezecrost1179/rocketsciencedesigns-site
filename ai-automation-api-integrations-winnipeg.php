@@ -107,7 +107,106 @@ include 'header.php';
         </div>
     </section>
 
+    <section id="faq" class="section">
+        <div class="max-width">
+            <div class="section-header">
+                <div class="section-kicker">FAQ</div>
+                <h2 class="section-title">Common Questions</h2>
+            </div>
+            <div class="faq-list">
+
+                <details class="faq-item">
+                    <summary class="faq-question">Do I need a developer for this, or can I just use Zapier myself?</summary>
+                    <p class="faq-answer">Depends on the job. Zapier and Make are great for straightforward connections between popular apps &mdash; if that solves your problem, I&rsquo;ll tell you. Where a developer adds value is when the logic gets complex, the tools don&rsquo;t have native connectors, or you need something custom built and maintainable. I&rsquo;m not here to over-engineer simple problems.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">What does a typical automation project cost?</summary>
+                    <p class="faq-answer">It varies significantly based on complexity &mdash; connecting two platforms with a straightforward data flow is a different scope than building a custom AI-assisted intake system. I work on project pricing or hourly depending on the job. The best starting point is a brief description of what you&rsquo;re trying to solve.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Will I be able to maintain it after you&rsquo;re done?</summary>
+                    <p class="faq-answer">That&rsquo;s a priority, not an afterthought. Every build comes with documentation, and I avoid black-box solutions that leave you dependent on me for every small change. The goal is a system you understand and can operate.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">How do I know what&rsquo;s actually worth automating?</summary>
+                    <p class="faq-answer">A workflow audit is usually the first step &mdash; identifying where time is genuinely being lost versus where automation would add complexity without real benefit. Not everything should be automated, and I&rsquo;ll tell you honestly when it shouldn&rsquo;t be.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">What kinds of systems can you connect?</summary>
+                    <p class="faq-answer">Most platforms with an API &mdash; CRMs, email tools, Shopify, booking systems, form builders, custom databases, AI services, and more. If you&rsquo;re unsure whether your tools can be connected, ask &mdash; it&rsquo;s usually a quick answer.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Do you work with businesses outside Winnipeg?</summary>
+                    <p class="faq-answer">Yes. Automation and API work is entirely remote-friendly. I work with businesses across Canada.</p>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
     <?php include 'rocket-contact-form.php'; ?>
 </main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need a developer for this, or can I just use Zapier myself?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Depends on the job. Zapier and Make are great for straightforward connections between popular apps — if that solves your problem, I'll tell you. Where a developer adds value is when the logic gets complex, the tools don't have native connectors, or you need something custom built and maintainable. I'm not here to over-engineer simple problems."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a typical automation project cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It varies significantly based on complexity — connecting two platforms with a straightforward data flow is a different scope than building a custom AI-assisted intake system. I work on project pricing or hourly depending on the job. The best starting point is a brief description of what you're trying to solve."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will I be able to maintain it after you're done?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That's a priority, not an afterthought. Every build comes with documentation, and I avoid black-box solutions that leave you dependent on me for every small change. The goal is a system you understand and can operate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I know what's actually worth automating?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A workflow audit is usually the first step — identifying where time is genuinely being lost versus where automation would add complexity without real benefit. Not everything should be automated, and I'll tell you honestly when it shouldn't be."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What kinds of systems can you connect?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most platforms with an API — CRMs, email tools, Shopify, booking systems, form builders, custom databases, AI services, and more. If you're unsure whether your tools can be connected, ask — it's usually a quick answer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you work with businesses outside Winnipeg?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Automation and API work is entirely remote-friendly. I work with businesses across Canada."
+      }
+    }
+  ]
+}
+</script>
 
 <?php include 'footer.php'; ?>

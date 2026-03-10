@@ -92,7 +92,107 @@ include 'header.php';
         </div>
     </section>
 
+    <section id="faq" class="section">
+        <div class="max-width">
+            <div class="section-header">
+                <div class="section-kicker">FAQ</div>
+                <h2 class="section-title">Common Questions</h2>
+            </div>
+            <div class="faq-list">
+
+                <details class="faq-item">
+                    <summary class="faq-question">Can I just use my phone camera?</summary>
+                    <p class="faq-answer">Modern phones can produce decent results with good lighting and a steady hand &mdash; and for some early-stage businesses, that&rsquo;s a reasonable starting point. Where professional photography pulls ahead is consistency, lighting control, and post-processing. A catalogue of product images that all look slightly different in colour temperature, exposure, and angle creates friction at the point of purchase. If your products are a significant part of your revenue, the photos are worth doing properly.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">What&rsquo;s the difference between white background and lifestyle photography?</summary>
+                    <p class="faq-answer">White background (sometimes called packshot) puts the product front and centre with no distractions &mdash; it&rsquo;s what Amazon, Shopify storefronts, and most marketplaces expect as the primary image. Lifestyle photography shows the product in context, which helps customers visualize owning and using it. Most successful product pages use both: clean white for the main listing image, lifestyle for supporting shots and social content. I can do either or both depending on what you need.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">How many photos do I need per product?</summary>
+                    <p class="faq-answer">For a typical ecommerce product: 3&ndash;5 images covers the essentials &mdash; a clean hero shot, a couple of angles, a detail or two, and ideally one in context. Higher-ticket items or products where fit, texture, or scale matters to the buying decision warrant more. We can work out the right coverage during the brief.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Do product photos actually affect sales?</summary>
+                    <p class="faq-answer">Consistently, yes. Poor product photography is one of the most common reasons people don&rsquo;t buy &mdash; if they can&rsquo;t clearly see what they&rsquo;re getting, they don&rsquo;t risk it. It also affects return rates; accurate photos set correct expectations. For Shopify and ecommerce brands especially, photography is often the highest-leverage visual investment you can make.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">What do I receive after the shoot?</summary>
+                    <p class="faq-answer">Edited, export-ready image files sized for web use &mdash; optimized for fast loading without sacrificing quality. If you need specific dimensions for Amazon, Shopify, or other platforms, I&rsquo;ll export to those specs. You own the files outright with no licensing restrictions.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">What kinds of products do you shoot?</summary>
+                    <p class="faq-answer">Primarily physical products for ecommerce, Shopify, email, and social &mdash; packaged goods, apparel, accessories, homeware, and similar. If you&rsquo;re unsure whether your product is a good fit, just ask. I&rsquo;ll tell you honestly if it&rsquo;s outside my wheelhouse.</p>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
     <?php include 'rocket-contact-form.php'; ?>
 
 </main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I just use my phone camera?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Modern phones can produce decent results with good lighting and a steady hand — and for some early-stage businesses, that's a reasonable starting point. Where professional photography pulls ahead is consistency, lighting control, and post-processing. A catalogue of product images that all look slightly different in colour temperature, exposure, and angle creates friction at the point of purchase. If your products are a significant part of your revenue, the photos are worth doing properly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between white background and lifestyle photography?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "White background (sometimes called packshot) puts the product front and centre with no distractions — it's what Amazon, Shopify storefronts, and most marketplaces expect as the primary image. Lifestyle photography shows the product in context, which helps customers visualize owning and using it. Most successful product pages use both: clean white for the main listing image, lifestyle for supporting shots and social content. I can do either or both depending on what you need."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many photos do I need per product?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a typical ecommerce product: 3–5 images covers the essentials — a clean hero shot, a couple of angles, a detail or two, and ideally one in context. Higher-ticket items or products where fit, texture, or scale matters to the buying decision warrant more. We can work out the right coverage during the brief."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do product photos actually affect sales?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Consistently, yes. Poor product photography is one of the most common reasons people don't buy — if they can't clearly see what they're getting, they don't risk it. It also affects return rates; accurate photos set correct expectations. For Shopify and ecommerce brands especially, photography is often the highest-leverage visual investment you can make."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do I receive after the shoot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Edited, export-ready image files sized for web use — optimized for fast loading without sacrificing quality. If you need specific dimensions for Amazon, Shopify, or other platforms, I'll export to those specs. You own the files outright with no licensing restrictions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What kinds of products do you shoot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Primarily physical products for ecommerce, Shopify, email, and social — packaged goods, apparel, accessories, homeware, and similar. If you're unsure whether your product is a good fit, just ask. I'll tell you honestly if it's outside my wheelhouse."
+      }
+    }
+  ]
+}
+</script>
+
 <?php include 'footer.php'; ?>

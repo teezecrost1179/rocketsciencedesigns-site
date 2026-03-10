@@ -106,7 +106,107 @@ include 'header.php';
         </div>
     </section>
 
+    <section id="faq" class="section">
+        <div class="max-width">
+            <div class="section-header">
+                <div class="section-kicker">FAQ</div>
+                <h2 class="section-title">Common Questions</h2>
+            </div>
+            <div class="faq-list">
+
+                <details class="faq-item">
+                    <summary class="faq-question">Do I actually need professional video, or can I shoot it on my phone?</summary>
+                    <p class="faq-answer">For behind-the-scenes content, social posts, and quick updates &mdash; your phone is fine. Where professional production earns its place is in anything that lives on your website, represents your brand in a sales context, or needs to hold up over time. The bar isn&rsquo;t cinematic; it&rsquo;s audio clarity, stable framing, clean lighting, and an edit that respects the viewer&rsquo;s time. Those things are achievable on modest equipment, but they take more intention than pointing a phone and hitting record.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">What kinds of video are actually useful for a small business?</summary>
+                    <p class="faq-answer">The highest-value types tend to be: a short explainer or intro video that lives on your homepage, product or service demos, and simple walk-throughs that answer the questions your customers ask repeatedly. These do real work &mdash; they reduce friction before someone contacts you, and they hold up for a long time without needing to be remade. Social content is a different category with different shelf lives and different production standards.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">How long should my videos be?</summary>
+                    <p class="faq-answer">As short as they need to be to communicate the point clearly &mdash; and no longer. For a homepage or product explainer, 60 to 90 seconds is usually right. Social clips are shorter: 15 to 30 seconds for most platforms. Longer-form content can work on YouTube where people search for it intentionally, but most small business video that lives on a website or gets shared should be edited tightly and end before the viewer wants it to.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Horizontal or vertical &mdash; does format matter?</summary>
+                    <p class="faq-answer">Yes, and it matters early &mdash; ideally at the filming stage, not in editing. Horizontal (16:9) is standard for websites and YouTube. Vertical (9:16) is required for Instagram Reels, TikTok, and similar short-form platforms. When there&rsquo;s budget for one shoot, I&rsquo;ll film with enough headroom and framing to deliver both cuts without one looking like a cropped compromise.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">What do I receive when the project is done?</summary>
+                    <p class="faq-answer">Edited, export-ready video files in the formats you need &mdash; typically a web-optimized version for your site, and platform-specific versions for social if required. Captions are included where they make sense; most video is watched without sound, especially on mobile, so they&rsquo;re not optional for anything going to social.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">How much does video production cost?</summary>
+                    <p class="faq-answer">It varies with scope &mdash; a simple one-location explainer is a very different project from a multi-scene product video with b-roll. I&rsquo;ll give you a clear number once I understand what the video needs to do, where it&rsquo;s going, and how involved the shoot is. What I don&rsquo;t do is pad a project into something larger than the brief requires.</p>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
     <?php include 'rocket-contact-form.php'; ?>
 
 </main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I actually need professional video, or can I shoot it on my phone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For behind-the-scenes content, social posts, and quick updates — your phone is fine. Where professional production earns its place is in anything that lives on your website, represents your brand in a sales context, or needs to hold up over time. The bar isn't cinematic; it's audio clarity, stable framing, clean lighting, and an edit that respects the viewer's time. Those things are achievable on modest equipment, but they take more intention than pointing a phone and hitting record."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What kinds of video are actually useful for a small business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The highest-value types tend to be: a short explainer or intro video that lives on your homepage, product or service demos, and simple walk-throughs that answer the questions your customers ask repeatedly. These do real work — they reduce friction before someone contacts you, and they hold up for a long time without needing to be remade. Social content is a different category with different shelf lives and different production standards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long should my videos be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "As short as they need to be to communicate the point clearly — and no longer. For a homepage or product explainer, 60 to 90 seconds is usually right. Social clips are shorter: 15 to 30 seconds for most platforms. Longer-form content can work on YouTube where people search for it intentionally, but most small business video that lives on a website or gets shared should be edited tightly and end before the viewer wants it to."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Horizontal or vertical — does format matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, and it matters early — ideally at the filming stage, not in editing. Horizontal (16:9) is standard for websites and YouTube. Vertical (9:16) is required for Instagram Reels, TikTok, and similar short-form platforms. When there's budget for one shoot, I'll film with enough headroom and framing to deliver both cuts without one looking like a cropped compromise."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do I receive when the project is done?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Edited, export-ready video files in the formats you need — typically a web-optimized version for your site, and platform-specific versions for social if required. Captions are included where they make sense; most video is watched without sound, especially on mobile, so they're not optional for anything going to social."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does video production cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It varies with scope — a simple one-location explainer is a very different project from a multi-scene product video with b-roll. I'll give you a clear number once I understand what the video needs to do, where it's going, and how involved the shoot is. What I don't do is pad a project into something larger than the brief requires."
+      }
+    }
+  ]
+}
+</script>
+
 <?php include 'footer.php'; ?>
