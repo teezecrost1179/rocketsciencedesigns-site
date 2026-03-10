@@ -961,18 +961,36 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
+      "@type": "LocalBusiness",
       "name": "Rocket Science Designs",
-      "url": "https://rocketsciencedesigns.com/",
-      "image": "https://rocketsciencedesigns.com/assets/rocket-logo-26.png",
-      "description": "Web design, branding, Shopify development, email marketing, photography, and video production for small businesses and growing brands.",
+      "url": "https://rocketsciencedesigns.com",
+      "logo": "https://rocketsciencedesigns.com/assets/logo-white-bg.png",
+      "image": "https://rocketsciencedesigns.com/assets/main-site-imagery.jpg",
+      "description": "Winnipeg-based web design, Shopify development, branding, AI automation and API integrations for small businesses and growing brands.",
+      "telephone": "+12048082733",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "157 Browning Blvd",
         "addressLocality": "Winnipeg",
         "addressRegion": "MB",
+        "postalCode": "R3K 0L1",
         "addressCountry": "CA"
       },
-      "areaServed": "CA"
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "49.87200415417694",
+        "longitude": "-97.29598290452624"
+      },
+      "areaServed": [
+        "Winnipeg",
+        "Manitoba",
+        "Canada"
+      ],
+      "priceRange": "$$",
+      "sameAs": [
+        "https://www.linkedin.com/in/robertcbond/",
+        "https://maps.app.goo.gl/2hm8WYJw3GFGLH9R6"
+      ]
     }
     </script>
 </head>
