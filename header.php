@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <title><?= htmlspecialchars($pageTitle ?? 'Web Design, Shopify & Automation Winnipeg | Rocket Science Designs') ?></title>
 
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3VFDBYTHWG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-3VFDBYTHWG');
+    </script>
+
     <!-- Basic SEO -->
     <meta name="description" content="<?= htmlspecialchars($metaDescription ?? 'Rocket Science Designs is a Winnipeg-based digital generalist studio offering web design, branding, Shopify builds, email marketing, photography, and video production for small businesses and growing brands.') ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
