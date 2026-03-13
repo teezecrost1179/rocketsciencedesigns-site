@@ -55,8 +55,7 @@
                     <h3 class="service-title">Website Design</h3>
                     <p>
                         A website shouldn’t just look nice on a designer’s monitor—it should load fast, read clearly,
-                        and quietly nudge people to take the next step. I design and build lean, custom sites (no theme
-                        soup) with thoughtful layouts, readable type, and mobile-first structure so your site feels
+                        and quietly nudge people to take the next step. I design and build lean, custom sites (no bloat, no unnecessary dependencies) with thoughtful layouts, readable type, and mobile-first structure so your site feels
                         polished, trustworthy, and easy to use on any device.
                         Every build includes SEO fundamentals from day one &mdash; clean structure, fast loading, and markup that search engines and AI systems can actually read.
                     </p>
