@@ -113,7 +113,7 @@ include 'header.php';
 
                 <details class="faq-item">
                     <summary class="faq-question">Do you use templates or build custom?</summary>
-                    <p class="faq-answer">Custom. No theme soup, no page builders, no recycled layouts. Every site is hand-coded to fit the project. That&rsquo;s part of why they load fast and stay maintainable &mdash; there&rsquo;s no bloat underneath.</p>
+                    <p class="faq-answer">Custom. No bloat, no unnecessary dependencies, no page builders, no recycled layouts. Every site is hand-coded to fit the project. That&rsquo;s part of why they load fast and stay maintainable &mdash; there&rsquo;s nothing underneath that isn&rsquo;t there on purpose.</p>
                 </details>
 
                 <details class="faq-item">
@@ -171,7 +171,7 @@ include 'header.php';
       "name": "Do you use templates or build custom?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Custom. No theme soup, no page builders, no recycled layouts. Every site is hand-coded to fit the project. That's part of why they load fast and stay maintainable — there's no bloat underneath."
+        "text": "Custom. No bloat, no unnecessary dependencies, no page builders, no recycled layouts. Every site is hand-coded to fit the project. That's part of why they load fast and stay maintainable — there's nothing underneath that isn't there on purpose."
       }
     },
     {

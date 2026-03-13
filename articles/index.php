@@ -1,6 +1,7 @@
 <?php
-$pageTitle = 'Articles | Rocket Science Designs';
-$canonicalUrl = 'https://rocketsciencedesigns.com/articles/';
+$pageTitle       = 'Articles | Rocket Science Designs';
+$metaDescription = 'Practical writing on web design, digital strategy, Shopify, and building things that work — from Rob Bond at Rocket Science Designs.';
+$canonicalUrl    = 'https://rocketsciencedesigns.com/articles/';
 include '../header.php';
 ?>
 <main>

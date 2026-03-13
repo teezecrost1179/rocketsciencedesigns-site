@@ -82,6 +82,8 @@ include 'header.php';
                 <h2 class="section-tagline">20+ years of design, code, and making things work for real businesses.</h2>
             </div>
 
+            <div class="article-body">
+
             <p>
                 I&rsquo;m Rob Bond &mdash; a Winnipeg-based designer and developer who works at the intersection of branding, web,
                 ecommerce, and automation. I&rsquo;ve been doing this, in one form or another, since 2001. That&rsquo;s long enough
@@ -193,6 +195,8 @@ include 'header.php';
             </p>
 
             <p><a href="/#contact">Get in touch &rarr;</a></p>
+
+            </div><!-- /.article-body -->
 
         </div>
     </section>
