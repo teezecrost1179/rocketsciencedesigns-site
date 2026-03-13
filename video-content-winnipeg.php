@@ -44,6 +44,7 @@ include 'header.php';
                 <li>Ad-ready video clips for Meta, YouTube and TikTok</li>
                 <li>Clean editing, colour correction and audio refinement</li>
                 <li>Motion graphics (titles, callouts, labels, transitions)</li>
+                <li>Whiteboard and explainer animations for concepts that are easier to show than film</li>
                 <li>Multi-platform exports: 16:9, 9:16, 1:1, 4:5</li>
                 <li>Subtitle files and burned-in captions if needed</li>
             </ul>

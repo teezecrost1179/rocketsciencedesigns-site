@@ -64,7 +64,9 @@ include 'header.php';
     "Screen Printing",
     "Digital Marketing",
     "Google Analytics",
-    "Meta Ads"
+    "Meta Ads",
+    "SEO (Search Engine Optimisation)",
+    "AIO (AI Search Optimisation)"
   ]
 }
 </script>
@@ -171,7 +173,7 @@ include 'header.php';
 
             <p><strong>Automation &amp; integration:</strong> Make.com, Zapier, n8n, webhooks, custom API development.</p>
 
-            <p><strong>Marketing &amp; analytics:</strong> Klaviyo, Mailchimp, Sendlane, Google Analytics (GA4), Search Console, Google Ads, Meta Business Manager.</p>
+            <p><strong>Marketing &amp; analytics:</strong> Klaviyo, Mailchimp, Sendlane, Google Analytics (GA4), Search Console, Google Ads, Meta Business Manager, SEO strategy and implementation, AI search optimisation (AIO).</p>
 
             <p><strong>Workflow:</strong> GitHub, VS Code, ClickUp, Asana. I document what I build and leave things in a state someone else could pick up.</p>
 

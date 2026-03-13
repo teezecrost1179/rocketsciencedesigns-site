@@ -58,9 +58,10 @@
                         and quietly nudge people to take the next step. I design and build lean, custom sites (no theme
                         soup) with thoughtful layouts, readable type, and mobile-first structure so your site feels
                         polished, trustworthy, and easy to use on any device.
+                        Every build includes SEO fundamentals from day one &mdash; clean structure, fast loading, and markup that search engines and AI systems can actually read.
                     </p>
                     <a href="/web-design-services-winnipeg" class="service-link">
-                        Explore Web Design &amp; Development 
+                        Explore Web Design &amp; Development
                         <span class="service-arrow">→</span>
                     </a>
                 </article>

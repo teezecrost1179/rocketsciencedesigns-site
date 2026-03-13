@@ -36,10 +36,12 @@ include 'header.php';
                 <li>Optimised for performance and fast loading times</li>
                 <li>User-flow and layout designed for clarity and action</li>
                 <liBuilt-in CMS or theme setup you can manage (WordPress, Shopify, whichever fits)</li>
-                <li>SEO-friendly structure and best practices from day one</li>
+                <li>SEO-friendly structure and best practices from day one — clean markup, fast loading, proper heading hierarchy, and schema where it counts</li>
                 <li>Design system or style guide so future updates stay consistent</li>
                 <li>Training or documentation so you’re not stuck waiting on someone else</li>
             </ul>
+
+            <p>A note on AIO: AI-powered search (Google&rsquo;s AI Overviews, ChatGPT, and similar) is changing how people find and evaluate businesses online. The way these systems work, well-structured content, clear authorship, and proper schema markup matter more than ever. It&rsquo;s an emerging area I&rsquo;m actively working in and building into every project &mdash; not as a buzzword, but as a practical part of how I build.</p>
 
             <h2>The process</h2>
 
