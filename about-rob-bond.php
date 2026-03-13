@@ -13,7 +13,7 @@ include 'header.php';
   "name": "Rob Bond",
   "jobTitle": "Web Designer & Digital Generalist",
   "url": "https://rocketsciencedesigns.com/about-rob-bond",
-  "image": "https://rocketsciencedesigns.com/assets/rocket-logo-26.png",
+  "image": "https://rocketsciencedesigns.com/assets/rob-bond-rocket-science-digital-services.jpg",
   "sameAs": [
     "https://www.linkedin.com/in/robertcbond/"
   ],
@@ -80,6 +80,7 @@ include 'header.php';
                 <div class="section-kicker">ABOUT ROB BOND</div>
                 <h1 class="section-title">Designer. Developer. The person who actually does the work.</h1>
                 <h2 class="section-tagline">20+ years of design, code, and making things work for real businesses.</h2>
+                <img src="/assets/rob-bond-rocket-science-digital-services.jpg" alt="Rob Bond — Web Designer &amp; Developer, Winnipeg" class="bio-photo">
             </div>
 
             <div class="article-body">
