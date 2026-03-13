@@ -194,4 +194,20 @@ include 'header.php';
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Product Photography",
+  "description": "Clean, consistent product photography for Shopify, Amazon, and social — shot and edited for Winnipeg and Canadian brands.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Rocket Science Designs",
+    "url": "https://rocketsciencedesigns.com"
+  },
+  "areaServed": ["Winnipeg", "Manitoba", "Canada"],
+  "url": "https://rocketsciencedesigns.com/product-photography-winnipeg"
+}
+</script>
+
 <?php include 'footer.php'; ?>

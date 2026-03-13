@@ -17,22 +17,27 @@
     <meta name="description" content="<?= htmlspecialchars($metaDescription ?? 'Rocket Science Designs is a Winnipeg-based digital generalist studio offering web design, branding, Shopify builds, email marketing, photography, and video production for small businesses and growing brands.') ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="index,follow">
-    <link rel="canonical" href="<?= htmlspecialchars($canonicalUrl ?? 'https://rocketsciencedesigns.com/') ?>">
+    <link rel="canonical" href="https://rocketsciencedesigns.com<?php echo strtok($_SERVER['REQUEST_URI'], '?'); ?>">
 
     <meta name="keywords" content="web design Winnipeg, freelance web designer, Shopify developer, branding, email marketing, Rocket Science Designs">
 
     <!-- Open Graph / Social -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Rocket Science Designs | Web Design & Digital Creative in Winnipeg">
-    <meta property="og:description" content="Freelance web design and digital creative studio helping brands look sharp, load fast, and sell more online.">
-    <meta property="og:url" content="https://rocketsciencedesigns.com/">
-    <meta property="og:image" content="https://rocketsciencedesigns.com/assets/rocket-logo-26.png">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Rocket Science Designs | Web Design & Digital Creative in Winnipeg">
-    <meta name="twitter:description" content="Websites, branding, Shopify, email, and content creation for teams that need a flexible digital generalist.">
-    <meta name="twitter:image" content="https://rocketsciencedesigns.com/assets/rocket-logo-26.png">
+    <?php
+    $og_type  = $og_type  ?? 'website';
+    $og_title = $pageTitle ?? 'Rocket Science Designs | Web Design & Digital Creative in Winnipeg';
+    $og_desc  = $metaDescription ?? 'Freelance web design and digital creative studio helping brands look sharp, load fast, and sell more online.';
+    $og_url   = 'https://rocketsciencedesigns.com' . strtok($_SERVER['REQUEST_URI'], '?');
+    $og_image = $og_image ?? 'https://rocketsciencedesigns.com/assets/rocket-logo-26.png';
+    ?>
+    <meta property="og:type"        content="<?php echo $og_type; ?>">
+    <meta property="og:title"       content="<?php echo htmlspecialchars($og_title); ?>">
+    <meta property="og:description" content="<?php echo htmlspecialchars($og_desc); ?>">
+    <meta property="og:url"         content="<?php echo $og_url; ?>">
+    <meta property="og:image"       content="<?php echo $og_image; ?>">
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="<?php echo htmlspecialchars($og_title); ?>">
+    <meta name="twitter:description" content="<?php echo htmlspecialchars($og_desc); ?>">
+    <meta name="twitter:image"       content="<?php echo $og_image; ?>">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/assets/rocket-favicon.png">

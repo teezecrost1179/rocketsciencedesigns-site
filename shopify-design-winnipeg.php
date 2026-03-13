@@ -172,4 +172,20 @@ include 'header.php';
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Shopify Design & Development",
+  "description": "Shopify store builds, theme customization, fixes, and ongoing development for Winnipeg and Canadian brands.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Rocket Science Designs",
+    "url": "https://rocketsciencedesigns.com"
+  },
+  "areaServed": ["Winnipeg", "Manitoba", "Canada"],
+  "url": "https://rocketsciencedesigns.com/shopify-design-winnipeg"
+}
+</script>
+
 <?php include 'footer.php'; ?>

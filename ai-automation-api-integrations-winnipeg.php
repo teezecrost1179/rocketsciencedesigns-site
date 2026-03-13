@@ -208,4 +208,20 @@ include 'header.php';
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "AI Automation & API Integrations",
+  "description": "AI-powered automation, API integrations, and workflow tools for small businesses and growing teams in Winnipeg and Canada.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Rocket Science Designs",
+    "url": "https://rocketsciencedesigns.com"
+  },
+  "areaServed": ["Winnipeg", "Manitoba", "Canada"],
+  "url": "https://rocketsciencedesigns.com/ai-automation-api-integrations-winnipeg"
+}
+</script>
+
 <?php include 'footer.php'; ?>

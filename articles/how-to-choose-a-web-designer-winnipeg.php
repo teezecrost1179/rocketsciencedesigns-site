@@ -1,7 +1,12 @@
 <?php
-$pageTitle       = 'How to Choose a Web Designer in Winnipeg | Rocket Science Designs';
-$canonicalUrl    = 'https://rocketsciencedesigns.com/articles/how-to-choose-a-web-designer-winnipeg';
-$metaDescription = 'A practical guide to vetting web designers in Winnipeg, asking the right questions, and figuring out whether your business needs WordPress, Shopify, or a custom build.';
+$pageTitle           = 'How to Choose a Web Designer in Winnipeg | Rocket Science Designs';
+$metaDescription     = 'A practical guide to vetting web designers in Winnipeg, asking the right questions, and figuring out whether your business needs WordPress, Shopify, or a custom build.';
+$article_title       = 'How to Choose a Web Designer in Winnipeg (And Which Platform Actually Fits Your Business)';
+$article_date        = '2026-03-10';
+$article_slug        = 'how-to-choose-a-web-designer-winnipeg';
+$article_description = 'A practical guide to vetting web designers in Winnipeg, asking the right questions, and figuring out whether your business needs WordPress, Shopify, or a custom build.';
+$og_type             = 'article';
+$og_image            = 'https://rocketsciencedesigns.com/assets/rocket-logo-26.png';
 include '../header.php';
 ?>
 <main>
@@ -83,5 +88,28 @@ include '../header.php';
     <?php include '../rocket-contact-form.php'; ?>
 
 </main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "<?php echo $article_title; ?>",
+  "description": "<?php echo $article_description; ?>",
+  "datePublished": "<?php echo $article_date; ?>",
+  "dateModified": "<?php echo $article_date; ?>",
+  "url": "https://rocketsciencedesigns.com/articles/<?php echo $article_slug; ?>",
+  "author": {
+    "@type": "Person",
+    "name": "Rob Bond",
+    "url": "https://www.linkedin.com/in/robertcbond/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rocket Science Designs",
+    "url": "https://rocketsciencedesigns.com",
+    "logo": "https://rocketsciencedesigns.com/assets/logo-white-bg.png"
+  }
+}
+</script>
 
 <?php include '../footer.php'; ?>

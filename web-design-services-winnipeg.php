@@ -184,4 +184,20 @@ include 'header.php';
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Design & Development",
+  "description": "Custom website design and development for small businesses and growing brands in Winnipeg and across Canada.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Rocket Science Designs",
+    "url": "https://rocketsciencedesigns.com"
+  },
+  "areaServed": ["Winnipeg", "Manitoba", "Canada"],
+  "url": "https://rocketsciencedesigns.com/web-design-services-winnipeg"
+}
+</script>
+
 <?php include 'footer.php'; ?>

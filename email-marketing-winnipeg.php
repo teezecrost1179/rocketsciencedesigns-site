@@ -186,4 +186,20 @@ include 'header.php';
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Email Marketing",
+  "description": "Email marketing strategy, design, and campaign management for Winnipeg and Canadian brands.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Rocket Science Designs",
+    "url": "https://rocketsciencedesigns.com"
+  },
+  "areaServed": ["Winnipeg", "Manitoba", "Canada"],
+  "url": "https://rocketsciencedesigns.com/email-marketing-winnipeg"
+}
+</script>
+
 <?php include 'footer.php'; ?>

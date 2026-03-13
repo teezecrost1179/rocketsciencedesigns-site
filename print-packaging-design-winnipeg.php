@@ -208,4 +208,20 @@ include 'header.php';
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Print Design & Packaging Layout",
+  "description": "Print design and packaging layout for Winnipeg and Canadian brands — labels, boxes, brochures, and production-ready files.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Rocket Science Designs",
+    "url": "https://rocketsciencedesigns.com"
+  },
+  "areaServed": ["Winnipeg", "Manitoba", "Canada"],
+  "url": "https://rocketsciencedesigns.com/print-packaging-design-winnipeg"
+}
+</script>
+
 <?php include 'footer.php'; ?>

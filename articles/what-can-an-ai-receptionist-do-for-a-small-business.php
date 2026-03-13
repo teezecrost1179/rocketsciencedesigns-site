@@ -1,7 +1,12 @@
 <?php
-$pageTitle       = 'What Can an AI Receptionist Actually Do for a Small Business? | Rocket Science Designs';
-$canonicalUrl    = 'https://rocketsciencedesigns.com/articles/what-can-an-ai-receptionist-do-for-a-small-business';
-$metaDescription = 'A plain-language look at what an AI receptionist actually handles, what it doesn\'t, and which small businesses tend to get the most out of it — from the team that built Rocket Reception.';
+$pageTitle           = 'What Can an AI Receptionist Actually Do for a Small Business? | Rocket Science Designs';
+$metaDescription     = 'A plain-language look at what an AI receptionist actually handles, what it doesn\'t, and which small businesses tend to get the most out of it — from the team that built Rocket Reception.';
+$article_title       = 'What Can an AI Receptionist Actually Do for a Small Business?';
+$article_date        = '2026-03-10';
+$article_slug        = 'what-can-an-ai-receptionist-do-for-a-small-business';
+$article_description = 'A plain-language look at what an AI receptionist actually handles, what it doesn\'t, and which small businesses tend to get the most out of it — from the team that built Rocket Reception.';
+$og_type             = 'article';
+$og_image            = 'https://rocketsciencedesigns.com/assets/rocket-logo-26.png';
 include '../header.php';
 ?>
 <main>
@@ -93,5 +98,28 @@ include '../header.php';
     <?php include '../rocket-contact-form.php'; ?>
 
 </main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "<?php echo $article_title; ?>",
+  "description": "<?php echo $article_description; ?>",
+  "datePublished": "<?php echo $article_date; ?>",
+  "dateModified": "<?php echo $article_date; ?>",
+  "url": "https://rocketsciencedesigns.com/articles/<?php echo $article_slug; ?>",
+  "author": {
+    "@type": "Person",
+    "name": "Rob Bond",
+    "url": "https://www.linkedin.com/in/robertcbond/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rocket Science Designs",
+    "url": "https://rocketsciencedesigns.com",
+    "logo": "https://rocketsciencedesigns.com/assets/logo-white-bg.png"
+  }
+}
+</script>
 
 <?php include '../footer.php'; ?>
