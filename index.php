@@ -16,7 +16,9 @@
                     and automation. I help small businesses and solo founders ship the useful stuff&mdash;logos, websites, Shopify
                     tweaks, API integrations, AI-assisted systems, photography, email, and video&mdash;without the agency overhead,
                     and without handing you something you can&rsquo;t actually maintain.
+                    Rocket Science Designs has been a Winnipeg business since 2005 &mdash; starting in screen printing and apparel before evolving into the digital studio it is today.
                 </p>
+                <p><a href="/about-rob-bond">More about Rob &rarr;</a></p>
             </div>
             <div class="about-media">
                 <img src="assets/main-site-imagery.jpg" alt="Rocket Science Designs work examples">
