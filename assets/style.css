@@ -980,3 +980,6 @@
         .article-entry-title a { color: var(--text-body); text-decoration: none; }
         .article-entry-title a:hover { color: var(--accent); }
         .article-entry-date { display: block; font-size: 15px; color: var(--text-muted); }
+
+        /* BIO PHOTO */
+        .bio-photo { width: 236px; max-width: 100%; }
