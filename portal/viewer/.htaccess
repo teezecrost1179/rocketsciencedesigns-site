@@ -1,4 +1,4 @@
 AuthType Basic
 AuthName "Restricted Area"
-AuthUserFile /home2/parenity/.htpasswds/public_html/portal/viewer/passwd
+AuthUserFile /home2/parenity/.htpasswds/rocketsciencedesigns.com/portal/viewer/passwd
 Require valid-user
