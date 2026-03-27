@@ -11,6 +11,7 @@ $configured = ($pubKey !== 'REPLACE_WITH_YOUR_PUBLIC_KEY');
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Secure File Submission</title>
     <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="/assets/rocket-favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
@@ -239,6 +240,7 @@ $configured = ($pubKey !== 'REPLACE_WITH_YOUR_PUBLIC_KEY');
             <div class="success-icon">✅</div>
             <h2>Received & Secured</h2>
             <p>Your credentials were encrypted locally and transmitted securely. You can safely close this page.</p>
+            <button class="submit-btn" id="send-another-btn" style="margin-top:1.5rem">Send Another</button>
         </div>
 
         <?php endif; ?>
@@ -252,17 +254,21 @@ $configured = ($pubKey !== 'REPLACE_WITH_YOUR_PUBLIC_KEY');
     // RSA public key (SPKI, base64) — safe to expose, useless without the private key
     const RECIPIENT_PUBLIC_KEY_B64 = <?= json_encode($pubKey) ?>;
 
-    const form        = document.getElementById('cred-form');
-    const submitBtn   = document.getElementById('submit-btn');
-    const btnText     = document.getElementById('btn-text');
-    const btnSpinner  = document.getElementById('btn-spinner');
-    const errorMsg    = document.getElementById('error-msg');
-    const formView    = document.getElementById('form-view');
-    const successView = document.getElementById('success-view');
-    const togglePw    = document.getElementById('togglePw');
-    const pwInput     = document.getElementById('password');
+    const form           = document.getElementById('cred-form');
+    const submitBtn      = document.getElementById('submit-btn');
+    const btnText        = document.getElementById('btn-text');
+    const btnSpinner     = document.getElementById('btn-spinner');
+    const errorMsg       = document.getElementById('error-msg');
+    const formView       = document.getElementById('form-view');
+    const successView    = document.getElementById('success-view');
+    const sendAnotherBtn = document.getElementById('send-another-btn');
+    const togglePw       = document.getElementById('togglePw');
+    const pwInput        = document.getElementById('password');
+    const nameInput      = form ? form.querySelector('[name="clientName"]') : null;
 
     if (!form) return;
+
+    let lastClientName = '';
 
     togglePw.addEventListener('click', function () {
         const isHidden = pwInput.type === 'password';
@@ -287,12 +293,14 @@ $configured = ($pubKey !== 'REPLACE_WITH_YOUR_PUBLIC_KEY');
 
         try {
             const data = {
-                clientName: form.querySelector('[name="clientName"]').value.trim(),
+                clientName: nameInput.value.trim(),
                 siteUrl:    form.querySelector('[name="siteUrl"]').value.trim(),
                 username:   form.querySelector('[name="username"]').value.trim(),
                 password:   password,
                 notes:      form.querySelector('[name="notes"]').value.trim(),
             };
+
+            lastClientName = data.clientName;
 
             const encrypted = await encryptPayload(data, RECIPIENT_PUBLIC_KEY_B64);
 
@@ -308,7 +316,7 @@ $configured = ($pubKey !== 'REPLACE_WITH_YOUR_PUBLIC_KEY');
                 throw new Error(json.error || 'Submission failed. Please try again.');
             }
 
-            formView.hidden   = true;
+            formView.hidden    = true;
             successView.hidden = false;
 
         } catch (err) {
@@ -360,6 +368,18 @@ $configured = ($pubKey !== 'REPLACE_WITH_YOUR_PUBLIC_KEY');
             ciphertext:   toB64(ciphertext),
         };
     }
+
+    sendAnotherBtn.addEventListener('click', function () {
+        // Reset form, pre-fill name, show form again
+        form.reset();
+        nameInput.value    = lastClientName;
+        pwInput.type       = 'password';
+        togglePw.textContent = 'Show';
+        showError(null);
+        setLoading(false);
+        successView.hidden = true;
+        formView.hidden    = false;
+    });
 
     function setLoading(on) {
         submitBtn.disabled = on;
