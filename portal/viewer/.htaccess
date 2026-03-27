@@ -1,21 +1,9 @@
-# -------------------------------------------------------
-# Viewer access control — belt AND suspenders
-# -------------------------------------------------------
-
-# 1. HTTP Basic Auth
 AuthType Basic
 AuthName "Restricted Area"
-# Absolute path — update YOUR_CPANEL_USER to your actual cPanel username
 AuthUserFile /home/teezecrost/.htpasswd
-Require valid-user
 
-# 2. IP whitelist — add your IP(s) below, one per Allow line
-# You can find your current IP at https://whatismyip.com
-Order Deny,Allow
-Deny from all
-Allow from 24.78.157.169
-# Allow from ANOTHER.IP.IF.NEEDED
-
-# Note: Both conditions must be satisfied (auth + IP).
-# If your IP changes often, remove the Order/Deny/Allow block
-# and rely on Basic Auth alone.
+# Require BOTH valid login AND matching IP (belt + suspenders)
+<RequireAll>
+    Require valid-user
+    Require ip 24.78.157.169
+</RequireAll>
