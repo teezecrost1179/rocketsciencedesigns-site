@@ -241,6 +241,7 @@ $configured = ($pubKey !== 'REPLACE_WITH_YOUR_PUBLIC_KEY');
             <h2>Received & Secured</h2>
             <p>Your credentials were encrypted locally and transmitted securely. You can safely close this page.</p>
             <button class="submit-btn" id="send-another-btn" style="margin-top:1.5rem">Send Another</button>
+            <a href="https://rocketsciencedesigns.com" class="submit-btn" style="margin-top:0.75rem;display:block;text-decoration:none;text-align:center">Go To Rocket Science Site</a>
         </div>
 
         <?php endif; ?>
