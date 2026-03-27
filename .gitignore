@@ -26,3 +26,7 @@ rocket-agent/
 # Postmark config
 social-discovery-send-config.php
 bulk-send-config.php
+
+# Credential portal — local-only tools, never upload
+portal/keygen.js
+portal/decrypt.js
