@@ -1,4 +1,9 @@
 AuthType Basic
 AuthName "Restricted Area"
-AuthUserFile /home/teezecrost/.htpasswd
-Require valid-user
+AuthUserFile /home2/parenity/.htpasswds/public_html/portal/viewer/passwd
+
+# Require BOTH valid login AND matching IP (belt + suspenders)
+<RequireAll>
+    Require valid-user
+    Require ip 24.78.157.169
+</RequireAll>
