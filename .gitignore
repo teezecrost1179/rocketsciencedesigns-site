@@ -23,7 +23,8 @@ build/
 
 rocket-agent/
 
-# Postmark config
+# Email / Postmark config
+email-config.php
 social-discovery-send-config.php
 bulk-send-config.php
 

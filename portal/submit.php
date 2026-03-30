@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/config.php';
+$mailConfig = require dirname(__DIR__) . '/../email-config.php';
 
 header('Content-Type: application/json');
 
@@ -67,5 +68,25 @@ rewind($fp);
 fwrite($fp, json_encode($submissions, JSON_PRETTY_PRINT));
 flock($fp, LOCK_UN);
 fclose($fp);
+
+// Send notification
+$ch = curl_init('https://api.postmarkapp.com/email');
+curl_setopt_array($ch, [
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_POST           => true,
+    CURLOPT_HTTPHEADER     => [
+        'Accept: application/json',
+        'Content-Type: application/json',
+        'X-Postmark-Server-Token: ' . ($mailConfig['postmark_token'] ?? ''),
+    ],
+    CURLOPT_POSTFIELDS => json_encode([
+        'From'     => 'Rocket Science Designs <hello@rocketsciencedesigns.com>',
+        'To'       => 'hello@rocketsciencedesigns.com',
+        'Subject'  => 'A client sent secure info from the portal',
+        'TextBody' => "A new encrypted credential submission was received via the secure portal.\n\nView it at: https://rocketsciencedesigns.com/portal/viewer/",
+    ]),
+]);
+curl_exec($ch);
+curl_close($ch);
 
 echo json_encode(['ok' => true]);

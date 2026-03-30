@@ -21,7 +21,7 @@ if (($_SERVER['REMOTE_ADDR'] ?? '') !== '24.78.157.169') {
 
 header('Content-Type: application/json');
 
-$configPath = __DIR__ . '/../bulk-send-config.php';
+$configPath = __DIR__ . '/../email-config.php';
 if (!file_exists($configPath)) {
     http_response_code(500);
     echo json_encode(['error' => 'Missing config.']);

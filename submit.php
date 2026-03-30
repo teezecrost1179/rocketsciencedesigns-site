@@ -1,6 +1,6 @@
 <?php
-// Settings
-$to = "hello@rocketsciencedesigns.com";
+$config  = require __DIR__ . '/../email-config.php';
+$token   = $config['postmark_token'] ?? '';
 $subject = "New Project Inquiry via Website";
 
 // Sanitize & validate fields
@@ -25,16 +25,32 @@ $body .= "What they need: $topic\n";
 $body .= "Timeframe: $timeframe\n";
 $body .= "Message:\n$message\n";
 
-// Set headers
-$headers = "From: Rocket Science Designs <no-reply@rocketsciencedesigns.com>\r\n";
-$headers .= "Reply-To: $email\r\n";
+$ch = curl_init('https://api.postmarkapp.com/email');
+curl_setopt_array($ch, [
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_POST           => true,
+    CURLOPT_HTTPHEADER     => [
+        'Accept: application/json',
+        'Content-Type: application/json',
+        'X-Postmark-Server-Token: ' . $token,
+    ],
+    CURLOPT_POSTFIELDS => json_encode([
+        'From'     => 'Rocket Science Designs <hello@rocketsciencedesigns.com>',
+        'To'       => 'hello@rocketsciencedesigns.com',
+        'ReplyTo'  => $email,
+        'Subject'  => $subject,
+        'TextBody' => $body,
+    ]),
+]);
+$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_exec($ch);
+curl_close($ch);
 
-// Send it
-if (mail($to, $subject, $body, $headers)) {
-  http_response_code(200);
-  echo "Thanks! I'll get back to you shortly.";
+if ($status === 200) {
+    http_response_code(200);
+    echo "Thanks! I'll get back to you shortly.";
 } else {
-  http_response_code(500);
-  echo "Something went wrong. Please email me directly.";
+    http_response_code(500);
+    echo "Something went wrong. Please email me directly.";
 }
 ?>

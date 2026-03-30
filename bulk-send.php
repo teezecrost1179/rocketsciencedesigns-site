@@ -3,7 +3,7 @@ if (($_SERVER['REMOTE_ADDR'] ?? '') !== '24.78.157.169') {
     http_response_code(403);
     exit('Forbidden');
 }
-$config = require __DIR__ . '/../bulk-send-config.php';
+$config = require __DIR__ . '/../email-config.php';
 $fromAddresses = $config['from_addresses'] ?? [];
 ?>
 <!DOCTYPE html>
