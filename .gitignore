@@ -15,6 +15,7 @@ build/
 # Large media (if you have any)
 *.mp4
 *.webm
+*.mov
 /videos/
 /assets/videos/
 /portfolio stuff/

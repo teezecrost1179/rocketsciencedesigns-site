@@ -1,0 +1,6 @@
+# Personal / unlisted folder — no directory listing, no crawling
+Options -Indexes
+
+<IfModule mod_headers.c>
+    Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>

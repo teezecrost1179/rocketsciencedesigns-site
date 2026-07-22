@@ -10,5 +10,6 @@ Disallow: /testagent
 Disallow: /temp
 Disallow: /uploader
 Disallow: /portfolio
+Disallow: /personal
 
 Sitemap: https://rocketsciencedesigns.com/sitemap.xml
