@@ -31,9 +31,8 @@ $videoExists = is_file($videoPath);
       gap: 24px;
     }
     video {
-      max-width: min(1000px, 100%);
-      max-height: 80vh;
-      width: auto;
+      width: min(90vw, 1400px);
+      max-height: 85vh;
       height: auto;
       background: #000;
       box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
