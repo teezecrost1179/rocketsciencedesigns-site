@@ -65,7 +65,7 @@ $videoExists = is_file($videoPath);
   <div class="wrap">
     <?php if ($videoExists): ?>
       <video controls playsinline preload="metadata">
-        <source src="<?php echo htmlspecialchars($videoFile); ?>" type="video/quicktime">
+        <source src="<?php echo htmlspecialchars($videoFile); ?>" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <a class="download" href="<?php echo htmlspecialchars($videoFile); ?>" download>Download video</a>

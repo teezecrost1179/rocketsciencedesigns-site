@@ -4,3 +4,6 @@ Options -Indexes
 <IfModule mod_headers.c>
     Header set X-Robots-Tag "noindex, nofollow"
 </IfModule>
+
+# Serve .mov (H.264/AAC) as MP4 so Chrome/Firefox will decode it inline
+AddType video/mp4 .mov
