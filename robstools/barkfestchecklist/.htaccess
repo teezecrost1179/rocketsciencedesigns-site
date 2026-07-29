@@ -1,0 +1,17 @@
+# Keep the raw data (and backups) from being fetched directly in a browser.
+<FilesMatch "\.(json|bak|md)$">
+    Require all denied
+</FilesMatch>
+
+# Older Apache (2.2) fallback
+<IfModule !mod_authz_core.c>
+    <FilesMatch "\.(json|bak|md)$">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>
+
+# Ask search engines to stay away.
+<IfModule mod_headers.c>
+    Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>

@@ -32,3 +32,7 @@ bulk-send-config.php
 # Credential portal — local-only tools, never upload
 portal/keygen.js
 portal/decrypt.js
+
+# BarkFest checklist — live data is edited on the server, don't let deploys clobber it
+robstools/barkfestchecklist/data.json
+robstools/barkfestchecklist/data.json.bak
