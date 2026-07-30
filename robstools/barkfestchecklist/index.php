@@ -13,7 +13,7 @@ $token = MAGIC_TOKEN;
 <style>
   :root{
     --ink:#1f2337; --ink-soft:#5b6178; --line:#e3e6ef; --bg:#f4f6fb; --card:#fff;
-    --blue:#579bfc; --grey:#c3c8d4; --yellow:#fdab3d; --orange:#ff7a45; --green:#00c875;
+    --blue:#579bfc; --grey:#c3c8d4; --yellow:#fdab3d; --orange:#ff7a45; --green:#00c875; --purple:#a25ddc;
     --shadow:0 1px 2px rgba(31,35,55,.06), 0 6px 18px rgba(31,35,55,.07);
     --radius:14px;
   }
@@ -89,6 +89,7 @@ $token = MAGIC_TOKEN;
   .dot{width:11px;height:11px;border-radius:50%;flex:0 0 auto}
   .dot.grey{background:var(--grey)} .dot.yellow{background:var(--yellow)}
   .dot.orange{background:var(--orange)} .dot.green{background:var(--green)}
+  .dot.purple{background:var(--purple)}
   .progress{
     display:flex;height:9px;border-radius:99px;overflow:hidden;background:#e7eaf2;
     margin-bottom:16px;box-shadow:inset 0 0 0 1px rgba(31,35,55,.04)
@@ -151,6 +152,7 @@ $token = MAGIC_TOKEN;
   .pill.st-na     select{background:#b6bcca}
   .pill.st-na::after{color:rgba(255,255,255,.9)}
   .pill.st-todo   select{background:#8f97ab}
+  .pill.st-okay   select{background:var(--purple)}
   .pill.st-wip    select{background:var(--yellow)}
   .pill.st-done   select{background:var(--green)}
   .expand{
@@ -161,6 +163,8 @@ $token = MAGIC_TOKEN;
   .card[data-open="1"] .expand{transform:rotate(180deg)}
   .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:0 14px 12px 62px;margin-top:-6px}
   .tiny{font-size:11.5px;color:#8b93a8;font-weight:700}
+  .readmore{margin-left:5px;color:var(--blue);font-weight:700;text-decoration:none;cursor:pointer}
+  .readmore:hover{text-decoration:underline}
 
   .body{display:none;padding:2px 14px 16px 62px;border-top:1px dashed var(--line);margin:0 14px 0 62px}
   .card[data-open="1"] .body{display:block}
@@ -282,9 +286,12 @@ $token = MAGIC_TOKEN;
   const STATUS = [
     ['na',  'N/A'],
     ['todo','Not started'],
+    ['okay','Okayed to start'],
     ['wip', 'In progress'],
     ['done','Done']
   ];
+  // "Okayed to start" is an approval marker that only makes sense on the Task pill.
+  const STATUS_NOOKAY = STATUS.filter(function(s){ return s[0] !== 'okay'; });
   const STATE_LABEL = {
     grey:  'Not touched yet',
     yellow:'Underway',
@@ -296,6 +303,7 @@ $token = MAGIC_TOKEN;
   let openCards = new Set();
   let filterState = null;   // grey|yellow|orange|green
   let filterGroup = null;   // group id
+  let filterOkay = false;   // show only tasks Leanne okayed to start
   let saveTimer = null;
   let dragId = null;
 
@@ -426,6 +434,15 @@ $token = MAGIC_TOKEN;
       ]));
     });
 
+    const okayCount = DATA.tasks.filter(function(t){ return (t.taskStatus || 'na') === 'okay'; }).length;
+    l.appendChild(h('button',{
+      class:'lg', type:'button', 'aria-pressed': filterOkay ? 'true' : 'false',
+      onclick:function(){ filterOkay = !filterOkay; renderAll(); }
+    },[
+      h('span',{class:'dot purple'}),
+      h('span',{text: 'Okayed to start · ' + okayCount})
+    ]));
+
     const gf = $('groupFilter');
     gf.textContent = '';
     (DATA.groups||[]).forEach(function(g){
@@ -501,15 +518,17 @@ $token = MAGIC_TOKEN;
   /* ---------- status pill ---------- */
   function pill(task, key, label){
     const cur = task[key] || 'na';
+    const opts = (key === 'taskStatus') ? STATUS : STATUS_NOOKAY;
     const sel = h('select',{ onchange:function(){
       task[key] = sel.value;
       queueSave();
       renderAll();
-    }}, STATUS.map(function(s){
+    }}, opts.map(function(s){
       return h('option',{value:s[0], selected: s[0] === cur ? 'selected' : null, text:s[1]});
     }));
     sel.value = cur;
-    return h('span',{class:'pill st-' + cur, title: label + ': ' + (STATUS.find(function(s){return s[0]===cur;})[1])},[
+    const found = STATUS.find(function(s){ return s[0] === cur; }) || ['', cur];
+    return h('span',{class:'pill st-' + cur, title: label + ': ' + found[1]},[
       h('label',{text:label}), sel
     ]);
   }
@@ -602,8 +621,31 @@ $token = MAGIC_TOKEN;
     const op = itemProgress(task.order), ap = itemProgress(task.art);
     if (op) bits.push('📦 ' + op + ' ordered');
     if (ap) bits.push('🎨 ' + ap + ' art');
-    if (task.notes && task.notes.trim()) bits.push('📝 note');
-    if (bits.length) card.appendChild(h('div',{class:'meta'},[h('span',{class:'tiny', text:bits.join('  ·  ')})]));
+    const noteTxt = (task.notes || '').trim();
+    if (bits.length || noteTxt){
+      const inner = h('span',{class:'tiny'});
+      if (bits.length) inner.appendChild(document.createTextNode(bits.join('  ·  ')));
+      if (noteTxt){
+        if (bits.length) inner.appendChild(document.createTextNode('  ·  '));
+        const words = noteTxt.split(/\s+/);
+        const LIMIT = 12;
+        const truncated = words.length > LIMIT;
+        inner.appendChild(document.createTextNode(
+          '📝 ' + words.slice(0, LIMIT).join(' ') + (truncated ? '… ' : '')
+        ));
+        if (truncated){
+          inner.appendChild(h('a',{class:'readmore', href:'#', text:'read more', onclick:function(e){
+            e.preventDefault(); e.stopPropagation();
+            openCards.add(task.id);
+            card.dataset.open = '1';
+            card.querySelectorAll('.txt, .notes textarea').forEach(autogrow);
+            const box = card.querySelector('.notes textarea');
+            if (box && typeof box.scrollIntoView === 'function') box.scrollIntoView({block:'nearest'});
+          }}));
+        }
+      }
+      card.appendChild(h('div',{class:'meta'},[inner]));
+    }
 
     /* expanded body */
     const orderPanel = renderItems(task,'order','📦','To order / source');
@@ -662,6 +704,7 @@ $token = MAGIC_TOKEN;
     DATA.tasks.forEach(function(t, i){
       if (filterState && cardState(t) !== filterState) return;
       if (filterGroup && t.group !== filterGroup) return;
+      if (filterOkay && (t.taskStatus || 'na') !== 'okay') return;
       shown++;
       box.appendChild(renderCard(t, i));
     });
