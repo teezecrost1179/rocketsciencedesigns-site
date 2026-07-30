@@ -106,6 +106,7 @@ $token = MAGIC_TOKEN;
   .card.state-yellow{border-left-color:var(--yellow); background:linear-gradient(90deg,#fff6e6,#fff 26%)}
   .card.state-orange{border-left-color:var(--orange); background:linear-gradient(90deg,#fff0e9,#fff 26%)}
   .card.state-green {border-left-color:var(--green);  background:linear-gradient(90deg,#e8faf1,#fff 26%)}
+  .card.state-purple{border-left-color:var(--purple); background:linear-gradient(90deg,#f4ecfb,#fff 26%)}
   .card.dragging{opacity:.4}
   .card.dropzone{box-shadow:0 0 0 2px var(--blue), var(--shadow)}
 
@@ -295,6 +296,7 @@ $token = MAGIC_TOKEN;
   const STATUS_NOOKAY = STATUS.filter(function(s){ return s[0] !== 'okay'; });
   const STATE_LABEL = {
     grey:  'Not touched yet',
+    purple:'Okayed to start',
     yellow:'Underway',
     orange:'Partly done',
     green: 'Ready to go'
@@ -304,7 +306,6 @@ $token = MAGIC_TOKEN;
   let openCards = new Set();
   let filterState = null;   // grey|yellow|orange|green
   let filterGroup = null;   // group id
-  let filterOkay = false;   // show only tasks Leanne okayed to start
   let saveTimer = null;
   let dragId = null;
 
@@ -340,6 +341,7 @@ $token = MAGIC_TOKEN;
     if (tr.every(function(v){ return v === 'done'; })) return 'green';
     if (tr.some(function(v){ return v === 'wip'; }))  return 'yellow';
     if (tr.some(function(v){ return v === 'done'; })) return 'orange';
+    if (tr.some(function(v){ return v === 'okay'; })) return 'purple';
     return 'grey';
   }
   function groupOf(id){
@@ -420,12 +422,12 @@ $token = MAGIC_TOKEN;
 
   /* ---------- legend / filters / progress ---------- */
   function renderLegend(){
-    const counts = {grey:0,yellow:0,orange:0,green:0};
+    const counts = {grey:0,purple:0,yellow:0,orange:0,green:0};
     DATA.tasks.forEach(function(t){ counts[cardState(t)]++; });
 
     const l = $('legend');
     l.textContent = '';
-    ['grey','yellow','orange','green'].forEach(function(k){
+    ['grey','purple','yellow','orange','green'].forEach(function(k){
       l.appendChild(h('button',{
         class:'lg', type:'button', 'aria-pressed': filterState === k ? 'true' : 'false',
         onclick:function(){ filterState = (filterState === k ? null : k); renderAll(); }
@@ -434,15 +436,6 @@ $token = MAGIC_TOKEN;
         h('span',{text: STATE_LABEL[k] + ' · ' + counts[k]})
       ]));
     });
-
-    const okayCount = DATA.tasks.filter(function(t){ return (t.taskStatus || 'na') === 'okay'; }).length;
-    l.appendChild(h('button',{
-      class:'lg', type:'button', 'aria-pressed': filterOkay ? 'true' : 'false',
-      onclick:function(){ filterOkay = !filterOkay; renderAll(); }
-    },[
-      h('span',{class:'dot purple'}),
-      h('span',{text: 'Okayed to start · ' + okayCount})
-    ]));
 
     const gf = $('groupFilter');
     gf.textContent = '';
@@ -459,7 +452,7 @@ $token = MAGIC_TOKEN;
     const total = DATA.tasks.length || 1;
     const bar = $('progress');
     bar.textContent = '';
-    [['green','var(--green)'],['orange','var(--orange)'],['yellow','var(--yellow)'],['grey','var(--grey)']]
+    [['green','var(--green)'],['orange','var(--orange)'],['yellow','var(--yellow)'],['purple','var(--purple)'],['grey','var(--grey)']]
       .forEach(function(pair){
         if (!counts[pair[0]]) return;
         bar.appendChild(h('i',{
@@ -708,7 +701,6 @@ $token = MAGIC_TOKEN;
     DATA.tasks.forEach(function(t, i){
       if (filterState && cardState(t) !== filterState) return;
       if (filterGroup && t.group !== filterGroup) return;
-      if (filterOkay && (t.taskStatus || 'na') !== 'okay') return;
       shown++;
       box.appendChild(renderCard(t, i));
     });
