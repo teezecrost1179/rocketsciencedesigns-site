@@ -109,7 +109,8 @@ $token = MAGIC_TOKEN;
   .card.dragging{opacity:.4}
   .card.dropzone{box-shadow:0 0 0 2px var(--blue), var(--shadow)}
 
-  .row{display:flex;align-items:center;gap:10px;padding:12px 14px}
+  .row{display:flex;align-items:center;gap:10px;padding:12px 14px 6px}
+  .subrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:0 14px 12px 62px}
   .handle{
     flex:0 0 auto;width:24px;height:28px;display:grid;place-items:center;cursor:grab;
     color:#aeb5c7;border-radius:6px;touch-action:none
@@ -171,7 +172,7 @@ $token = MAGIC_TOKEN;
   .panels{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
   @media (max-width:760px){
     .panels{grid-template-columns:1fr}
-    .body,.meta{padding-left:14px;margin-left:0}
+    .body,.meta,.subrow{padding-left:14px;margin-left:0}
     .row{flex-wrap:wrap}
     .title{order:-1;flex-basis:100%}
   }
@@ -607,13 +608,16 @@ $token = MAGIC_TOKEN;
       }});
 
     card.appendChild(h('div',{class:'row'},[
-      handle, nudge, tcheck, title, gsel,
+      handle, nudge, tcheck, title, expand
+    ]));
+
+    card.appendChild(h('div',{class:'subrow'},[
+      gsel,
       h('span',{class:'pills'},[
         pill(task,'taskStatus','Task'),
         pill(task,'orderStatus','Order'),
         pill(task,'artStatus','Art')
-      ]),
-      expand
+      ])
     ]));
 
     /* collapsed summary line */
@@ -628,7 +632,7 @@ $token = MAGIC_TOKEN;
       if (noteTxt){
         if (bits.length) inner.appendChild(document.createTextNode('  ·  '));
         const words = noteTxt.split(/\s+/);
-        const LIMIT = 12;
+        const LIMIT = 18;
         const truncated = words.length > LIMIT;
         inner.appendChild(document.createTextNode(
           '📝 ' + words.slice(0, LIMIT).join(' ') + (truncated ? '… ' : '')
