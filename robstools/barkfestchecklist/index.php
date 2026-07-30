@@ -683,7 +683,7 @@ $token = MAGIC_TOKEN;
       onclick:function(){
         if (openCards.has(task.id)) openCards.delete(task.id); else openCards.add(task.id);
         card.dataset.open = openCards.has(task.id) ? '1' : '0';
-        card.querySelectorAll('.txt, .notes textarea').forEach(autogrow);
+        card.querySelectorAll('.txt, .notes textarea, .qtext, .atext').forEach(autogrow);
       }});
 
     card.appendChild(h('div',{class:'row'},[
@@ -722,7 +722,7 @@ $token = MAGIC_TOKEN;
             e.preventDefault(); e.stopPropagation();
             openCards.add(task.id);
             card.dataset.open = '1';
-            card.querySelectorAll('.txt, .notes textarea').forEach(autogrow);
+            card.querySelectorAll('.txt, .notes textarea, .qtext, .atext').forEach(autogrow);
             const box = card.querySelector('.notes textarea');
             if (box && typeof box.scrollIntoView === 'function') box.scrollIntoView({block:'nearest'});
           }}));
@@ -797,7 +797,7 @@ $token = MAGIC_TOKEN;
         [h('span',{text:'Nothing matches those filters.'})]));
     }
     document.querySelectorAll('.card[data-open="1"]').forEach(function(c){
-      c.querySelectorAll('.txt, .notes textarea').forEach(autogrow);
+      c.querySelectorAll('.txt, .notes textarea, .qtext, .atext').forEach(autogrow);
     });
   }
 
