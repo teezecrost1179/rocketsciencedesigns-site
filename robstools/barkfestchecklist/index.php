@@ -321,8 +321,6 @@ $token = MAGIC_TOKEN;
     ['wip', 'In progress'],
     ['done','Done']
   ];
-  // "Okayed to start" is an approval marker that only makes sense on the Task pill.
-  const STATUS_NOOKAY = STATUS.filter(function(s){ return s[0] !== 'okay'; });
   const STATE_LABEL = {
     grey:  'Not touched yet',
     purple:'Okayed to start',
@@ -600,7 +598,7 @@ $token = MAGIC_TOKEN;
   /* ---------- status pill ---------- */
   function pill(task, key, label){
     const cur = task[key] || 'na';
-    const opts = (key === 'taskStatus') ? STATUS : STATUS_NOOKAY;
+    const opts = STATUS;
     const sel = h('select',{ onchange:function(){
       task[key] = sel.value;
       queueSave();
