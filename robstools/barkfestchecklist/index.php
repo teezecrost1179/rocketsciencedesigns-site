@@ -213,6 +213,34 @@ $token = MAGIC_TOKEN;
     font:inherit;font-size:13.8px;line-height:1.55;color:var(--ink);background:#fffdf5;resize:vertical
   }
   .notes textarea:focus{outline:2px solid var(--blue);background:#fff}
+
+  /* ---------- questions ---------- */
+  .qblock{margin-top:16px}
+  .qblock h5{
+    margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.9px;color:#7d859a;
+    display:flex;align-items:center;gap:7px
+  }
+  .qblock h5 .ic{font-size:13px}
+  .qlist{display:flex;flex-direction:column;gap:8px}
+  .qitem{
+    display:flex;align-items:flex-start;gap:9px;background:#f6f9ff;border:1px solid #e0e7f7;
+    border-radius:11px;padding:9px 10px
+  }
+  .qitem.answered{background:#f2fbf6;border-color:#cceedd}
+  .qmark{
+    flex:0 0 auto;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;
+    font-size:12px;font-weight:900;color:#fff;background:var(--blue);margin-top:2px
+  }
+  .qitem.answered .qmark{background:var(--green)}
+  .qfields{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+  .qtext,.atext{
+    width:100%;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 9px;
+    font:inherit;font-size:13.5px;color:var(--ink);resize:none;overflow:hidden;line-height:1.45;
+    font-family:inherit
+  }
+  .qtext{font-weight:700}
+  .atext{background:#fbfdff}
+  .qtext:focus,.atext:focus{outline:1px solid var(--blue);background:#fff}
   .cardfoot{display:flex;justify-content:flex-end;margin-top:12px}
   .rm{
     border:1px solid #f3d4d8;background:#fff;color:#c0303f;border-radius:8px;padding:5px 11px;
@@ -242,6 +270,7 @@ $token = MAGIC_TOKEN;
     <div class="spacer"></div>
     <span class="savepill" id="savepill" data-state="idle">Loading…</span>
     <button class="btn" id="copylink" type="button">Copy share link</button>
+    <button class="btn" id="copyquestions" type="button">Copy open questions</button>
     <button class="btn" id="toggleall" type="button">Expand all</button>
   </div>
 
@@ -352,6 +381,11 @@ $token = MAGIC_TOKEN;
     if (!list || !list.length) return '';
     const d = list.filter(function(i){ return i.done; }).length;
     return d + '/' + list.length;
+  }
+  function openQuestions(task){
+    return (task.questions || []).filter(function(q){
+      return q.q && q.q.trim() && !(q.a && q.a.trim());
+    });
   }
 
   /* ---------- save ---------- */
@@ -509,6 +543,60 @@ $token = MAGIC_TOKEN;
     });
   }
 
+  /* ---------- questions ---------- */
+  function renderQuestions(task){
+    const qs = task.questions || (task.questions = []);
+    const list = h('div',{class:'qlist'});
+    if (!qs.length) list.appendChild(h('div',{class:'empty', text:'No questions yet.'}));
+
+    qs.forEach(function(item, idx){
+      const openInit = !(item.a && item.a.trim());
+      const qmark = h('div',{class:'qmark', text: openInit ? '?' : '✓',
+        title: openInit ? 'Open question' : 'Answered'});
+
+      const qta = h('textarea',{class:'qtext', rows:'1', placeholder:'Question…'});
+      qta.value = item.q || '';
+      qta.addEventListener('input', function(){ item.q = qta.value; autogrow(qta); queueSave(); });
+
+      const ata = h('textarea',{class:'atext', rows:'1', placeholder:'Answer… (leave blank while still open)'});
+      ata.value = item.a || '';
+
+      const row = h('div',{class:'qitem' + (openInit ? '' : ' answered')},[
+        qmark,
+        h('div',{class:'qfields'},[qta, ata]),
+        h('button',{class:'del', type:'button', title:'Delete question', text:'✕',
+          onclick:function(){ qs.splice(idx,1); queueSave(); renderAll(); }})
+      ]);
+
+      ata.addEventListener('input', function(){
+        item.a = ata.value; autogrow(ata);
+        const nowOpen = !ata.value.trim();
+        row.classList.toggle('answered', !nowOpen);
+        qmark.textContent = nowOpen ? '?' : '✓';
+        qmark.title = nowOpen ? 'Open question' : 'Answered';
+        queueSave();
+      });
+
+      list.appendChild(row);
+      requestAnimationFrame(function(){ autogrow(qta); autogrow(ata); });
+    });
+
+    return h('div',{class:'qblock'},[
+      h('h5',{},[h('span',{class:'ic', text:'❓'}), 'Questions']),
+      list,
+      h('button',{class:'additem', type:'button', text:'＋ Add a question',
+        onclick:function(){ qs.push({q:'', a:''}); queueSave(); renderAll(); focusLastQuestion(task.id); }})
+    ]);
+  }
+  function focusLastQuestion(taskId){
+    requestAnimationFrame(function(){
+      const card = document.querySelector('[data-card="' + taskId + '"]');
+      if (!card) return;
+      const boxes = card.querySelectorAll('.qtext');
+      if (boxes.length) boxes[boxes.length - 1].focus();
+    });
+  }
+
   /* ---------- status pill ---------- */
   function pill(task, key, label){
     const cur = task[key] || 'na';
@@ -615,6 +703,7 @@ $token = MAGIC_TOKEN;
 
     /* collapsed summary line */
     const bits = [];
+    if (openQuestions(task).length) bits.push('❓ open questions');
     const op = itemProgress(task.order), ap = itemProgress(task.art);
     if (op) bits.push('📦 ' + op + ' ordered');
     if (ap) bits.push('🎨 ' + ap + ' art');
@@ -656,6 +745,7 @@ $token = MAGIC_TOKEN;
 
     card.appendChild(h('div',{class:'body'},[
       h('div',{class:'panels'},[orderPanel, artPanel]),
+      renderQuestions(task),
       h('div',{class:'notes'},[
         h('h5',{},[h('span',{class:'ic',text:'📝'}),'Notes']),
         notes
@@ -766,6 +856,26 @@ $token = MAGIC_TOKEN;
     }
   });
 
+  $('copyquestions').addEventListener('click', function(){
+    const blocks = [];
+    DATA.tasks.forEach(function(t){
+      const open = openQuestions(t);
+      if (!open.length) return;
+      const lines = [t.title];
+      open.forEach(function(q){ lines.push('  • ' + q.q.trim()); });
+      blocks.push(lines.join('\n'));
+    });
+    if (!blocks.length){ toast('No open questions right now.'); return; }
+    const evtitle = (DATA.event && DATA.event.title) || 'Checklist';
+    const text = 'Open questions — ' + evtitle + '\n\n' + blocks.join('\n\n') + '\n';
+    const done = function(){ toast('Open questions copied — grouped by task.'); };
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done, function(){ prompt('Copy the open questions:', text); });
+    } else {
+      prompt('Copy the open questions:', text);
+    }
+  });
+
   window.addEventListener('beforeunload', function(e){
     if ($('savepill').dataset.state === 'saving'){
       e.preventDefault(); e.returnValue = '';
@@ -779,6 +889,7 @@ $token = MAGIC_TOKEN;
       DATA = j.data;
       DATA.tasks = DATA.tasks || [];
       DATA.groups = DATA.groups || [];
+      DATA.tasks.forEach(function(t){ if (!Array.isArray(t.questions)) t.questions = []; });
       renderEvent();
       renderAll();
       setPill('idle','All changes saved');
