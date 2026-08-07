@@ -260,6 +260,78 @@ $token = MAGIC_TOKEN;
     box-shadow:0 8px 26px rgba(0,0,0,.25);transition:transform .25s ease;z-index:50
   }
   .toast.show{transform:translateX(-50%) translateY(0)}
+
+  /* ---------- tabs ---------- */
+  .tabs{display:flex;gap:4px;margin:0 0 16px;border-bottom:1px solid var(--line)}
+  .tab{
+    border:0;background:transparent;font:inherit;font-weight:700;font-size:14.5px;color:#8b93a8;
+    padding:9px 15px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px;
+    display:inline-flex;align-items:center;gap:7px;border-radius:8px 8px 0 0
+  }
+  .tab:hover{color:var(--ink);background:#eef1f7}
+  .tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--blue)}
+  .tabcount{
+    background:#e7eaf2;color:#6a7189;border-radius:99px;font-size:11.5px;font-weight:800;
+    padding:1px 8px;min-width:20px;text-align:center
+  }
+  .tab[aria-selected="true"] .tabcount{background:var(--blue);color:#fff}
+  .tabcount.zero{background:#e3f9ee;color:#0b7a4b}
+
+  /* ---------- questions view ---------- */
+  .qgroup{
+    background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);border-left:6px solid var(--grey);
+    margin-bottom:10px;overflow:hidden
+  }
+  .qgroup.state-grey  {border-left-color:var(--grey)}
+  .qgroup.state-purple{border-left-color:var(--purple)}
+  .qgroup.state-yellow{border-left-color:var(--yellow)}
+  .qgroup.state-orange{border-left-color:var(--orange)}
+  .qgroup.state-green {border-left-color:var(--green)}
+  .qghead{
+    display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid var(--line);
+    background:#fbfcfe;flex-wrap:wrap
+  }
+  .qghead .qgtitle{font-weight:800;font-size:14.5px;flex:1;min-width:140px}
+  .qgjump{
+    border:1px solid var(--line);background:#fff;border-radius:7px;padding:3px 9px;font:inherit;
+    font-size:11.5px;font-weight:700;color:#6a7189;cursor:pointer;white-space:nowrap
+  }
+  .qgjump:hover{border-color:var(--blue);color:var(--blue)}
+  .qrow{display:flex;gap:11px;padding:12px 14px;border-bottom:1px solid #f1f3f8}
+  .qrow:last-child{border-bottom:0}
+  .qrow.answered{background:#f7fdfa}
+  .qrow .qmark2{
+    flex:0 0 auto;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;
+    font-size:12px;font-weight:900;background:#eef0f6;color:#8b93a8;margin-top:2px
+  }
+  .qrow.answered .qmark2{background:var(--green);color:#fff}
+  .qbody{flex:1;min-width:0}
+  .qbody .qtext2{
+    width:100%;border:0;background:transparent;font:inherit;font-size:14px;font-weight:700;
+    color:var(--ink);padding:2px 4px;border-radius:6px;resize:none;overflow:hidden;
+    line-height:1.45;font-family:inherit
+  }
+  .qbody .qtext2:focus{outline:1px solid var(--blue);background:#fff}
+  .qbody .atext2{
+    width:100%;margin-top:6px;border:1px solid var(--line);border-radius:9px;padding:8px 10px;
+    font:inherit;font-size:13.5px;line-height:1.5;color:var(--ink);background:#fffdf5;
+    resize:vertical;min-height:38px;font-family:inherit
+  }
+  .qrow.answered .atext2{background:#f2fbf6;border-color:#cfeadd}
+  .qbody .atext2:focus{outline:2px solid var(--blue);background:#fff}
+  .qmeta{display:flex;align-items:center;gap:8px;margin-top:7px;flex-wrap:wrap}
+  .whosel{
+    -webkit-appearance:none;appearance:none;border:1px solid var(--line);background:#fff;
+    border-radius:99px;padding:3px 22px 3px 10px;font:inherit;font-size:11.5px;font-weight:800;
+    color:#6a7189;cursor:pointer
+  }
+  .whosel[data-who="Yoko"]  {background:#eaf1fd;border-color:#bcd4f7;color:#1c4f96}
+  .whosel[data-who="Leanne"]{background:#fdeaf3;border-color:#f7c0da;color:#8f2f5e}
+  .whosel[data-who="Amy"]   {background:#eef7e6;border-color:#cfe6b8;color:#3f6b16}
+  .qempty{
+    background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;
+    text-align:center;color:#8b93a8
+  }
 </style>
 </head>
 <body>
@@ -289,16 +361,34 @@ $token = MAGIC_TOKEN;
     </div>
   </section>
 
-  <div class="progress" id="progress"></div>
-
-  <div class="toolbar">
-    <div class="legend" id="legend"></div>
-    <div class="spacer"></div>
-    <div class="legend" id="groupFilter"></div>
+  <div class="tabs" id="tabs" role="tablist">
+    <button class="tab" type="button" role="tab" data-tab="tasks" aria-selected="true">Tasks</button>
+    <button class="tab" type="button" role="tab" data-tab="questions" aria-selected="false">
+      Questions <span class="tabcount" id="qOpenCount">0</span>
+    </button>
   </div>
 
-  <div class="cards" id="cards"></div>
-  <button class="addcard" id="addcard" type="button">＋ Add a task</button>
+  <div id="taskview">
+    <div class="progress" id="progress"></div>
+
+    <div class="toolbar">
+      <div class="legend" id="legend"></div>
+      <div class="spacer"></div>
+      <div class="legend" id="groupFilter"></div>
+    </div>
+
+    <div class="cards" id="cards"></div>
+    <button class="addcard" id="addcard" type="button">＋ Add a task</button>
+  </div>
+
+  <div id="questionview" hidden>
+    <div class="toolbar">
+      <div class="legend" id="qFilter"></div>
+      <div class="spacer"></div>
+      <div class="legend" id="qWhoFilter"></div>
+    </div>
+    <div id="qcards"></div>
+  </div>
 
   <p class="foot">
     Private checklist · edits save automatically · anyone with the link can edit<br>
@@ -780,8 +870,201 @@ $token = MAGIC_TOKEN;
     queueSave(); renderAll();
   }
 
+  /* ---------- questions view ---------- */
+  const WHO = ['', 'Leanne', 'Yoko', 'Amy', 'Rob'];
+  let qFilter = 'open';   // open | answered | all
+  let qWho = null;        // null = everyone
+
+  function isAnswered(q){ return !!(q.a && q.a.trim()); }
+
+  function qMatches(q){
+    if (qFilter === 'open' && isAnswered(q)) return false;
+    if (qFilter === 'answered' && !isAnswered(q)) return false;
+    if (qWho && (q.who || '') !== qWho) return false;
+    return true;
+  }
+
+  function allQuestions(){
+    const out = [];
+    DATA.tasks.forEach(function(t){
+      (t.questions || []).forEach(function(q){ out.push({task:t, q:q}); });
+    });
+    return out;
+  }
+
+  function renderQFilters(){
+    const all = allQuestions();
+    const counts = {
+      all: all.length,
+      open: all.filter(function(x){ return !isAnswered(x.q); }).length,
+      answered: all.filter(function(x){ return isAnswered(x.q); }).length
+    };
+    const bar = $('qFilter');
+    bar.textContent = '';
+    [['open','Open'],['answered','Answered'],['all','All']].forEach(function(p){
+      bar.appendChild(h('button',{
+        class:'lg', type:'button', 'aria-pressed': qFilter === p[0] ? 'true' : 'false',
+        onclick:function(){ qFilter = p[0]; renderAll(); }
+      },[
+        h('span',{class:'dot ' + (p[0]==='open' ? 'grey' : p[0]==='answered' ? 'green' : 'purple')}),
+        h('span',{text: p[1] + ' · ' + counts[p[0]]})
+      ]));
+    });
+
+    // Who is this waiting on? Only shows owners that actually exist right now.
+    const present = {};
+    all.forEach(function(x){
+      if (qFilter === 'open' && isAnswered(x.q)) return;
+      if (qFilter === 'answered' && !isAnswered(x.q)) return;
+      const w = x.q.who || '';
+      if (w) present[w] = (present[w] || 0) + 1;
+    });
+    const wbar = $('qWhoFilter');
+    wbar.textContent = '';
+    Object.keys(present).sort().forEach(function(w){
+      wbar.appendChild(h('button',{
+        class:'lg', type:'button', 'aria-pressed': qWho === w ? 'true' : 'false',
+        title:'Show only questions waiting on ' + w,
+        onclick:function(){ qWho = (qWho === w ? null : w); renderAll(); }
+      },[h('span',{text: w + ' · ' + present[w]})]));
+    });
+  }
+
+  function renderQuestionView(){
+    renderQFilters();
+    const box = $('qcards');
+    box.textContent = '';
+    let shown = 0;
+
+    DATA.tasks.forEach(function(task){
+      const qs = (task.questions || []).filter(qMatches);
+      if (!qs.length) return;
+      shown += qs.length;
+
+      const g = groupOf(task.group);
+      const block = h('div',{class:'qgroup state-' + cardState(task)});
+
+      block.appendChild(h('div',{class:'qghead'},[
+        h('span',{class:'gchip', style:'background:' + g.color, text:g.name}),
+        h('span',{class:'qgtitle', text:task.title}),
+        h('button',{class:'qgjump', type:'button', text:'Open task ↗', onclick:function(){
+          setTab('tasks');
+          openCards.add(task.id);
+          renderAll();
+          requestAnimationFrame(function(){
+            const card = document.querySelector('[data-card="' + task.id + '"]');
+            if (card && typeof card.scrollIntoView === 'function')
+              card.scrollIntoView({block:'center', behavior:'smooth'});
+          });
+        }})
+      ]));
+
+      qs.forEach(function(item){
+        const answered = isAnswered(item);
+        const mark = h('div',{class:'qmark2', text: answered ? '✓' : '?'});
+
+        const qta = h('textarea',{class:'qtext2', rows:'1', placeholder:'Question…'});
+        qta.value = item.q || '';
+        qta.addEventListener('input', function(){
+          item.q = qta.value; autogrow(qta); queueSave();
+        });
+
+        const ata = h('textarea',{class:'atext2', rows:'1',
+          placeholder:'Answer… (leave blank while still open)'});
+        ata.value = item.a || '';
+
+        const sel = h('select',{class:'whosel', 'data-who': item.who || '',
+          title:'Who is this waiting on?'},
+          WHO.map(function(w){
+            return h('option',{value:w, text: w || 'Unassigned',
+              selected: (item.who || '') === w ? 'selected' : null});
+          }));
+        sel.value = item.who || '';
+        sel.addEventListener('change', function(){
+          if (sel.value) item.who = sel.value; else delete item.who;
+          sel.setAttribute('data-who', sel.value);
+          queueSave();
+        });
+
+        const row = h('div',{class:'qrow' + (answered ? ' answered' : '')},[
+          mark,
+          h('div',{class:'qbody'},[
+            qta, ata,
+            h('div',{class:'qmeta'},[
+              sel,
+              h('span',{class:'tiny', text: answered ? 'Answered' : 'Waiting'})
+            ])
+          ]),
+          h('button',{class:'del', type:'button', title:'Delete question', text:'✕',
+            onclick:function(){
+              const list = task.questions;
+              const i = list.indexOf(item);
+              if (i > -1) list.splice(i,1);
+              queueSave(); renderAll();
+            }})
+        ]);
+
+        // Live styling only — never re-render mid-typing or the row would vanish
+        // out from under the cursor while the "open" filter is active.
+        ata.addEventListener('input', function(){
+          item.a = ata.value; autogrow(ata);
+          const nowAnswered = !!ata.value.trim();
+          row.classList.toggle('answered', nowAnswered);
+          mark.textContent = nowAnswered ? '✓' : '?';
+          row.querySelector('.qmeta .tiny').textContent = nowAnswered ? 'Answered' : 'Waiting';
+          updateQCount();
+          queueSave();
+        });
+        // Re-apply the filter once they've moved on from the field.
+        ata.addEventListener('blur', function(){
+          if ((qFilter === 'open' && isAnswered(item)) ||
+              (qFilter === 'answered' && !isAnswered(item))) renderAll();
+        });
+
+        block.appendChild(row);
+        requestAnimationFrame(function(){ autogrow(qta); autogrow(ata); });
+      });
+
+      box.appendChild(block);
+    });
+
+    if (!shown){
+      const msg = qFilter === 'open'
+        ? (qWho ? 'Nothing is waiting on ' + qWho + ' right now.' : 'No open questions — everything has an answer.')
+        : 'Nothing matches those filters.';
+      box.appendChild(h('div',{class:'qempty'},[h('span',{text:msg})]));
+    }
+  }
+
+  function updateQCount(){
+    const open = allQuestions().filter(function(x){ return !isAnswered(x.q); }).length;
+    const el = $('qOpenCount');
+    el.textContent = open;
+    el.classList.toggle('zero', open === 0);
+  }
+
+  /* ---------- tabs ---------- */
+  let currentTab = 'tasks';
+  function setTab(name){
+    currentTab = name;
+    document.querySelectorAll('#tabs .tab').forEach(function(b){
+      b.setAttribute('aria-selected', b.dataset.tab === name ? 'true' : 'false');
+    });
+    $('taskview').hidden = (name !== 'tasks');
+    $('questionview').hidden = (name !== 'questions');
+    try { localStorage.setItem('pp_tab', name); } catch(e){}
+  }
+  document.querySelectorAll('#tabs .tab').forEach(function(b){
+    b.addEventListener('click', function(){ setTab(b.dataset.tab); renderAll(); });
+  });
+
   /* ---------- render everything ---------- */
   function renderAll(){
+    updateQCount();
+    if (currentTab === 'questions'){
+      renderQuestionView();
+      return;
+    }
     renderLegend();
     const box = $('cards');
     box.textContent = '';
@@ -889,6 +1172,9 @@ $token = MAGIC_TOKEN;
       DATA.groups = DATA.groups || [];
       DATA.tasks.forEach(function(t){ if (!Array.isArray(t.questions)) t.questions = []; });
       renderEvent();
+      let savedTab = 'tasks';
+      try { savedTab = localStorage.getItem('pp_tab') || 'tasks'; } catch(e){}
+      setTab(savedTab === 'questions' ? 'questions' : 'tasks');
       renderAll();
       setPill('idle','All changes saved');
     })
