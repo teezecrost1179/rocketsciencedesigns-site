@@ -261,6 +261,40 @@ $token = MAGIC_TOKEN;
   }
   .toast.show{transform:translateX(-50%) translateY(0)}
 
+  /* ---------- budget bar ---------- */
+  .budgetbar{
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:12px 16px;margin:0 0 14px;box-shadow:var(--shadow)
+  }
+  .bfig{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .blabel{font-size:11px;text-transform:uppercase;letter-spacing:.9px;color:#7d859a;font-weight:800}
+  .btotal{font-size:26px;font-weight:800;letter-spacing:-.6px;color:var(--ink)}
+  .bnote{font-size:11.5px;color:#a2a9ba;font-style:italic}
+  .bsub{display:flex;gap:6px;flex-wrap:wrap;flex:1}
+  .bpill{
+    font-size:11.5px;font-weight:800;padding:3px 10px;border-radius:99px;
+    background:#eef1f7;color:#6a7189;white-space:nowrap
+  }
+  .bpill.committed{background:#e3f9ee;color:#0b7a4b}
+  .bpill.projected{background:#f4ecfb;color:#5c2c86}
+  .bpill.gap{background:#fff4e0;color:#a5620a}
+  @media (max-width:620px){ .budgetbar{gap:10px} .btotal{font-size:22px} }
+
+  /* cost field on a card */
+  .costblock{margin-top:14px}
+  .costblock h5{
+    margin:0 0 7px;font-size:11px;text-transform:uppercase;letter-spacing:.9px;color:#7d859a;
+    display:flex;align-items:center;gap:7px
+  }
+  .costrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .costcur{font-size:13px;font-weight:800;color:#6a7189}
+  .costin{
+    width:120px;border:1px solid var(--line);border-radius:9px;padding:7px 10px;
+    font:inherit;font-size:14px;font-weight:700;color:var(--ink);background:#fff
+  }
+  .costin:focus{outline:2px solid var(--blue)}
+
   /* ---------- tabs ---------- */
   .tabs{display:flex;gap:4px;margin:0 0 16px;border-bottom:1px solid var(--line)}
   .tab{
@@ -360,6 +394,8 @@ $token = MAGIC_TOKEN;
       <div id="evSections"></div>
     </div>
   </section>
+
+  <div class="budgetbar" id="budgetbar"></div>
 
   <div class="tabs" id="tabs" role="tablist">
     <button class="tab" type="button" role="tab" data-tab="tasks" aria-selected="true">Tasks</button>
@@ -791,6 +827,7 @@ $token = MAGIC_TOKEN;
 
     /* collapsed summary line */
     const bits = [];
+    if (costOf(task) !== null) bits.push('💵 ' + money(costOf(task)));
     if (openQuestions(task).length) bits.push('❓ open questions');
     const op = itemProgress(task.order), ap = itemProgress(task.art);
     if (op) bits.push('📦 ' + op + ' ordered');
@@ -831,9 +868,33 @@ $token = MAGIC_TOKEN;
     notes.value = task.notes || '';
     notes.addEventListener('input', function(){ task.notes = notes.value; queueSave(); });
 
+    /* cost — blank means unpriced, which is excluded from the total, not counted as $0 */
+    const costIn = h('input',{class:'costin', type:'text', inputmode:'decimal',
+      placeholder:'—', 'aria-label':'Estimated cost, pre-tax and pre-shipping'});
+    costIn.value = (costOf(task) === null) ? '' : String(costOf(task));
+    costIn.addEventListener('input', function(){
+      const raw = costIn.value.replace(/[^0-9.\-]/g,'');
+      if (raw.trim() === ''){ delete task.cost; }
+      else {
+        const n = parseFloat(raw);
+        if (isFinite(n)) task.cost = n; else delete task.cost;
+      }
+      renderBudget();
+      queueSave();
+    });
+    costIn.addEventListener('blur', function(){ renderAll(); });
+    const costBlock = h('div',{class:'costblock'},[
+      h('h5',{},[h('span',{class:'ic', text:'💵'}),'Estimated cost']),
+      h('div',{class:'costrow'},[
+        h('span',{class:'costcur', text:'CAD $'}), costIn,
+        h('span',{class:'tiny', text:'leave blank if not priced yet — blank is excluded from the total'})
+      ])
+    ]);
+
     card.appendChild(h('div',{class:'body'},[
       h('div',{class:'panels'},[orderPanel, artPanel]),
       renderQuestions(task),
+      costBlock,
       h('div',{class:'notes'},[
         h('h5',{},[h('span',{class:'ic',text:'📝'}),'Notes']),
         notes
@@ -868,6 +929,82 @@ $token = MAGIC_TOKEN;
     DATA.tasks[i] = DATA.tasks[j];
     DATA.tasks[j] = tmp;
     queueSave(); renderAll();
+  }
+
+  /* ---------- budget ---------- */
+  function costOf(t){
+    const c = t.cost;
+    return (typeof c === 'number' && isFinite(c)) ? c : null;
+  }
+  function money(n){ return '$' + Math.round(n).toLocaleString('en-CA'); }
+
+  function budget(){
+    let total = 0, priced = 0, unpriced = 0, committed = 0, projected = 0;
+    const gaps = [];
+    DATA.tasks.forEach(function(t){
+      const c = costOf(t);
+      if (c === null){
+        // A card with nothing to order isn't a pricing gap worth chasing.
+        if (t.orderStatus !== 'na'){ unpriced++; gaps.push(t); }
+        return;
+      }
+      priced++; total += c;
+      const st = cardState(t);
+      if (st === 'green' || st === 'yellow') committed += c; else projected += c;
+    });
+    return {total:total, priced:priced, unpriced:unpriced,
+            committed:committed, projected:projected, gaps:gaps};
+  }
+
+  function renderBudget(){
+    const b = budget();
+    const bar = $('budgetbar');
+    bar.textContent = '';
+    bar.appendChild(h('div',{class:'bfig'},[
+      h('span',{class:'blabel', text:'Estimated budget'}),
+      h('span',{class:'btotal', text: money(b.total)}),
+      h('span',{class:'bnote', text:'pre-tax, pre-shipping'})
+    ]));
+    const sub = h('div',{class:'bsub'});
+    if (b.committed) sub.appendChild(h('span',{class:'bpill committed', text:'committed ' + money(b.committed)}));
+    if (b.projected) sub.appendChild(h('span',{class:'bpill projected', text:'projected ' + money(b.projected)}));
+    sub.appendChild(h('span',{class:'bpill count', text: b.priced + ' costed'}));
+    if (b.unpriced) sub.appendChild(h('span',{class:'bpill gap',
+      title:'Excluded from the total', text: b.unpriced + ' unpriced'}));
+    bar.appendChild(sub);
+    bar.appendChild(h('button',{class:'btn', type:'button', text:'Copy budget', onclick:copyBudget}));
+  }
+
+  function copyBudget(){
+    const b = budget(), ev = DATA.event || {}, lines = [];
+    lines.push((ev.title || 'Checklist') + ' — estimated budget');
+    if (ev.subtitle) lines.push(ev.subtitle);
+    lines.push('All figures CAD, pre-tax and pre-shipping.');
+    lines.push('');
+    (DATA.groups || []).forEach(function(g){
+      const rows = DATA.tasks.filter(function(t){ return t.group === g.id && costOf(t) !== null; });
+      if (!rows.length) return;
+      let sub = 0;
+      lines.push(g.name.toUpperCase());
+      rows.forEach(function(t){ sub += costOf(t); lines.push('  ' + t.title + '  —  ' + money(costOf(t))); });
+      lines.push('  subtotal: ' + money(sub));
+      lines.push('');
+    });
+    lines.push('TOTAL AS CURRENTLY SPECCED: ' + money(b.total));
+    if (b.committed) lines.push('  committed (done / in progress): ' + money(b.committed));
+    if (b.projected) lines.push('  projected (approved / not started): ' + money(b.projected));
+    lines.push('');
+    if (b.gaps.length){
+      lines.push('NOT YET PRICED — ' + b.gaps.length + ' item(s), excluded from the total above:');
+      b.gaps.forEach(function(t){ lines.push('  · ' + t.title); });
+      lines.push('');
+    }
+    lines.push('Excludes tax, shipping and freight.');
+    const text = lines.join('\n');
+    const done = function(){ toast('Budget copied — ' + money(b.total) + ' across ' + b.priced + ' items.'); };
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done, function(){ prompt('Copy the budget:', text); });
+    } else { prompt('Copy the budget:', text); }
   }
 
   /* ---------- questions view ---------- */
@@ -1061,6 +1198,7 @@ $token = MAGIC_TOKEN;
   /* ---------- render everything ---------- */
   function renderAll(){
     updateQCount();
+    renderBudget();
     if (currentTab === 'questions'){
       renderQuestionView();
       return;
