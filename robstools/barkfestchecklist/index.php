@@ -1276,18 +1276,36 @@ $token = MAGIC_TOKEN;
   });
 
   $('copyquestions').addEventListener('click', function(){
+    // Respect the owner filter if one is active, so you never paste Yoko's
+    // questions into an email to Leanne.
+    const who = qWho;
     const blocks = [];
+    let count = 0;
     DATA.tasks.forEach(function(t){
-      const open = openQuestions(t);
+      const open = openQuestions(t).filter(function(q){
+        return !who || (q.who || '') === who;
+      });
       if (!open.length) return;
       const lines = [t.title];
-      open.forEach(function(q){ lines.push('  • ' + q.q.trim()); });
+      open.forEach(function(q){
+        count++;
+        const tag = (!who && q.who) ? ' [' + q.who + ']' : '';
+        lines.push('  • ' + q.q.trim() + tag);
+      });
       blocks.push(lines.join('\n'));
     });
-    if (!blocks.length){ toast('No open questions right now.'); return; }
+    if (!blocks.length){
+      toast(who ? 'Nothing open for ' + who + '.' : 'No open questions right now.');
+      return;
+    }
     const evtitle = (DATA.event && DATA.event.title) || 'Checklist';
-    const text = 'Open questions — ' + evtitle + '\n\n' + blocks.join('\n\n') + '\n';
-    const done = function(){ toast('Open questions copied — grouped by task.'); };
+    const head = who ? 'Open questions for ' + who + ' — ' + evtitle
+                     : 'Open questions — ' + evtitle;
+    const text = head + '\n\n' + blocks.join('\n\n') + '\n';
+    const done = function(){
+      toast(who ? 'Copied ' + count + ' question(s) for ' + who + '.'
+                : 'Copied ' + count + ' open question(s), owner tagged.');
+    };
     if (navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(text).then(done, function(){ prompt('Copy the open questions:', text); });
     } else {
