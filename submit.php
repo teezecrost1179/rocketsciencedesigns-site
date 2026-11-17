@@ -1,7 +1,6 @@
 <?php
 $config  = require __DIR__ . '/../email-config.php';
 $token   = $config['postmark_token'] ?? '';
-$subject = "New Project Inquiry via Website";
 
 // Sanitize & validate fields
 $name = isset($_POST['name']) ? strip_tags(trim($_POST['name'])) : '';
@@ -16,6 +15,9 @@ if (!$name || !$email || !$topic || !$timeframe || !$message) {
   echo "Please complete all fields.";
   exit;
 }
+
+// Unique subject per submission so Gmail doesn't thread/merge close submissions
+$subject = "New Project Inquiry from $name (" . date('M j, g:ia') . ")";
 
 // Build email body
 $body = "You received a new message from your website contact form:\n\n";
