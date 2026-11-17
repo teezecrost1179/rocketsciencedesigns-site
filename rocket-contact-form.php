@@ -18,4 +18,9 @@
                 <p id="form-response" style="margin-top:1rem;"></p>
             </form>
         </div>
+
+        <!-- Success modal – covers the start-project container -->
+        <div id="form-success-modal" class="form-success-modal" role="status" aria-live="polite" hidden>
+            <p id="form-success-text" class="form-success-text"></p>
+        </div>
     </section>

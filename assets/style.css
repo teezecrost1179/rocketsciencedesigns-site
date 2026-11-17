@@ -814,6 +814,37 @@
 
         /* START A PROJECT – FORM */
 
+        #start-project { position: relative; }
+
+        /* Success modal – overlays the whole start-project container */
+        .form-success-modal {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 14px;
+            z-index: 5;
+            opacity: 1;
+            transition: opacity 0.6s ease;
+        }
+
+        .form-success-modal.is-fading { opacity: 0; }
+
+        .form-success-modal[hidden] { display: none; }
+
+        .form-success-text {
+            margin: 0;
+            max-width: 640px;
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.35;
+            color: var(--text-body);
+        }
+
         #start-project #contact-form {
             margin-top: 28px;
             display: grid;

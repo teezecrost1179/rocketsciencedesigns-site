@@ -12,8 +12,22 @@ const contactForm = document.getElementById('contact-form');
           body: formData,
         });
         const text = await res.text();
-        responseEl.innerText = text;
-        form.reset();
+        if (res.ok) {
+          const modal = document.getElementById('form-success-modal');
+          document.getElementById('form-success-text').innerText = text;
+          modal.classList.remove('is-fading');
+          modal.hidden = false;
+          form.reset();
+          setTimeout(function () {
+            modal.classList.add('is-fading');
+            setTimeout(function () {
+              modal.hidden = true;
+              modal.classList.remove('is-fading');
+            }, 600);
+          }, 7000);
+        } else {
+          responseEl.innerText = text;
+        }
       } catch (err) {
         responseEl.innerText = 'Sorry, something went wrong. Please email me directly.';
       }
